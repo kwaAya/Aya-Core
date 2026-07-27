@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  /* ---- Color tokens (Aya Core Studios brand — white / soft pink / dark + hot pink) ---- */
+  --color-cream: #F5F3F0;
+  --color-white: #FFFFFF;
+  --color-blush-100: #F4D4D4;
+  --color-blush: #E8C4C4;
+  --color-blush-600: #D9A5A8;
+  --color-hotpink: #AB094F;
+  --color-hotpink-glow: #E2447D;
+  --color-silver: #C0C0C0;
+  --color-ink: #1A1A1A;
+  --color-charcoal: #1A1A1A;
+  --color-gray-100: #E8E8E8;
+  --color-gray-400: #999999;
+  --color-gray-700: #333333;
+
+  /* ---- Type ---- */
+  --font-display: "Playfair Display", ui-serif, Georgia, serif;
+  --font-heading: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: var(--color-hotpink);
+  color: var(--color-white);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-hotpink);
+  outline-offset: 3px;
+}
+
+/* Custom cursor-glow layer, positioned via JS */
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 420px;
+  height: 420px;
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle, rgba(232,196,196,0.35) 0%, rgba(232,196,196,0) 70%);
+  transform: translate(-50%, -50%);
+  will-change: transform;
+}
+
+.dark-section .cursor-glow {
+  background: radial-gradient(circle, rgba(171,9,79,0.3) 0%, rgba(171,9,79,0) 70%);
+}
+
+/* thin scrollbar for terminal card */
+.term-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.term-scroll::-webkit-scrollbar-thumb {
+  background: rgba(171,9,79,0.4);
+  border-radius: 2px;
+}
