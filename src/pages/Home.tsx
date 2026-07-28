@@ -23,14 +23,14 @@ export default function Home() {
         </span>
 
         <div className="max-w-6xl mx-auto">
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="font-mono text-sm text-hotpink mb-6"
+            className="mb-6"
           >
-            // creative technologist · south africa
-          </motion.p>
+            <SectionTag>creative technologist · south africa</SectionTag>
+          </motion.div>
 
           <div className="relative">
             <RevealText
@@ -40,8 +40,8 @@ export default function Home() {
             />
 
             {/* core bleeds past the text column instead of sitting in a tidy grid cell */}
-            <div className="md:absolute md:-top-10 md:right-0 flex justify-center mt-10 md:mt-0">
-              <div className="relative w-[340px] h-[340px]">
+            <div className="md:absolute md:-top-24 md:-right-16 flex justify-center mt-10 md:mt-0">
+              <div className="relative w-[300px] h-[300px] md:w-[620px] md:h-[620px]">
                 <div
                   className="absolute inset-0 rounded-full blur-3xl -z-10"
                   style={{ background: "radial-gradient(circle, rgba(232,196,196,0.4), transparent 65%)" }}

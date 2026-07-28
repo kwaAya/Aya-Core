@@ -19,7 +19,7 @@ export default function ProjectDetail() {
       <div className="max-w-3xl mx-auto">
         <Link
           to="/work"
-          className="inline-flex items-center gap-2 font-mono text-xs text-gray-700/60 hover:text-hotpink transition-colors mb-10"
+          className="flex items-center gap-2 font-mono text-xs text-gray-700/60 hover:text-hotpink transition-colors mb-10 w-fit"
         >
           <ArrowLeft size={14} /> all projects
         </Link>

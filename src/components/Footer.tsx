@@ -17,10 +17,10 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-wrap gap-x-8 gap-y-3 font-heading text-sm">
-          <Link to="/work" className="hover:text-hotpink-glow transition-colors">Work</Link>
-          <Link to="/about" className="hover:text-hotpink-glow transition-colors">About</Link>
-          <Link to="/services" className="hover:text-hotpink-glow transition-colors">Services</Link>
-          <Link to="/contact" className="hover:text-hotpink-glow transition-colors">Contact</Link>
+          <Link to="/work" className="hover:text-hotpink-glow transition-colors">Shipped</Link>
+          <Link to="/about" className="hover:text-hotpink-glow transition-colors">Behind the Core</Link>
+          <Link to="/services" className="hover:text-hotpink-glow transition-colors">Build With Me</Link>
+          <Link to="/contact" className="hover:text-hotpink-glow transition-colors">Say Hi</Link>
         </div>
 
         <div className="flex gap-6 font-mono text-xs">
