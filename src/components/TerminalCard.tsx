@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { animate, utils } from "animejs";
 
 const LINES = [
-  { prompt: "$", text: "deploy --project matatiele-online", delay: 0 },
-  { prompt: ">", text: "live at matatiele.co.za", delay: 0, dim: true },
-  { prompt: "$", text: "status --all-platforms", delay: 0 },
-  { prompt: ">", text: "5 platforms, 16 towns covered", delay: 0, dim: true },
-  { prompt: "$", text: "core.system --online", delay: 0 },
-  { prompt: ">", text: "540h production time", delay: 0, dim: true },
-  { prompt: "$", text: "▊", delay: 0, cursor: true },
+  { prompt: "$", text: "deploy --project matatiele-online" },
+  { prompt: ">", text: "live at matatiele.co.za", dim: true },
+  { prompt: "$", text: "status --all-platforms" },
+  { prompt: ">", text: "5 platforms, 16 towns covered", dim: true },
+  { prompt: "$", text: "core.system --online" },
+  { prompt: ">", text: "540h production time", dim: true },
+  { prompt: "$", text: "▊", cursor: true },
 ];
 
 /**
@@ -19,41 +20,46 @@ const LINES = [
 export default function TerminalCard() {
   const [visibleLines, setVisibleLines] = useState(0);
   const [charCount, setCharCount] = useState(0);
+  const activeAnim = useRef<ReturnType<typeof animate> | null>(null);
 
   useEffect(() => {
-    const prefersReduced = window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
-    if (prefersReduced) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setVisibleLines(LINES.length);
       return;
     }
 
-    let line = 0;
-    let char = 0;
     let cancelled = false;
+    const wait = (ms: number) =>
+      new Promise<void>((resolve) => setTimeout(resolve, ms));
 
-    const step = () => {
-      if (cancelled) return;
-      const current = LINES[line];
-      if (!current) return;
-      char++;
-      setCharCount(char);
-      if (char >= current.text.length) {
-        line++;
-        char = 0;
-        setVisibleLines(line);
-        if (line < LINES.length) {
-          setTimeout(step, 260);
-        }
-        return;
+    async function run() {
+      await wait(500);
+      for (let i = 0; i < LINES.length; i++) {
+        if (cancelled) return;
+        const line = LINES[i];
+        setVisibleLines(i);
+        setCharCount(0);
+        if (line.cursor) return; // static pulse — nothing to type
+
+        const progress = { n: 0 };
+        const anim = animate(progress, {
+          n: line.text.length,
+          duration: line.text.length * 22,
+          ease: "linear",
+          modifier: utils.round(0),
+          onUpdate: () => setCharCount(progress.n),
+        });
+        activeAnim.current = anim;
+        await anim;
+        if (cancelled) return;
+        await wait(260);
       }
-      setTimeout(step, 22);
-    };
-    const start = setTimeout(step, 500);
+    }
+
+    run();
     return () => {
       cancelled = true;
-      clearTimeout(start);
+      activeAnim.current?.cancel();
     };
   }, []);
 
@@ -65,7 +71,7 @@ export default function TerminalCard() {
       whileHover={{ rotate: 0, y: -4 }}
       className="relative w-full max-w-md"
     >
-      {/* soft blush glow behind the card */}
+      {/* magenta glow behind the card */}
       <div
         className="absolute -inset-6 rounded-[2rem] blur-2xl -z-10"
         style={{ background: "radial-gradient(circle, rgba(248,18,149,0.25), transparent 70%)" }}

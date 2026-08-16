@@ -1,5 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useMemo, Suspense } from "react";
+import { useRef, useMemo, useEffect, Suspense } from "react";
+import { animate } from "animejs";
 import * as THREE from "three";
 
 const HOTPINK = "#F81295";
@@ -7,12 +8,17 @@ const SILVER = "#c9c9c9";
 const SILVER_WARM = "#dcdcdc";
 const PEARL = "#f2f2f2";
 
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 function Ring({
   radius,
   tilt,
   rotation,
   speed,
   color,
+  entranceDelay = 0,
   thickness = 0.008,
 }: {
   radius: number;
@@ -20,59 +26,130 @@ function Ring({
   rotation: [number, number, number];
   speed: number;
   color: string;
+  entranceDelay?: number;
   thickness?: number;
 }) {
-  const ref = useRef<THREE.Mesh>(null);
+  const spinRef = useRef<THREE.Mesh>(null);
+  const orbitRef = useRef<THREE.Group>(null);
   const geom = useMemo(
     () => new THREE.TorusGeometry(radius, thickness, 32, 256),
     [radius, thickness]
   );
+
+  // Resting orientation — identical math to the original static rotation prop.
+  const rest: [number, number, number] = [
+    tilt[0] + rotation[0],
+    tilt[1] + rotation[1],
+    tilt[2] + rotation[2],
+  ];
+
+  // Continuous orbital spin — untouched, owns the INNER mesh, runs forever.
   useFrame((_, delta) => {
-    if (!ref.current) return;
-    ref.current.rotation.x += delta * speed * 0.35;
-    ref.current.rotation.y += delta * speed * 0.5;
-    ref.current.rotation.z += delta * speed * 0.15;
+    if (!spinRef.current) return;
+    spinRef.current.rotation.x += delta * speed * 0.35;
+    spinRef.current.rotation.y += delta * speed * 0.5;
+    spinRef.current.rotation.z += delta * speed * 0.15;
   });
+
+  // Entrance sweep — owns the OUTER group, once, on mount. Rings start
+  // near edge-on (thin) and sweep open into their resting tilt.
+  useEffect(() => {
+    const group = orbitRef.current;
+    if (!group) return;
+
+    if (prefersReducedMotion()) {
+      group.rotation.set(rest[0], rest[1], rest[2]);
+      return;
+    }
+
+    const start = { x: Math.PI / 2, y: rest[1] * 3.2, z: rest[2] * 3.2 };
+    group.rotation.set(start.x, start.y, start.z);
+
+    const progress = { ...start };
+    const anim = animate(progress, {
+      x: rest[0],
+      y: rest[1],
+      z: rest[2],
+      duration: 1700,
+      delay: 250 + entranceDelay,
+      ease: "outExpo",
+      onUpdate: () => group.rotation.set(progress.x, progress.y, progress.z),
+    });
+
+    return () => {
+      anim.cancel();
+    };
+  }, [rest[0], rest[1], rest[2], entranceDelay]);
+
   return (
-    <mesh
-      ref={ref}
-      geometry={geom}
-      rotation={[tilt[0] + rotation[0], tilt[1] + rotation[1], tilt[2] + rotation[2]]}
-    >
-      <meshStandardMaterial
-        color={color}
-        metalness={0.95}
-        roughness={0.18}
-        emissive={color}
-        emissiveIntensity={0.08}
-      />
-    </mesh>
+    <group ref={orbitRef}>
+      <mesh ref={spinRef} geometry={geom}>
+        <meshStandardMaterial
+          color={color}
+          metalness={0.95}
+          roughness={0.18}
+          emissive={color}
+          emissiveIntensity={0.08}
+        />
+      </mesh>
+    </group>
   );
 }
 
 function Core() {
-  const ref = useRef<THREE.Mesh>(null);
+  const pulseRef = useRef<THREE.Mesh>(null);
+  const entranceRef = useRef<THREE.Group>(null);
+
+  // Continuous breathing pulse — untouched, owns the INNER mesh.
   useFrame(({ clock }) => {
-    if (!ref.current) return;
+    if (!pulseRef.current) return;
     const t = clock.getElapsedTime();
     const s = 1 + Math.sin(t * 1.2) * 0.03;
-    ref.current.scale.setScalar(s);
+    pulseRef.current.scale.setScalar(s);
   });
+
+  // Entrance — the core grows in first, the "single point" the rings
+  // then sweep in around (echoes the homepage's three-movements beat:
+  // nucleus, then systems form around it).
+  useEffect(() => {
+    const group = entranceRef.current;
+    if (!group) return;
+
+    if (prefersReducedMotion()) {
+      group.scale.setScalar(1);
+      return;
+    }
+
+    group.scale.setScalar(0);
+    const progress = { s: 0 };
+    const anim = animate(progress, {
+      s: 1,
+      duration: 700,
+      ease: "outExpo",
+      onUpdate: () => group.scale.setScalar(progress.s),
+    });
+    return () => {
+      anim.cancel();
+    };
+  }, []);
+
   return (
-    <mesh ref={ref}>
-      <sphereGeometry args={[0.55, 64, 64]} />
-      <meshPhysicalMaterial
-        color="#ffffff"
-        roughness={0.15}
-        metalness={0.1}
-        transmission={0.6}
-        thickness={1.2}
-        clearcoat={1}
-        clearcoatRoughness={0.05}
-        emissive={PEARL}
-        emissiveIntensity={0.35}
-      />
-    </mesh>
+    <group ref={entranceRef}>
+      <mesh ref={pulseRef}>
+        <sphereGeometry args={[0.55, 64, 64]} />
+        <meshPhysicalMaterial
+          color="#ffffff"
+          roughness={0.15}
+          metalness={0.1}
+          transmission={0.6}
+          thickness={1.2}
+          clearcoat={1}
+          clearcoatRoughness={0.05}
+          emissive={PEARL}
+          emissiveIntensity={0.35}
+        />
+      </mesh>
+    </group>
   );
 }
 
@@ -116,9 +193,9 @@ function Scene({ interactive }: { interactive: boolean }) {
     <group ref={group}>
       <Core />
       <Sparks />
-      <Ring radius={1.35} tilt={[0.4, 0, 0.2]} rotation={[0, 0, 0]} speed={0.4} color={SILVER} />
-      <Ring radius={1.55} tilt={[-0.3, 0.5, -0.1]} rotation={[0, 1, 0]} speed={0.3} color={SILVER_WARM} />
-      <Ring radius={1.75} tilt={[0.6, -0.4, 0.3]} rotation={[0.5, 0, 0]} speed={0.25} color={SILVER} />
+      <Ring radius={1.35} tilt={[0.4, 0, 0.2]} rotation={[0, 0, 0]} speed={0.4} color={SILVER} entranceDelay={0} />
+      <Ring radius={1.55} tilt={[-0.3, 0.5, -0.1]} rotation={[0, 1, 0]} speed={0.3} color={SILVER_WARM} entranceDelay={90} />
+      <Ring radius={1.75} tilt={[0.6, -0.4, 0.3]} rotation={[0.5, 0, 0]} speed={0.25} color={SILVER} entranceDelay={180} />
       <Ring
         radius={1.95}
         tilt={[-0.2, 0.8, 0.4]}
@@ -126,6 +203,7 @@ function Scene({ interactive }: { interactive: boolean }) {
         speed={0.2}
         color={SILVER_WARM}
         thickness={0.006}
+        entranceDelay={270}
       />
     </group>
   );
@@ -136,6 +214,9 @@ function Scene({ interactive }: { interactive: boolean }) {
  * metallic rings genuinely orbiting it (React Three Fiber / WebGL, not a
  * CSS approximation). `interactive` controls whether it tilts toward the
  * cursor (hero use) or sits self-contained (scroll-driven / decorative use).
+ * On mount: the core grows in, then the rings sweep from edge-on into
+ * their resting orbits, staggered ~90ms apart — then the continuous
+ * spin/pulse/tilt logic (unchanged) takes over.
  */
 export function OrbitalScene({
   interactive = true,
