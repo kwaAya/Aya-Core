@@ -2,10 +2,10 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useRef, useMemo, Suspense } from "react";
 import * as THREE from "three";
 
-const HOTPINK = "#AB094F";
-const SILVER = "#c9c9d1";
-const SILVER_WARM = "#d8cfd2";
-const PEARL = "#f4dfe5";
+const HOTPINK = "#F81295";
+const SILVER = "#c9c9c9";
+const SILVER_WARM = "#dcdcdc";
+const PEARL = "#f2f2f2";
 
 function Ring({
   radius,

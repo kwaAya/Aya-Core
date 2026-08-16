@@ -68,10 +68,10 @@ export default function TerminalCard() {
       {/* soft blush glow behind the card */}
       <div
         className="absolute -inset-6 rounded-[2rem] blur-2xl -z-10"
-        style={{ background: "radial-gradient(circle, rgba(232,196,196,0.55), transparent 70%)" }}
+        style={{ background: "radial-gradient(circle, rgba(248,18,149,0.25), transparent 70%)" }}
         aria-hidden="true"
       />
-      <div className="rounded-2xl border border-blush bg-white/80 backdrop-blur-sm shadow-[0_20px_60px_-15px_rgba(171,9,79,0.25)] overflow-hidden">
+      <div className="rounded-2xl border border-white/10 bg-black/60 backdrop-blur-sm shadow-[0_20px_60px_-15px_rgba(248,18,149,0.25)] overflow-hidden">
         <div className="flex items-center gap-2 px-4 py-3 border-b border-blush-100 bg-blush/20">
           <span className="w-2.5 h-2.5 rounded-full bg-hotpink/70" />
           <span className="w-2.5 h-2.5 rounded-full bg-blush-600" />

@@ -74,7 +74,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="border border-blush-100 rounded-2xl p-6 bg-white"
+              className="border border-blush-100 rounded-2xl p-6 bg-charcoal"
             >
               <h3 className="font-display text-xl font-semibold">{d.title}</h3>
               <p className="mt-2 text-sm text-gray-700/70">{d.body}</p>

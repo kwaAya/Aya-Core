@@ -23,9 +23,9 @@ const MOVEMENTS = [
 ];
 
 const GLOW_BY_STAGE = [
-  "radial-gradient(circle, rgba(171,9,79,0.20), transparent 65%)",
-  "radial-gradient(circle, rgba(192,192,192,0.35), transparent 65%)",
-  "radial-gradient(circle, rgba(232,196,196,0.4), transparent 65%)",
+  "radial-gradient(circle, rgba(248,18,149,0.22), transparent 65%)",
+  "radial-gradient(circle, rgba(201,201,201,0.3), transparent 65%)",
+  "radial-gradient(circle, rgba(255,255,255,0.28), transparent 65%)",
 ];
 
 /**

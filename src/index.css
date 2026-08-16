@@ -1,20 +1,23 @@
 @import "tailwindcss";
 
 @theme {
-  /* ---- Color tokens (Aya Core Studios brand — white / soft pink / dark + hot pink) ---- */
-  --color-cream: #F5F3F0;
+  /* ---- Color tokens (Aya Core Studios brand — onyx / chrome / vivid magenta) ----
+     Names kept as-is so every existing bg-cream / text-ink / bg-hotpink class
+     repaints automatically. Values now match the real logo + favicon, not the
+     old brand-brief pastel palette. */
+  --color-cream: #000000;       /* page bg — was pale cream, now the black canvas */
   --color-white: #FFFFFF;
-  --color-blush-100: #F4D4D4;
-  --color-blush: #E8C4C4;
-  --color-blush-600: #D9A5A8;
-  --color-hotpink: #AB094F;
-  --color-hotpink-glow: #E2447D;
+  --color-blush-100: #232226;   /* was pale pink — now hairline dividers on black */
+  --color-blush: #F81295;       /* was pale pink — now vivid magenta wash/glow */
+  --color-blush-600: #A7034B;   /* was dusty rose — deeper magenta accent */
+  --color-hotpink: #F81295;     /* was muted burgundy — true logo-flare magenta */
+  --color-hotpink-glow: #F765B7;
   --color-silver: #C0C0C0;
-  --color-ink: #1A1A1A;
-  --color-charcoal: #1A1A1A;
+  --color-ink: #F2F2F0;         /* was near-black text — now off-white */
+  --color-charcoal: #131316;    /* elevated panel fill, distinct from pure black */
   --color-gray-100: #E8E8E8;
-  --color-gray-400: #999999;
-  --color-gray-700: #333333;
+  --color-gray-400: #A0A0A0;
+  --color-gray-700: #B5B5B5;    /* was dark grey body text — now light grey */
 
   /* ---- Type ---- */
   --font-display: "Playfair Display", ui-serif, Georgia, serif;
@@ -68,13 +71,13 @@ body {
   border-radius: 9999px;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(circle, rgba(232,196,196,0.35) 0%, rgba(232,196,196,0) 70%);
+  background: radial-gradient(circle, rgba(248,18,149,0.18) 0%, rgba(248,18,149,0) 70%);
   transform: translate(-50%, -50%);
   will-change: transform;
 }
 
 .dark-section .cursor-glow {
-  background: radial-gradient(circle, rgba(171,9,79,0.3) 0%, rgba(171,9,79,0) 70%);
+  background: radial-gradient(circle, rgba(248,18,149,0.35) 0%, rgba(248,18,149,0) 70%);
 }
 
 /* thin scrollbar for terminal card */
@@ -82,6 +85,6 @@ body {
   width: 4px;
 }
 .term-scroll::-webkit-scrollbar-thumb {
-  background: rgba(171,9,79,0.4);
+  background: rgba(248,18,149,0.4);
   border-radius: 2px;
 }

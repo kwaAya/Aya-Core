@@ -44,7 +44,7 @@ export default function Home() {
               <div className="relative w-[300px] h-[300px] md:w-[620px] md:h-[620px]">
                 <div
                   className="absolute inset-0 rounded-full blur-3xl -z-10"
-                  style={{ background: "radial-gradient(circle, rgba(232,196,196,0.4), transparent 65%)" }}
+                  style={{ background: "radial-gradient(circle, rgba(248,18,149,0.22), transparent 65%)" }}
                   aria-hidden="true"
                 />
                 <OrbitalScene className="w-full h-full" />
@@ -71,7 +71,7 @@ export default function Home() {
           >
             <Link
               to="/work"
-              className="inline-flex items-center gap-2 bg-ink text-white font-heading text-sm font-medium rounded-full px-6 py-3.5 hover:bg-hotpink transition-colors"
+              className="inline-flex items-center gap-2 bg-charcoal text-white font-heading text-sm font-medium rounded-full px-6 py-3.5 hover:bg-hotpink transition-colors"
             >
               Explore the work <ArrowRight size={16} />
             </Link>
@@ -101,7 +101,7 @@ export default function Home() {
       <ThreeMovements />
 
       {/* ---------- FEATURED WORK ---------- */}
-      <section className="relative px-6 md:px-10 py-24 bg-white overflow-hidden">
+      <section className="relative px-6 md:px-10 py-24 bg-charcoal overflow-hidden">
         <span
           aria-hidden="true"
           className="pointer-events-none select-none absolute top-6 right-6 md:right-16 font-display font-semibold text-[9rem] md:text-[13rem] leading-none text-blush/25 -z-0"
@@ -130,10 +130,10 @@ export default function Home() {
       </section>
 
       {/* ---------- DARK CTA ---------- */}
-      <section className="dark-section relative bg-ink text-white px-6 md:px-10 py-28 overflow-hidden">
+      <section className="dark-section relative bg-charcoal text-white px-6 md:px-10 py-28 overflow-hidden">
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-3xl opacity-30 -z-0"
-          style={{ background: "radial-gradient(circle, #AB094F, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, #F81295, transparent 70%)" }}
           aria-hidden="true"
         />
         <div className="relative max-w-3xl mx-auto text-center">
@@ -146,7 +146,7 @@ export default function Home() {
           </p>
           <Link
             to="/contact"
-            className="mt-10 inline-flex items-center gap-2 bg-hotpink text-white font-mono text-sm rounded-full px-7 py-4 hover:bg-hotpink-glow transition-colors shadow-[0_0_40px_-8px_rgba(171,9,79,0.7)]"
+            className="mt-10 inline-flex items-center gap-2 bg-hotpink text-white font-mono text-sm rounded-full px-7 py-4 hover:bg-hotpink-glow transition-colors shadow-[0_0_40px_-8px_rgba(248,18,149,0.55)]"
           >
             $ initiate_contact
           </Link>

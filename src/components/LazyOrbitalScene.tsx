@@ -21,7 +21,7 @@ export default function LazyOrbitalScene({
           className={className}
           style={{
             background:
-              "radial-gradient(circle, rgba(232,196,196,0.35), transparent 70%)",
+              "radial-gradient(circle, rgba(248,18,149,0.18), transparent 70%)",
           }}
           aria-hidden="true"
         />

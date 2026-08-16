@@ -82,7 +82,7 @@ export default function ProjectDetail() {
             href={project.liveUrl}
             target="_blank"
             rel="noreferrer"
-            className="mt-10 inline-flex items-center gap-2 bg-ink text-white font-heading text-sm rounded-full px-6 py-3.5 hover:bg-hotpink transition-colors"
+            className="mt-10 inline-flex items-center gap-2 bg-charcoal text-white font-heading text-sm rounded-full px-6 py-3.5 hover:bg-hotpink transition-colors"
           >
             View live project <ArrowUpRight size={16} />
           </a>
@@ -103,10 +103,10 @@ export default function ProjectDetail() {
 }
 
 const CATEGORY_THEME: Record<string, { from: string; to: string; dark?: boolean }> = {
-  Tourism: { from: "#F4D4D4", to: "#E8C4C4" },
-  Aggregator: { from: "#E8C4C4", to: "#D9A5A8" },
-  Healthcare: { from: "#EDEDED", to: "#F4D4D4" },
-  Gaming: { from: "#1A1A1A", to: "#3a1626", dark: true },
+  Tourism: { from: "#0A0A0A", to: "#5c0033", dark: true },
+  Aggregator: { from: "#0A0A0A", to: "#2a2a2e", dark: true },
+  Healthcare: { from: "#0A0A0A", to: "#132226", dark: true },
+  Gaming: { from: "#0A0A0A", to: "#3a1626", dark: true },
 };
 
 /**

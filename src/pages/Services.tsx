@@ -57,7 +57,7 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="border border-blush-100 rounded-2xl p-7 bg-white flex flex-col hover:border-hotpink/40 hover:shadow-lg transition-all"
+            className="border border-blush-100 rounded-2xl p-7 bg-charcoal flex flex-col hover:border-hotpink/40 hover:shadow-lg transition-all"
           >
             <span className="font-mono text-xs text-hotpink">{s.tag}</span>
             <h3 className="font-display text-2xl font-semibold mt-4">{s.title}</h3>
@@ -98,7 +98,7 @@ export default function Services() {
       <div className="max-w-3xl mx-auto mt-24 text-center">
         <Link
           to="/contact"
-          className="inline-flex items-center gap-2 bg-ink text-white font-heading text-sm font-medium rounded-full px-7 py-4 hover:bg-hotpink transition-colors"
+          className="inline-flex items-center gap-2 bg-charcoal text-white font-heading text-sm font-medium rounded-full px-7 py-4 hover:bg-hotpink transition-colors"
         >
           Start a conversation
         </Link>

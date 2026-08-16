@@ -32,7 +32,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
         >
           {/* Front */}
           <div
-            className="absolute inset-0 rounded-2xl bg-white border border-blush-100 p-6 flex flex-col justify-between shadow-sm hover:shadow-lg transition-shadow [backface-visibility:hidden]"
+            className="absolute inset-0 rounded-2xl bg-charcoal border border-blush-100 p-6 flex flex-col justify-between shadow-sm hover:shadow-lg transition-shadow [backface-visibility:hidden]"
           >
             <div>
               <span className="font-mono text-xs text-hotpink">
@@ -55,7 +55,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
 
           {/* Back */}
           <div
-            className="absolute inset-0 rounded-2xl bg-ink text-white p-6 flex flex-col justify-between [backface-visibility:hidden] [transform:rotateY(180deg)]"
+            className="absolute inset-0 rounded-2xl bg-charcoal text-white p-6 flex flex-col justify-between [backface-visibility:hidden] [transform:rotateY(180deg)]"
           >
             <div>
               <h3 className="font-display text-xl font-semibold text-hotpink-glow">{project.name}</h3>

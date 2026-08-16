@@ -108,7 +108,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={sending}
-                className="inline-flex items-center gap-2 bg-ink text-white font-heading text-sm font-medium rounded-full px-7 py-4 hover:bg-hotpink transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                className="inline-flex items-center gap-2 bg-charcoal text-white font-heading text-sm font-medium rounded-full px-7 py-4 hover:bg-hotpink transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {sending && <Loader2 size={16} className="animate-spin" />}
                 {sending ? "Sending…" : "Send message"}
@@ -134,10 +134,10 @@ export default function Contact() {
       </section>
 
       {/* Dark immersive section */}
-      <section className="dark-section relative bg-ink text-white px-6 md:px-10 py-28 overflow-hidden">
+     <section className="dark-section relative bg-charcoal text-white px-6 md:px-10 py-28 overflow-hidden">
         <div
           className="absolute -bottom-32 left-1/3 w-[500px] h-[500px] rounded-full blur-3xl opacity-30 -z-0"
-          style={{ background: "radial-gradient(circle, #AB094F, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, #F81295, transparent 70%)" }}
           aria-hidden="true"
         />
         <div className="absolute top-1/2 right-[8%] -translate-y-1/2 opacity-70 hidden lg:block">

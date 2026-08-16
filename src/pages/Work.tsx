@@ -55,7 +55,7 @@ export default function Work() {
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search by name or tech stack…"
               aria-label="Search projects"
-              className="w-full rounded-full border border-blush-100 bg-white pl-10 pr-9 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-hotpink/40 transition-shadow"
+              className="w-full rounded-full border border-blush-100 bg-charcoal pl-10 pr-9 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-hotpink/40 transition-shadow"
             />
             {query && (
               <button
