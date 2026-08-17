@@ -7,8 +7,10 @@ const LINES = [
   { prompt: ">", text: "live at matatiele.co.za", dim: true },
   { prompt: "$", text: "status --all-platforms" },
   { prompt: ">", text: "5 platforms, 16 towns covered", dim: true },
-  { prompt: "$", text: "core.system --online" },
-  { prompt: ">", text: "540h production time", dim: true },
+  { prompt: "$", text: "core.hours --tally" },
+  { prompt: ">", text: "many, many hours. we don't talk about it.", dim: true },
+  { prompt: "$", text: 'git commit -m "it works now"' },
+  { prompt: ">", text: "narrator: it did not, in fact, work.", dim: true },
   { prompt: "$", text: "▊", cursor: true },
 ];
 
@@ -86,7 +88,7 @@ export default function TerminalCard() {
             aya-core — build log
           </span>
         </div>
-        <div className="term-scroll px-5 py-5 font-mono text-[13px] leading-7 h-[220px] overflow-hidden">
+        <div className="term-scroll px-5 py-5 font-mono text-[13px] leading-7 h-[300px] overflow-hidden">
           {LINES.slice(0, visibleLines + 1).map((l, i) => {
             const isCurrent = i === visibleLines;
             const text = isCurrent && !l.cursor ? l.text.slice(0, charCount) : l.text;
