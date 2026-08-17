@@ -89,10 +89,10 @@ export default function Home() {
       </section>
 
       {/* ---------- STATS ---------- */}
-      <section className="px-6 md:px-10 py-20 border-y border-blush-100">
-        <div className="max-w-6xl mx-auto grid grid-cols-3 gap-10">
+      <section className="px-6 md:px-10 py-20">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5">
           <StatCounter value="5" label="live platforms" />
-          <StatCounter value="540h" label="production time" />
+          <StatCounter value="many, many hours" label="production time" />
           <StatCounter value="16" label="towns, one corridor" />
         </div>
       </section>

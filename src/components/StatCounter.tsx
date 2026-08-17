@@ -52,11 +52,23 @@ export default function StatCounter({ value, label, tone = "light" }: Props) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="flex flex-col gap-1"
+      className={`group relative rounded-2xl border bg-charcoal px-7 py-8 flex flex-col gap-2 overflow-hidden transition-colors ${
+        tone === "dark" ? "border-white/10 hover:border-hotpink/40" : "border-blush-100 hover:border-hotpink/40"
+      }`}
     >
+      {/* thin top edge catches the light, like a chrome bevel */}
+      <span
+        aria-hidden="true"
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent"
+      />
+      {/* soft magenta glow that blooms in on hover */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-x-4 -top-10 h-24 rounded-full bg-hotpink/0 blur-2xl transition-colors duration-500 group-hover:bg-hotpink/20"
+      />
       <span
         ref={ref}
-        className={`font-display text-4xl md:text-5xl font-semibold ${
+        className={`relative font-display text-4xl md:text-5xl font-semibold ${
           tone === "dark" ? "text-white" : "text-ink"
         }`}
       >
@@ -65,7 +77,7 @@ export default function StatCounter({ value, label, tone = "light" }: Props) {
         {suffix}
       </span>
       <span
-        className={`font-mono text-xs uppercase tracking-wide ${
+        className={`relative font-mono text-xs uppercase tracking-wide ${
           tone === "dark" ? "text-white/50" : "text-gray-700/60"
         }`}
       >
