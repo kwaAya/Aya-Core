@@ -24,14 +24,14 @@ export default function Footer() {
         </div>
 
         <div className="flex gap-6 font-mono text-xs">
-          <a href="mailto:aya@ayacore.studio" className="hover:text-hotpink-glow transition-colors">Email</a>
-          <a href="https://github.com/ayacore" target="_blank" rel="noreferrer" className="hover:text-hotpink-glow transition-colors">GitHub</a>
-          <a href="https://linkedin.com/in/ayacore" target="_blank" rel="noreferrer" className="hover:text-hotpink-glow transition-colors">LinkedIn</a>
-          <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:text-hotpink-glow transition-colors">Instagram</a>
+          <a href="mailto:ayacorestudios@gmail.com" className="hover:text-hotpink-glow transition-colors">Email</a>
+          <a href="https://github.com/kwaAya/" target="_blank" rel="noreferrer" className="hover:text-hotpink-glow transition-colors">GitHub</a>
+          <a href="https://www.linkedin.com/in/unako-mtumtum/" target="_blank" rel="noreferrer" className="hover:text-hotpink-glow transition-colors">LinkedIn</a>
+          <a href="https://www.instagram.com/ayabukwaaaa/?__pwa=1#" target="_blank" rel="noreferrer" className="hover:text-hotpink-glow transition-colors">Instagram</a>
         </div>
       </div>
       <p className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 font-mono text-[11px]">
-        © {new Date().getFullYear()} Aya Core Studios · Built in South Africa
+        © {new Date().getFullYear()} Aya Core Studios💋 · Built in South Africa
       </p>
     </footer>
   );
