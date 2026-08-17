@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
+import AmbientField from "./components/AmbientField";
 import Home from "./pages/Home";
 import Work from "./pages/Work";
 import ProjectDetail from "./pages/ProjectDetail";
@@ -29,6 +30,7 @@ function App() {
   return (
     <div className="relative min-h-screen">
       <CursorGlow />
+      <AmbientField />
       <Nav />
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
