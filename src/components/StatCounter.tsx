@@ -2,16 +2,17 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 
 type Props = {
-  value: string; // e.g. "540", "R243K", "5"
+  value: string; // e.g. "540", "R243K", "5", or a non-numeric stat like "Many"
   label: string;
   tone?: "light" | "dark";
 };
 
 /** Parses a leading numeric portion out of a stat string so it can be counted up,
- *  keeping any prefix/suffix (like "R" or "K") static. */
+ *  keeping any prefix/suffix (like "R" or "K") static. Returns number: null for
+ *  stats with no digits at all, so they render as static text instead of "0Text". */
 function parseValue(value: string) {
   const match = value.match(/^([^\d]*)(\d+(?:\.\d+)?)(.*)$/);
-  if (!match) return { prefix: "", number: 0, suffix: value };
+  if (!match) return { prefix: "", number: null as number | null, suffix: value };
   const [, prefix, number, suffix] = match;
   return { prefix, number: parseFloat(number), suffix };
 }
@@ -23,7 +24,7 @@ export default function StatCounter({ value, label, tone = "light" }: Props) {
   const [display, setDisplay] = useState(0);
 
   useEffect(() => {
-    if (!inView) return;
+    if (!inView || number === null) return;
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
@@ -56,12 +57,10 @@ export default function StatCounter({ value, label, tone = "light" }: Props) {
         tone === "dark" ? "border-white/10 hover:border-hotpink/40" : "border-blush-100 hover:border-hotpink/40"
       }`}
     >
-      {/* thin top edge catches the light, like a chrome bevel */}
       <span
         aria-hidden="true"
         className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent"
       />
-      {/* soft magenta glow that blooms in on hover */}
       <span
         aria-hidden="true"
         className="pointer-events-none absolute -inset-x-4 -top-10 h-24 rounded-full bg-hotpink/0 blur-2xl transition-colors duration-500 group-hover:bg-hotpink/20"
@@ -72,9 +71,9 @@ export default function StatCounter({ value, label, tone = "light" }: Props) {
           tone === "dark" ? "text-white" : "text-ink"
         }`}
       >
-        {prefix}
-        {isDecimal ? display.toFixed(1) : Math.round(display).toLocaleString()}
-        {suffix}
+        {number === null
+          ? value
+          : <>{prefix}{isDecimal ? display.toFixed(1) : Math.round(display).toLocaleString()}{suffix}</>}
       </span>
       <span
         className={`relative font-mono text-xs uppercase tracking-wide ${
