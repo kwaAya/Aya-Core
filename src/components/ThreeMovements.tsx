@@ -46,65 +46,29 @@ export default function ThreeMovements() {
       const trigger = sectionRef.current;
       if (!trigger) return;
 
-      const timeline = gsap.timeline({
-        scrollTrigger: {
-          trigger,
-          start: "top 68%",
-          end: "bottom 28%",
-          scrub: 1.25,
-          onUpdate: (self) => {
-            const v = self.progress;
-            setStage(v < 0.34 ? 0 : v < 0.7 ? 1 : 2);
-          },
+      ScrollTrigger.create({
+        trigger,
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 1.3,
+        onUpdate: (self) => {
+          const p = self.progress;
+          setStage(p < 0.33 ? 0 : p < 0.66 ? 1 : 2);
         },
       });
-
-      timeline
-        .to(
-          orbRef.current,
-          {
-            x: 180,
-            y: -170,
-            rotation: 18,
-            scale: 0.84,
-            opacity: 0.82,
-            duration: 1.1,
-            ease: "power2.out",
-          },
-          0
-        )
-        .to(
-          orbRef.current,
-          {
-            x: 22,
-            y: -16,
-            rotation: 6,
-            scale: 1,
-            opacity: 1,
-            duration: 1.5,
-            ease: "expo.out",
-          },
-          0.9
-        )
-        .to(
-          orbRef.current,
-          {
-            x: -10,
-            y: 12,
-            rotation: -6,
-            scale: 1.08,
-            duration: 1.2,
-            ease: "sine.inOut",
-          },
-          2.1
-        );
     },
     { scope: sectionRef }
   );
 
+  const orbMotion = {
+    0: { x: 220, y: -180, rotate: 18, scale: 0.82, opacity: 0.8 },
+    1: { x: 40, y: -18, rotate: 6, scale: 1, opacity: 1 },
+    2: { x: -22, y: 20, rotate: -8, scale: 1.08, opacity: 1 },
+  }[stage];
+
   return (
     <section ref={sectionRef} className="px-6 md:px-10">
-      <div className="mx-auto max-w-3xl pt-28 pb-8 text-center">
+      <div className="mx-auto max-w-3xl pb-8 pt-28 text-center">
         <SectionTag>the core, in three movements</SectionTag>
         <RevealText
           as="h2"
@@ -116,41 +80,44 @@ export default function ThreeMovements() {
         </p>
       </div>
 
-      <div className="relative mx-auto hidden h-[calc(100vh-6rem)] max-w-6xl grid-cols-[1.06fr_0.94fr] items-center gap-12 md:grid">
-        <div className="relative h-[420px]">
-          {MOVEMENTS.map((m, i) => (
-            <motion.div
-              key={m.n}
-              className="absolute inset-0 flex flex-col justify-center"
-              animate={{
-                opacity: stage === i ? 1 : 0,
-                y: stage === i ? 0 : 18,
-                x: stage === i ? 0 : 18,
-              }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span className="font-display text-4xl text-blush-600">{m.n}.</span>
-              <h3 className="mt-3 font-display text-2xl font-semibold md:text-3xl">{m.title}</h3>
-              <p className="mt-4 max-w-md leading-relaxed text-gray-700/70">{m.body}</p>
-            </motion.div>
-          ))}
-        </div>
+      <div className="relative mx-auto hidden h-[260vh] max-w-6xl md:block">
+        <div className="sticky top-24 h-[calc(100vh-6rem)]">
+          <div className="grid h-full grid-cols-[1.1fr_0.9fr] items-center gap-12">
+            <div className="relative h-[420px] overflow-hidden">
+              {MOVEMENTS.map((m, i) => (
+                <motion.div
+                  key={m.n}
+                  className="absolute inset-0 flex flex-col justify-center"
+                  animate={{
+                    opacity: stage === i ? 1 : 0,
+                    y: stage === i ? 0 : 24,
+                    x: stage === i ? 0 : 20,
+                  }}
+                  transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <span className="font-display text-4xl text-blush-600">{m.n}.</span>
+                  <h3 className="mt-3 font-display text-2xl font-semibold md:text-3xl">{m.title}</h3>
+                  <p className="mt-4 max-w-md leading-relaxed text-gray-700/70">{m.body}</p>
+                </motion.div>
+              ))}
+            </div>
 
-        <div className="relative flex justify-center">
-          <div
-            className="absolute inset-0 rounded-full blur-3xl transition-all duration-1000"
-            style={{ background: GLOW_BY_STAGE[stage] }}
-            aria-hidden="true"
-          />
-          <motion.div
-            ref={orbRef}
-            className="relative"
-            initial={{ opacity: 0, x: 180, y: -170, rotate: 18, scale: 0.84 }}
-            animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
-            transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <OrbitalScene interactive={false} className="relative h-[420px] w-[420px]" />
-          </motion.div>
+            <div className="relative flex justify-center">
+              <div
+                className="absolute inset-0 rounded-full blur-3xl transition-all duration-1000"
+                style={{ background: GLOW_BY_STAGE[stage] }}
+                aria-hidden="true"
+              />
+              <motion.div
+                ref={orbRef}
+                className="relative"
+                animate={orbMotion}
+                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              >
+                <OrbitalScene interactive={false} className="relative h-[420px] w-[420px]" />
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
 

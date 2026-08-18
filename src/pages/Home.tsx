@@ -12,17 +12,16 @@ import { projects } from "../data/projects";
 export default function Home() {
   return (
     <div>
-      {/* ---------- HERO ---------- */}
-      <section className="relative pt-40 pb-24 px-6 md:px-10 overflow-hidden">
-        {/* oversized ghost wordmark, breaks the tidy grid on purpose */}
+      <section className="relative overflow-hidden px-6 pb-24 pt-36 md:px-10">
+        <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(248,18,149,0.12),_transparent_28%),_radial-gradient(circle_at_bottom_right,_rgba(139,92,246,0.08),_transparent_25%)]" />
         <span
           aria-hidden="true"
-          className="pointer-events-none select-none absolute -top-4 md:top-4 left-1/2 -translate-x-1/2 font-display font-semibold text-[26vw] md:text-[16rem] leading-none text-ink/[0.035] whitespace-nowrap -z-10"
+          className="pointer-events-none absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[26vw] font-semibold leading-none text-ink/[0.035] md:top-4 md:text-[16rem]"
         >
           CORE
         </span>
 
-        <div className="max-w-6xl mx-auto">
+        <div className="mx-auto max-w-6xl">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -32,56 +31,60 @@ export default function Home() {
             <SectionTag>creative technologist · south africa</SectionTag>
           </motion.div>
 
-          <div className="relative">
-            <RevealText
-              as="h1"
-              text="Built for communities. Engineered for scale."
-              className="font-display text-5xl md:text-7xl font-semibold leading-[1.05] tracking-tight text-ink max-w-3xl"
-            />
+          <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+            <div>
+              <RevealText
+                as="h1"
+                text="Built for communities. Engineered for scale."
+                className="max-w-3xl font-display text-5xl font-semibold leading-[0.96] tracking-[-0.05em] text-ink md:text-7xl"
+              />
 
-            {/* core bleeds past the text column instead of sitting in a tidy grid cell */}
-            <div className="md:absolute md:-top-24 md:-right-16 flex justify-center mt-10 md:mt-0">
-              <div className="relative w-[300px] h-[300px] md:w-[620px] md:h-[620px]">
-                <div
-                  className="absolute inset-0 rounded-full blur-3xl -z-10"
-                  style={{ background: "radial-gradient(circle, rgba(248,18,149,0.22), transparent 65%)" }}
-                  aria-hidden="true"
-                />
-                <OrbitalScene className="w-full h-full" />
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.9, duration: 0.6 }}
+                className="mt-8 max-w-xl text-lg text-gray-700/80"
+              >
+                Aya Core Studios is the practice of Unako "Aya" Mtumtum — designing and shipping immersive digital products where systems thinking, cultural intention, and full-stack craft meet at a single luminous core.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.05, duration: 0.6 }}
+                className="mt-10 flex flex-wrap gap-4"
+              >
+                <Link
+                  to="/work"
+                  className="inline-flex items-center gap-2 rounded-full bg-charcoal px-6 py-3.5 font-heading text-sm font-medium text-white shadow-[0_0_40px_rgba(248,18,149,0.12)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-hotpink"
+                >
+                  Explore the work <ArrowRight size={16} />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-6 py-3.5 font-heading text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 hover:border-hotpink hover:text-hotpink"
+                >
+                  Let's collaborate
+                </Link>
+              </motion.div>
+
+              <div className="mt-8 flex flex-wrap gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-gray-400">
+                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">strategy</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">ux systems</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">product design</span>
+              </div>
+            </div>
+
+            <div className="relative flex justify-center lg:justify-end">
+              <div className="relative flex h-[300px] w-[300px] items-center justify-center md:h-[500px] md:w-[500px]">
+                <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle,_rgba(248,18,149,0.22),_transparent_62%)] blur-3xl" />
+                <div className="absolute inset-0 rounded-[2.25rem] border border-white/10 bg-white/[0.02] shadow-[0_0_80px_rgba(248,18,149,0.08)] backdrop-blur-[1px]" />
+                <div className="absolute inset-10 rounded-full border border-white/10" />
+                <OrbitalScene className="relative h-full w-full" />
               </div>
             </div>
           </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.9, duration: 0.6 }}
-            className="mt-8 text-lg text-gray-700/80 max-w-lg"
-          >
-            Aya Core Studios is the practice of Unako "Aya" Mtumtum —
-            designing and shipping immersive digital products where systems
-            thinking, cultural intention, and full-stack craft meet at a
-            single luminous core.
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.05, duration: 0.6 }}
-            className="mt-10 flex flex-wrap gap-4"
-          >
-            <Link
-              to="/work"
-              className="inline-flex items-center gap-2 bg-charcoal text-white font-heading text-sm font-medium rounded-full px-6 py-3.5 hover:bg-hotpink transition-colors"
-            >
-              Explore the work <ArrowRight size={16} />
-            </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center gap-2 border border-ink/15 font-heading text-sm font-medium rounded-full px-6 py-3.5 hover:border-hotpink hover:text-hotpink transition-colors"
-            >
-              Let's collaborate
-            </Link>
-          </motion.div>
           <p className="mt-6 font-mono text-xs text-gray-400 md:hidden">
             core.system // online — tilt or move your cursor above
           </p>
