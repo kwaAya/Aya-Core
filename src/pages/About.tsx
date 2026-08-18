@@ -74,7 +74,8 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.06 }}
-              className="border border-blush-100 rounded-2xl p-6 bg-charcoal"
+              whileHover={{ y: -6, scale: 1.01 }}
+              className="border border-blush-100 rounded-2xl p-6 bg-charcoal shadow-[0_18px_40px_rgba(0,0,0,0.04)]"
             >
               <h3 className="font-display text-xl font-semibold">{d.title}</h3>
               <p className="mt-2 text-sm text-gray-700/70">{d.body}</p>
@@ -117,6 +118,8 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
+            whileHover={{ y: -6 }}
+            className="rounded-[1.5rem] border border-blush-100 bg-white/[0.03] p-5"
           >
             <span className="font-mono text-xs text-gray-400">{p.n}</span>
             <h3 className="font-display text-xl font-semibold mt-2">{p.title}</h3>

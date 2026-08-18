@@ -12,7 +12,7 @@ import { projects } from "../data/projects";
 export default function Home() {
   return (
     <div>
-      <section className="relative overflow-hidden px-6 pb-24 pt-36 md:px-10">
+      <section className="relative overflow-hidden px-6 pb-24 pt-40 md:px-10">
         <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(248,18,149,0.12),_transparent_28%),_radial-gradient(circle_at_bottom_right,_rgba(139,92,246,0.08),_transparent_25%)]" />
         <span
           aria-hidden="true"
@@ -31,60 +31,60 @@ export default function Home() {
             <SectionTag>creative technologist · south africa</SectionTag>
           </motion.div>
 
-          <div className="relative grid gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
-            <div>
+          <div className="relative">
+            <div className="relative z-10 max-w-3xl">
               <RevealText
                 as="h1"
                 text="Built for communities. Engineered for scale."
-                className="max-w-3xl font-display text-5xl font-semibold leading-[0.96] tracking-[-0.05em] text-ink md:text-7xl"
+                className="font-display text-5xl font-semibold leading-[0.96] tracking-[-0.05em] text-ink md:text-7xl"
               />
-
-              <motion.p
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.9, duration: 0.6 }}
-                className="mt-8 max-w-xl text-lg text-gray-700/80"
-              >
-                Aya Core Studios is the practice of Unako "Aya" Mtumtum — designing and shipping immersive digital products where systems thinking, cultural intention, and full-stack craft meet at a single luminous core.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.05, duration: 0.6 }}
-                className="mt-10 flex flex-wrap gap-4"
-              >
-                <Link
-                  to="/work"
-                  className="inline-flex items-center gap-2 rounded-full bg-charcoal px-6 py-3.5 font-heading text-sm font-medium text-white shadow-[0_0_40px_rgba(248,18,149,0.12)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-hotpink"
-                >
-                  Explore the work <ArrowRight size={16} />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-6 py-3.5 font-heading text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 hover:border-hotpink hover:text-hotpink"
-                >
-                  Let's collaborate
-                </Link>
-              </motion.div>
-
-              <div className="mt-8 flex flex-wrap gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-gray-400">
-                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">strategy</span>
-                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">ux systems</span>
-                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">product design</span>
-              </div>
             </div>
 
-            <div className="relative flex justify-center lg:justify-end">
-              <div className="relative flex h-[300px] w-[300px] items-center justify-center md:h-[500px] md:w-[500px]">
-                <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle,_rgba(248,18,149,0.22),_transparent_62%)] blur-3xl" />
-                <div className="absolute inset-0 rounded-[2.25rem] border border-white/10 bg-white/[0.02] shadow-[0_0_80px_rgba(248,18,149,0.08)] backdrop-blur-[1px]" />
-                <div className="absolute inset-10 rounded-full border border-white/10" />
+            <motion.div
+              initial={{ opacity: 0, x: 140, y: -150, rotate: 12, scale: 0.8 }}
+              animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
+              transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+              className="relative mt-10 md:absolute md:-right-16 md:-top-20 md:mt-0"
+            >
+              <div className="relative flex h-[300px] w-[300px] items-center justify-center md:h-[620px] md:w-[620px]">
+                <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_rgba(248,18,149,0.22),_transparent_62%)] blur-3xl" />
                 <OrbitalScene className="relative h-full w-full" />
               </div>
-            </div>
+            </motion.div>
           </div>
 
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.9, duration: 0.6 }}
+            className="mt-8 max-w-lg text-lg text-gray-700/80"
+          >
+            Aya Core Studios is the practice of Unako "Aya" Mtumtum — designing and shipping immersive digital products where systems thinking, cultural intention, and full-stack craft meet at a single luminous core.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.05, duration: 0.6 }}
+            className="mt-10 flex flex-wrap gap-4"
+          >
+            <Link
+              to="/work"
+              className="inline-flex items-center gap-2 rounded-full bg-charcoal px-6 py-3.5 font-heading text-sm font-medium text-white shadow-[0_0_40px_rgba(248,18,149,0.12)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-hotpink"
+            >
+              Explore the work <ArrowRight size={16} />
+            </Link>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 rounded-full border border-ink/15 px-6 py-3.5 font-heading text-sm font-medium transition-all duration-200 hover:-translate-y-0.5 hover:border-hotpink hover:text-hotpink"
+            >
+              Let's collaborate
+            </Link>
+          </motion.div>
+          <div className="mt-8 flex flex-wrap gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-gray-400">
+            <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">strategy</span>
+            <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">ux systems</span>
+            <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">product design</span>
+          </div>
           <p className="mt-6 font-mono text-xs text-gray-400 md:hidden">
             core.system // online — tilt or move your cursor above
           </p>

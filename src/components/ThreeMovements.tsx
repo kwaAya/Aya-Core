@@ -48,12 +48,12 @@ export default function ThreeMovements() {
 
       ScrollTrigger.create({
         trigger,
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 1.3,
+        start: "top 80%",
+        end: "bottom 20%",
+        scrub: 1.35,
         onUpdate: (self) => {
           const p = self.progress;
-          setStage(p < 0.33 ? 0 : p < 0.66 ? 1 : 2);
+          setStage(p < 0.33 ? 0 : p < 0.67 ? 1 : 2);
         },
       });
     },
@@ -61,9 +61,9 @@ export default function ThreeMovements() {
   );
 
   const orbMotion = {
-    0: { x: 220, y: -180, rotate: 18, scale: 0.82, opacity: 0.8 },
-    1: { x: 40, y: -18, rotate: 6, scale: 1, opacity: 1 },
-    2: { x: -22, y: 20, rotate: -8, scale: 1.08, opacity: 1 },
+    0: { x: 200, y: -160, rotate: 18, scale: 0.82, opacity: 0.8 },
+    1: { x: 30, y: -12, rotate: 6, scale: 1, opacity: 1 },
+    2: { x: -28, y: 18, rotate: -8, scale: 1.08, opacity: 1 },
   }[stage];
 
   return (
@@ -81,7 +81,7 @@ export default function ThreeMovements() {
       </div>
 
       <div className="relative mx-auto hidden h-[260vh] max-w-6xl md:block">
-        <div className="sticky top-24 h-[calc(100vh-6rem)]">
+        <div className="sticky top-20 h-[calc(100vh-5rem)]">
           <div className="grid h-full grid-cols-[1.1fr_0.9fr] items-center gap-12">
             <div className="relative h-[420px] overflow-hidden">
               {MOVEMENTS.map((m, i) => (
@@ -90,7 +90,7 @@ export default function ThreeMovements() {
                   className="absolute inset-0 flex flex-col justify-center"
                   animate={{
                     opacity: stage === i ? 1 : 0,
-                    y: stage === i ? 0 : 24,
+                    y: stage === i ? 0 : 28,
                     x: stage === i ? 0 : 20,
                   }}
                   transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
@@ -114,7 +114,7 @@ export default function ThreeMovements() {
                 animate={orbMotion}
                 transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
               >
-                <OrbitalScene interactive={false} className="relative h-[420px] w-[420px]" />
+                <OrbitalScene interactive={false} className="relative h-[480px] w-[480px]" />
               </motion.div>
             </div>
           </div>

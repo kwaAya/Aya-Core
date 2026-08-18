@@ -25,7 +25,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
         }}
         aria-pressed={flipped}
         aria-label={`Flip card to ${flipped ? "hide" : "show"} details for ${project.name}`}
-        className="h-full w-full text-left"
+        className="group h-full w-full text-left"
         style={{ transformStyle: "preserve-3d" }}
       >
         <motion.div
@@ -33,7 +33,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
           animate={{
             rotateY: flipped ? 180 : 0,
             y: hovered || flipped ? -8 : 0,
-            scale: hovered || flipped ? 1.01 : 1,
+            scale: hovered || flipped ? 1.015 : 1,
           }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -72,7 +72,7 @@ export default function ProjectCard({ project, index }: { project: Project; inde
 
               <div className="flex items-center justify-between border-t border-white/10 pt-3">
                 <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">case study</span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-white/70">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-white/[0.02] text-white/70 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                   <ArrowUpRight size={14} />
                 </span>
               </div>
@@ -92,22 +92,16 @@ export default function ProjectCard({ project, index }: { project: Project; inde
               <p className="mt-3 text-sm leading-relaxed text-white/65">{project.description}</p>
             </div>
 
-            <div className="grid grid-cols-3 gap-2">
-              {project.metrics.slice(0, 3).map((m) => (
-                <div key={m.label} className="rounded-2xl border border-white/10 bg-white/[0.02] p-2">
-                  <p className="font-display text-lg font-semibold text-white">{m.value}</p>
-                  <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-white/45">{m.label}</p>
-                </div>
-              ))}
+            <div className="flex items-center justify-between border-t border-white/10 pt-4">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">selected work</span>
+              <Link
+                to={`/work/${project.slug}`}
+                onClick={(e) => e.stopPropagation()}
+                className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.2em] text-hotpink-glow hover:text-white"
+              >
+                details <ArrowUpRight size={14} />
+              </Link>
             </div>
-
-            <Link
-              to={`/work/${project.slug}`}
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.2em] text-hotpink-glow hover:text-white"
-            >
-              full case study <ArrowUpRight size={14} />
-            </Link>
           </div>
         </motion.div>
       </button>

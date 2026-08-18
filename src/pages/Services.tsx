@@ -57,7 +57,8 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            className="border border-blush-100 rounded-2xl p-7 bg-charcoal flex flex-col hover:border-hotpink/40 hover:shadow-lg transition-all"
+            whileHover={{ y: -8, scale: 1.01 }}
+            className="group border border-blush-100 rounded-2xl p-7 bg-charcoal flex flex-col hover:border-hotpink/40 hover:shadow-[0_30px_80px_rgba(248,18,149,0.08)] transition-all"
           >
             <span className="font-mono text-xs text-hotpink">{s.tag}</span>
             <h3 className="font-display text-2xl font-semibold mt-4">{s.title}</h3>
@@ -84,6 +85,8 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
+              whileHover={{ y: -6 }}
+              className="rounded-[1.5rem] border border-blush-100 bg-white/[0.02] p-5 shadow-[0_18px_40px_rgba(0,0,0,0.04)]"
             >
               <span className="font-mono text-xs text-gray-400">
                 {String(i + 1).padStart(2, "0")}
