@@ -5,11 +5,6 @@ import RevealText from "../components/RevealText";
 import SectionTag from "../components/SectionTag";
 import OrbitalScene from "../components/LazyOrbitalScene";
 
-// --- Real email delivery via Formspree (no backend needed) ---------------
-// 1. Create a free account at https://formspree.io
-// 2. Create a new form, point it at aya@ayacore.studio
-// 3. Copy the endpoint it gives you (looks like https://formspree.io/f/xxxxabcd)
-// 4. Paste it in below, replacing the placeholder.
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
 
 export default function Contact() {
@@ -36,8 +31,6 @@ export default function Contact() {
     if (Object.keys(nextErrors).length > 0) return;
 
     if (FORMSPREE_ENDPOINT.includes("YOUR_FORM_ID")) {
-      // Endpoint not configured yet — fall back to a local success state so
-      // the form is still demoable, but flag it clearly in the console.
       console.warn(
         "Contact form: FORMSPREE_ENDPOINT is still a placeholder in src/pages/Contact.tsx — messages are not actually being sent yet."
       );
@@ -67,7 +60,6 @@ export default function Contact() {
 
   return (
     <div>
-      {/* Light section: form */}
       <section className="pt-40 pb-28 px-6 md:px-10">
         <div className="max-w-2xl mx-auto">
           <SectionTag>contact</SectionTag>
@@ -76,10 +68,16 @@ export default function Contact() {
             text="Tell me what's breaking."
             className="font-display text-4xl md:text-6xl font-semibold mt-6"
           />
-          <p className="mt-6 text-gray-700/80">
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-6 text-gray-700/80"
+          >
             Tourism platform, healthcare system, gaming experience, or a
             custom web system — let's collaborate on your next project.
-          </p>
+          </motion.p>
 
           {submitted ? (
             <motion.div
@@ -87,23 +85,27 @@ export default function Contact() {
               animate={{ opacity: 1, y: 0 }}
               className="mt-12 border border-hotpink/30 bg-blush/20 rounded-2xl p-8"
             >
-              <p className="font-display text-xl font-semibold text-hotpink">
-                Message received.
-              </p>
+              <p className="font-display text-xl font-semibold text-hotpink">Message received.</p>
               <p className="mt-2 text-sm text-gray-700/70">
                 Thanks for reaching out — expect a reply within two business days.
               </p>
             </motion.div>
           ) : (
-            <form onSubmit={handleSubmit} noValidate className="mt-12 space-y-6">
+            <motion.form
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              onSubmit={handleSubmit}
+              noValidate
+              className="mt-12 space-y-6"
+            >
               <Field label="Name" name="name" error={errors.name} />
               <Field label="Email" name="email" type="email" error={errors.email} />
               <Field label="Project type" name="projectType" placeholder="Tourism, healthcare, gaming, custom…" />
               <Field label="Message" name="message" textarea error={errors.message} placeholder="Tell me about it" />
 
-              {sendError && (
-                <p className="text-sm text-hotpink">{sendError}</p>
-              )}
+              {sendError && <p className="text-sm text-hotpink">{sendError}</p>}
 
               <button
                 type="submit"
@@ -113,28 +115,33 @@ export default function Contact() {
                 {sending && <Loader2 size={16} className="animate-spin" />}
                 {sending ? "Sending…" : "Send message"}
               </button>
-            </form>
+            </motion.form>
           )}
 
-          <div className="mt-16 flex flex-wrap gap-x-8 gap-y-3 font-mono text-sm">
-            <a href="mailto:ayacorestudios@gmail.com" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
-              <Mail size={16} /> ayacorestudios@gmail.com
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="mt-16 flex flex-wrap gap-x-8 gap-y-3 font-mono text-sm"
+          >
+            <a href="mailto:aya@ayacore.studio" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
+              <Mail size={16} /> aya@ayacore.studio
             </a>
-            <a href="https://github.com/kwaAya" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
-              <Link2 size={16} /> github.com/kwaAya
+            <a href="https://github.com/ayacore" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
+              <Link2 size={16} /> github.com/ayacore
             </a>
-            <a href="https://www.linkedin.com/in/unako-mtumtum/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
-              <Link2 size={16} /> linkedin.com/in/unako-mtumtum
+            <a href="https://linkedin.com/in/ayacore" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
+              <Link2 size={16} /> linkedin.com/in/ayacore
             </a>
-            <a href="https://www.instagram.com/ayabukwaaaa/?__pwa=1#" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
-              <Link2 size={16} /> @ayabukwaaaa
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
+              <Link2 size={16} /> @ayacorestudios
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Dark immersive section */}
-     <section className="dark-section relative bg-charcoal text-white px-6 md:px-10 py-28 overflow-hidden">
+      <section className="dark-section relative bg-charcoal text-white px-6 md:px-10 py-28 overflow-hidden">
         <div
           className="absolute -bottom-32 left-1/3 w-[500px] h-[500px] rounded-full blur-3xl opacity-30 -z-0"
           style={{ background: "radial-gradient(circle, #F81295, transparent 70%)" }}
@@ -143,16 +150,20 @@ export default function Contact() {
         <div className="absolute top-1/2 right-[8%] -translate-y-1/2 opacity-70 hidden lg:block">
           <OrbitalScene interactive={false} className="w-[280px] h-[280px]" />
         </div>
-        <div className="relative max-w-3xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{ duration: 0.6 }}
+          className="relative max-w-3xl mx-auto text-center"
+        >
           <SectionTag tone="dark">availability</SectionTag>
-          <h2 className="font-display text-3xl md:text-5xl font-semibold mt-6">
-            Currently booking Q4 builds.
-          </h2>
+          <h2 className="font-display text-3xl md:text-5xl font-semibold mt-6">Currently booking Q4 builds.</h2>
           <p className="mt-6 text-white/60">
             One rescue-and-rebuild slot and one full platform build left this
             quarter. Advisory calls stay open year-round.
           </p>
-        </div>
+       </motion.div>
       </section>
     </div>
   );
@@ -186,7 +197,7 @@ function Field({
           placeholder={placeholder}
           aria-invalid={!!error}
           aria-describedby={error ? `${name}-error` : undefined}
-          className={`w-full rounded-xl border bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-hotpink/40 transition-shadow ${
+          className={`w-full rounded-xl border bg-charcoal px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-hotpink/40 transition-shadow ${
             error ? "border-hotpink" : "border-blush-100"
           }`}
         />
@@ -198,7 +209,7 @@ function Field({
           placeholder={placeholder}
           aria-invalid={!!error}
           aria-describedby={error ? `${name}-error` : undefined}
-          className={`w-full rounded-xl border bg-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-hotpink/40 transition-shadow ${
+          className={`w-full rounded-xl border bg-charcoal px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-hotpink/40 transition-shadow ${
             error ? "border-hotpink" : "border-blush-100"
           }`}
         />

@@ -211,6 +211,45 @@ function Sparks() {
 
 function Scene({ interactive }: { interactive: boolean }) {
   const group = useRef<THREE.Group>(null);
+  useEffect(() => {
+    const node = group.current;
+    if (!node || prefersReducedMotion()) {
+      if (node) {
+        node.position.set(0, 0, 0);
+        node.rotation.set(0, 0, 0);
+      }
+      return;
+    }
+
+    const pos = { x: -3.6, y: -0.4, z: 0 };
+    const rot = { x: -0.72, y: 0.4, z: -0.45 };
+    node.position.set(pos.x, pos.y, pos.z);
+    node.rotation.set(rot.x, rot.y, rot.z);
+
+    const posAnim = animate(pos, {
+      x: 0,
+      y: 0,
+      z: 0,
+      duration: 2600,
+      ease: "outExpo",
+      onUpdate: () => node.position.set(pos.x, pos.y, pos.z),
+    });
+
+    const rotAnim = animate(rot, {
+      x: 0,
+      y: 0,
+      z: 0,
+      duration: 3000,
+      ease: "outCubic",
+      onUpdate: () => node.rotation.set(rot.x, rot.y, rot.z),
+    });
+
+    return () => {
+      posAnim.cancel();
+      rotAnim.cancel();
+    };
+  }, []);
+
   useFrame(({ pointer }) => {
     if (!group.current) return;
     const targetY = interactive ? pointer.x * 0.35 : 0;
@@ -260,7 +299,7 @@ export function OrbitalScene({
   return (
     <div className={className}>
       <Canvas
-        camera={{ position: [0, 0, 5], fov: 45 }}
+        camera={{ position: [0, 0, 6.2], fov: 36 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
       >
