@@ -117,7 +117,6 @@ const CATEGORY_THEME: Record<string, { from: string; to: string; dark?: boolean 
  */
 function ProjectHeroPanel({ project }: { project: (typeof import("../data/projects").projects)[number] }) {
   const theme = CATEGORY_THEME[project.category] ?? CATEGORY_THEME.Tourism;
-  const initial = project.name.charAt(0);
 
   return (
     <motion.div
@@ -125,27 +124,33 @@ function ProjectHeroPanel({ project }: { project: (typeof import("../data/projec
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
-      className="relative mt-10 aspect-video rounded-2xl border border-blush-100 overflow-hidden flex items-end p-6"
-      style={{ background: `linear-gradient(135deg, ${theme.from}, ${theme.to})` }}
+      className="relative mt-10"
     >
-      <span
-        aria-hidden="true"
-        className={`pointer-events-none select-none absolute -right-6 -top-10 font-display font-semibold text-[16rem] leading-none ${
-          theme.dark ? "text-white/10" : "text-ink/10"
-        }`}
-      >
-        {initial}
-      </span>
-
       <div
-        className={`relative inline-flex items-center gap-2 rounded-full border px-3 py-1.5 font-mono text-[11px] uppercase tracking-wide backdrop-blur-sm ${
-          theme.dark
-            ? "border-white/20 bg-black/30 text-white/80"
-            : "border-white/40 bg-white/50 text-gray-700"
-        }`}
-      >
-        <span className="w-1.5 h-1.5 rounded-full bg-hotpink animate-pulse" />
-        status --project {project.slug} · {project.metrics[0].value}
+        className="absolute -inset-8 rounded-full blur-3xl -z-10 opacity-60"
+        style={{ background: `radial-gradient(circle, ${theme.to}, transparent 70%)` }}
+        aria-hidden="true"
+      />
+      <div className="rounded-2xl border border-white/10 bg-charcoal overflow-hidden shadow-2xl">
+        <div className="flex items-center gap-3 px-4 py-3 bg-black/40 border-b border-white/10">
+          <div className="flex gap-1.5 shrink-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+          </div>
+          <span className="font-mono text-xs text-white/40 truncate">
+            {project.liveUrl.replace(/^https?:\/\//, "")}
+          </span>
+          <div className="ml-auto inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-wide text-white/50 shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-hotpink animate-pulse" />
+            {project.metrics[0].value}
+          </div>
+        </div>
+        <img
+          src={`/projects/${project.slug}.jpg`}
+          alt={`${project.name} — live site`}
+          className="w-full aspect-video object-cover object-top"
+        />
       </div>
     </motion.div>
   );
