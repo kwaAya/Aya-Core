@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Mail } from "lucide-react";
-import { SiGithub, SiLinkedin, SiInstagram } from "react-icons/si";
+import { SiGithub, SiInstagram } from "react-icons/si";
+import { BiLogoLinkedin } from "react-icons/bi";
 
 export default function Footer() {
   return (
@@ -29,10 +30,10 @@ export default function Footer() {
           {[
             { href: "mailto:ayacorestudios@gmail.com", label: "Email", Icon: Mail, external: false },
             { href: "https://github.com/kwaAya", label: "GitHub", Icon: SiGithub, external: true },
-            { href: "https://linkedin.com/in/unako-mtumtum", label: "LinkedIn", Icon: SiLinkedin, external: true },
+            { href: "https://linkedin.com/in/unako-mtumtum", label: "LinkedIn", Icon: BiLogoLinkedin, external: true },
             { href: "https://www.instagram.com/ayabukwaaaa/?__pwa=1#", label: "Instagram", Icon: SiInstagram, external: true },
           ].map(({ href, label, Icon, external }) => (
-            
+            <a
               key={label}
               href={href}
               target={external ? "_blank" : undefined}
