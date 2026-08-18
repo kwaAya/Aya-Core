@@ -8,7 +8,7 @@ export default function Footer() {
           <img
             src="/brand/aya-core-symbol.png"
             alt="Aya Core Studios"
-            className="h-10 w-auto opacity-90"
+            className="h-14 w-auto opacity-90"
           />
           <div>
             <p className="font-display text-lg text-white leading-tight">Aya Core Studios</p>
