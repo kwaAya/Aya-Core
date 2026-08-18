@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { Mail } from "lucide-react";
+import { SiGithub, SiLinkedin, SiInstagram } from "@icons-pack/react-simple-icons";
 
 export default function Footer() {
   return (
@@ -23,11 +25,24 @@ export default function Footer() {
           <Link to="/contact" className="hover:text-hotpink-glow transition-colors">Say Hi</Link>
         </div>
 
-        <div className="flex gap-6 font-mono text-xs">
-          <a href="mailto:ayacorestudios@gmail.com" className="hover:text-hotpink-glow transition-colors">Email</a>
-          <a href="https://github.com/kwaAya/" target="_blank" rel="noreferrer" className="hover:text-hotpink-glow transition-colors">GitHub</a>
-          <a href="https://www.linkedin.com/in/unako-mtumtum/" target="_blank" rel="noreferrer" className="hover:text-hotpink-glow transition-colors">LinkedIn</a>
-          <a href="https://www.instagram.com/ayabukwaaaa/?__pwa=1#" target="_blank" rel="noreferrer" className="hover:text-hotpink-glow transition-colors">Instagram</a>
+        <div className="flex gap-3">
+          {[
+            { href: "mailto:ayacorestudios@gmail.com", label: "Email", Icon: Mail, external: false },
+            { href: "https://github.com/kwaAya", label: "GitHub", Icon: SiGithub, external: true },
+            { href: "https://linkedin.com/in/unako-mtumtum", label: "LinkedIn", Icon: SiLinkedin, external: true },
+            { href: "https://www.instagram.com/ayabukwaaaa/?__pwa=1#", label: "Instagram", Icon: SiInstagram, external: true },
+          ].map(({ href, label, Icon, external }) => (
+            
+              key={label}
+              href={href}
+              target={external ? "_blank" : undefined}
+              rel={external ? "noreferrer" : undefined}
+              aria-label={label}
+              className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center text-white/60 hover:text-white hover:border-hotpink hover:bg-hotpink/10 transition-colors"
+            >
+              <Icon size={17} />
+            </a>
+          ))}
         </div>
       </div>
       <p className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 font-mono text-[11px]">

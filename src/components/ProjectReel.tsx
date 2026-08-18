@@ -56,12 +56,14 @@ function ProjectMeta({ project }: { project: (typeof projects)[number] }) {
       </span>
       <h3 className="font-display text-3xl lg:text-4xl font-semibold mt-3">{project.name}</h3>
       <p className="text-gray-700/70 mt-3 max-w-md leading-relaxed">{project.tagline}</p>
-      <div className="flex items-center gap-6 mt-6">
-        {project.metrics.slice(0, 2).map((m) => (
-          <div key={m.label}>
-            <p className="font-display text-xl font-semibold">{m.value}</p>
-            <p className="font-mono text-[10px] text-gray-700/50 uppercase">{m.label}</p>
-          </div>
+      <div className="flex flex-wrap gap-2 mt-6">
+        {project.stack.map((s) => (
+          <span
+            key={s}
+            className="font-mono text-[11px] bg-blush/20 border border-blush-100 text-gray-700 rounded-full px-3 py-1.5"
+          >
+            {s}
+          </span>
         ))}
       </div>
       <Link
@@ -132,7 +134,7 @@ export default function ProjectReel() {
           {projects.map((p, i) => (
             <motion.div
               key={p.slug}
-              className="absolute inset-0 flex flex-col justify-center"
+              className={`absolute inset-0 flex flex-col justify-center ${stage === i ? "" : "pointer-events-none"}`}
               animate={{ opacity: stage === i ? 1 : 0, y: stage === i ? 0 : 20 }}
               transition={{ duration: 0.5 }}
               aria-hidden={stage !== i}
@@ -146,7 +148,7 @@ export default function ProjectReel() {
           {projects.map((p, i) => (
             <motion.div
               key={p.slug}
-              className="absolute inset-0"
+              className={`absolute inset-0 ${stage === i ? "" : "pointer-events-none"}`}
               animate={{ opacity: stage === i ? 1 : 0, scale: stage === i ? 1 : 0.96 }}
               transition={{ duration: 0.5 }}
               aria-hidden={stage !== i}
