@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Mail } from "lucide-react";
-import { SiGithub, SiLinkedin, SiInstagram } from "@icons-pack/react-simple-icons";
+import { SiGithub, SiLinkedin, SiInstagram } from "react-icons/si";
 
 export default function Footer() {
   return (
@@ -11,7 +11,7 @@ export default function Footer() {
             src="/brand/aya-core-symbol.png"
             alt="Aya Core Studios"
             className="h-14 w-auto opacity-90"
-          /> 
+          />
           <div>
             <p className="font-display text-lg text-white leading-tight">Aya Core Studios</p>
             <p className="font-mono text-[11px]">intentional · crafted · real</p>
