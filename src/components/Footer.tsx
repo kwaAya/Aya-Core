@@ -9,7 +9,7 @@ export default function Footer() {
             src="/brand/aya-core-symbol.png"
             alt="Aya Core Studios"
             className="h-14 w-auto opacity-90"
-          />
+          /> 
           <div>
             <p className="font-display text-lg text-white leading-tight">Aya Core Studios</p>
             <p className="font-mono text-[11px]">intentional · crafted · real</p>
@@ -31,7 +31,7 @@ export default function Footer() {
         </div>
       </div>
       <p className="max-w-6xl mx-auto mt-10 pt-6 border-t border-white/10 font-mono text-[11px]">
-        © {new Date().getFullYear()} Aya Core Studios💋 · Built in South Africa
+        © {new Date().getFullYear()} Aya Core Studios 💋 · Built in South Africa
       </p>
     </footer>
   );
