@@ -31,24 +31,29 @@ export default function Home() {
             <SectionTag>creative technologist · south africa</SectionTag>
           </motion.div>
 
-          <div className="relative">
-            <div className="relative z-10 max-w-3xl">
+          <div className="hero-stage">
+            <motion.div
+              className="hero-copy"
+              initial={{ opacity: 0, x: -14 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            >
               <RevealText
                 as="h1"
                 text="Built for communities. Engineered for scale."
                 className="font-display text-5xl font-semibold leading-[0.96] tracking-[-0.05em] text-ink md:text-7xl"
               />
-            </div>
+            </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 140, y: -150, rotate: 12, scale: 0.8 }}
-              animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
-              transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-              className="relative mt-10 md:absolute md:-right-16 md:-top-20 md:mt-0"
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+              className="hero-orbital"
             >
-              <div className="relative flex h-[300px] w-[300px] items-center justify-center md:h-[620px] md:w-[620px]">
-                <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,_rgba(248,18,149,0.22),_transparent_62%)] blur-3xl" />
-                <OrbitalScene className="relative h-full w-full" />
+              <div className="hero-orbital-shell">
+                <div className="hero-orbital-glow" aria-hidden="true" />
+                <OrbitalScene className="hero-orbital-scene" />
               </div>
             </motion.div>
           </div>

@@ -211,10 +211,46 @@ function Sparks() {
 
 function Scene({ interactive }: { interactive: boolean }) {
   const group = useRef<THREE.Group>(null);
+
+  useEffect(() => {
+    const root = group.current;
+    if (!root) return;
+
+    if (prefersReducedMotion()) {
+      root.position.set(0.7, 0, 0);
+      root.rotation.set(-0.12, 0.15, 0);
+      return;
+    }
+
+    const motion = { x: -11.5, y: 0.35, z: -3.8, ry: -1.1, rx: 0.5 };
+    const target = { x: 1.5, y: 0, z: 0.6, ry: 0.18, rx: -0.12 };
+
+    root.position.set(motion.x, motion.y, motion.z);
+    root.rotation.set(motion.rx, motion.ry, 0);
+
+    const anim = animate(motion, {
+      x: target.x,
+      y: target.y,
+      z: target.z,
+      ry: target.ry,
+      rx: target.rx,
+      duration: 2400,
+      ease: "outExpo",
+      onUpdate: () => {
+        root.position.set(motion.x, motion.y, motion.z);
+        root.rotation.set(motion.rx, motion.ry, 0);
+      },
+    });
+
+    return () => {
+      anim.cancel();
+    };
+  }, []);
+
   useFrame(({ pointer }) => {
     if (!group.current) return;
-    const targetY = interactive ? pointer.x * 0.35 : 0;
-    const targetX = interactive ? -pointer.y * 0.25 : 0;
+    const targetY = interactive ? pointer.x * 0.18 : 0;
+    const targetX = interactive ? -pointer.y * 0.12 : 0;
     group.current.rotation.y += (targetY - group.current.rotation.y) * 0.05;
     group.current.rotation.x += (targetX - group.current.rotation.x) * 0.05;
   });
