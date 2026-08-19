@@ -85,7 +85,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl rotate-1 max-w-[280px] mx-auto md:mx-0"
         >
-          <img src="/about/about-photo-baby.jpg" alt="" className="w-full object-cover" />
+                    <img src="/About/about-photo-baby.jpg" alt="Aya as a baby" className="w-full object-cover" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -163,7 +163,7 @@ export default function About() {
           >
             {PHOTOS.map((p) => (
               <div key={p.src} className="photo-blend overflow-hidden" style={{ gridArea: p.area }}>
-                <img src={`/about/${p.src}`} alt="" className="w-full h-full object-cover" loading="lazy" />
+                <img src={`/About/${p.src}`} alt="Candid photo of Aya" className="w-full h-full object-cover" loading="lazy" />
               </div>
             ))}
           </motion.div>
@@ -181,7 +181,7 @@ export default function About() {
                 aria-hidden="true"
               />
               <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-hotpink shadow-2xl">
-                <img src="/about/about-photo-texture.jpg" alt="" className="w-full h-full object-cover" />
+                <img src="/About/about-photo-texture.jpg" alt="Portrait of Aya" className="w-full h-full object-cover" />
               </div>
             </div>
             <p className="text-center md:text-left text-xs font-mono text-gray-400 mt-3">

@@ -69,7 +69,7 @@ export default function RevealText({ text, className = "", as = "p", delay = 0 }
     return () => {
       split.revert();
     };
-  }, [inView, delay]);
+  }, [inView, delay, ref]);
 
 
   return (

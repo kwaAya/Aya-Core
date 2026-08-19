@@ -5,7 +5,7 @@ import RevealText from "../components/RevealText";
 import SectionTag from "../components/SectionTag";
 import OrbitalScene from "../components/LazyOrbitalScene";
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mppakljw";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);

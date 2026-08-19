@@ -1,15 +1,20 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { lazy, Suspense } from "react";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
 import AmbientField from "./components/AmbientField";
 import Home from "./pages/Home";
-import Work from "./pages/Work";
-import ProjectDetail from "./pages/ProjectDetail";
-import About from "./pages/About";
-import Services from "./pages/Services";
-import Contact from "./pages/Contact";
+
+// Everything past the landing page loads on demand, so a first-time
+// visitor only pays for Home — not Work, About, Services, and Contact
+// all bundled together up front.
+const Work = lazy(() => import("./pages/Work"));
+const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
+const About = lazy(() => import("./pages/About"));
+const Services = lazy(() => import("./pages/Services"));
+const Contact = lazy(() => import("./pages/Contact"));
 
 function PageWrapper({ children }: { children: React.ReactNode }) {
   return (
@@ -33,14 +38,16 @@ function App() {
       <AmbientField />
       <Nav />
       <AnimatePresence mode="wait">
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
-          <Route path="/work" element={<PageWrapper><Work /></PageWrapper>} />
-          <Route path="/work/:slug" element={<PageWrapper><ProjectDetail /></PageWrapper>} />
-          <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
-          <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
-          <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
+            <Route path="/work" element={<PageWrapper><Work /></PageWrapper>} />
+            <Route path="/work/:slug" element={<PageWrapper><ProjectDetail /></PageWrapper>} />
+            <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
+            <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
+            <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+          </Routes>
+        </Suspense>
       </AnimatePresence>
       <Footer />
     </div>

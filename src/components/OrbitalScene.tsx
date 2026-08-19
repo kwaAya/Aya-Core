@@ -41,11 +41,10 @@ function Ring({
   );
 
   // Resting orientation — identical math to the original static rotation prop.
-  const rest: [number, number, number] = [
-    tilt[0] + rotation[0],
-    tilt[1] + rotation[1],
-    tilt[2] + rotation[2],
-  ];
+  const restX = tilt[0] + rotation[0];
+  const restY = tilt[1] + rotation[1];
+  const restZ = tilt[2] + rotation[2];
+  const [fromX, fromY, fromZ] = from;
 
   // Continuous orbital spin — untouched, owns the INNER mesh, runs forever.
   useFrame((_, delta) => {
@@ -65,22 +64,22 @@ function Ring({
 
     if (prefersReducedMotion()) {
       group.position.set(0, 0, 0);
-      group.rotation.set(rest[0], rest[1], rest[2]);
+      group.rotation.set(restX, restY, restZ);
       return;
     }
 
     let cancelled = false;
     const anims: ReturnType<typeof animate>[] = [];
 
-    group.position.set(from[0], from[1], from[2]);
-    group.rotation.set(Math.PI / 2, rest[1] * 3.2, rest[2] * 3.2);
+    group.position.set(fromX, fromY, fromZ);
+    group.rotation.set(Math.PI / 2, restY * 3.2, restZ * 3.2);
 
     async function run() {
       await wait(entranceDelay);
       if (cancelled || !group) return;
 
       // Phase 1 — float from outside their place to their position.
-      const pos = { x: from[0], y: from[1], z: from[2] };
+      const pos = { x: fromX, y: fromY, z: fromZ };
       const posAnim = animate(pos, {
         x: 0,
         y: 0,
@@ -95,11 +94,11 @@ function Ring({
 
       // Phase 2 — still have that animation: sweep from edge-on into
       // the ring's resting orbital tilt.
-      const rot = { x: Math.PI / 2, y: rest[1] * 3.2, z: rest[2] * 3.2 };
+      const rot = { x: Math.PI / 2, y: restY * 3.2, z: restZ * 3.2 };
       const rotAnim = animate(rot, {
-        x: rest[0],
-        y: rest[1],
-        z: rest[2],
+        x: restX,
+        y: restY,
+        z: restZ,
         duration: 1400,
         ease: "outExpo",
         onUpdate: () => group.rotation.set(rot.x, rot.y, rot.z),
@@ -113,7 +112,7 @@ function Ring({
       cancelled = true;
       anims.forEach((a) => a.cancel());
     };
-  }, [rest[0], rest[1], rest[2], entranceDelay, from[0], from[1], from[2]]);
+  }, [restX, restY, restZ, entranceDelay, fromX, fromY, fromZ]);
 
   return (
     <group ref={orbitRef}>
