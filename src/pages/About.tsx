@@ -24,19 +24,17 @@ const INTERESTS = [
   "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "AKA", "Kendrick Lamar", "SAILORR", "Drake", "Dominic Fike", "KAYTRANADA",
   "Deep House", "Amapiano", "Afro House", "Alt-R&B", "Neo-Soul", "Indie",
   "Iron Man / MCU", "Liverpool FC", "Moodboard Curation", "Shuri / T'Challa", "Peter Parker", "PC Gaming (Steam / Roblox)", "Sci-Fi", "Chrome & Metallic Everything", "A Patriot",
-  "Recent Interests / Obsessions: Anime, Manga, a bit of Graphic Designing, Messing around with AI", 
-  "Past Interests: Trading (Crypto and Forex), SketchUp (3D Modeling / Interior Design)"
 ];
+const CURRENT_INTERESTS = ["Anime", "Manga", "Graphic Designing", "Messing around with AI"];
+const PAST_INTERESTS = ["Trading (Crypto & Forex)", "SketchUp (3D Modeling / Interior Design)"];
 const ANCHOR_TAGS = ["DJ Kent", "Iron Man / MCU", "Liverpool FC", "AKA", "Sci-Fi"];
 
 const PHOTOS = [
-  //{ src: "about-photo-1.jpg", rotate: "-rotate-2" },
-  //{ src: "about-photo-4.jpg", rotate: "rotate-2" },
-  { src: "about-photo-2.jpg", rotate: "rotate-3" },
-  { src: "about-photo-3.jpg", rotate: "-rotate-3" },
-  { src: "about-photo-5.jpg", rotate: "rotate-6" },
-  { src: "about-photo-7.jpg", rotate: "-rotate-2" },
-  { src: "about-photo-6.jpg", rotate: "rotate-3" },
+  { src: "about-photo-2.jpg", area: "p1" }, // large anchor tile
+  { src: "about-photo-3.jpg", area: "p2" },
+  { src: "about-photo-5.jpg", area: "p3" },
+  { src: "about-photo-7.jpg", area: "p4" },
+  { src: "about-photo-6.jpg", area: "p5" }, // wide bottom tile
 ];
 
 export default function About() {
@@ -150,20 +148,22 @@ export default function About() {
           className="font-display text-3xl md:text-5xl font-medium leading-tight mt-6 max-w-2xl"
         />
 
-        <div className="mt-14 grid md:grid-cols-[1.2fr_1fr] gap-12 items-start">
+        <div           className="mt-14 grid md:grid-cols-[1fr_1.3fr] gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.6 }}
-            className="columns-2 sm:columns-3 gap-4 [&>*]:mb-4 [&>*]:break-inside-avoid"
+            className="grid gap-4 h-[460px] sm:h-[560px]"
+            style={{
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateRows: "repeat(3, 1fr)",
+              gridTemplateAreas: `"p1 p1 p2" "p1 p1 p3" "p4 p5 p5"`,
+            }}
           >
             {PHOTOS.map((p) => (
-              <div
-                key={p.src}
-                className={`rounded-2xl overflow-hidden border border-white/10 shadow-2xl ${p.rotate}`}
-              >
-                <img src={`/about/${p.src}`} alt="" className="w-full object-cover" loading="lazy" />
+              <div key={p.src} className="photo-blend overflow-hidden" style={{ gridArea: p.area }}>
+                <img src={`/about/${p.src}`} alt="" className="w-full h-full object-cover" loading="lazy" />
               </div>
             ))}
           </motion.div>
@@ -212,6 +212,32 @@ export default function About() {
                   {tag}
                 </motion.span>
               ))}
+            </div>
+
+            <div className="mt-6">
+              <p className="text-[11px] font-body font-normal tracking-wide text-gray-400/60 italic">
+                currently into
+              </p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {CURRENT_INTERESTS.map((tag) => (
+                  <span key={tag} className="font-mono text-xs rounded-full px-3.5 py-1.5 border border-white/15 text-gray-700/80">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-5">
+              <p className="text-[11px] font-body font-normal tracking-wide text-gray-400/60 italic">
+                used to be into
+              </p>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {PAST_INTERESTS.map((tag) => (
+                  <span key={tag} className="font-mono text-xs rounded-full px-3.5 py-1.5 border border-white/15 text-gray-700/80">
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>
