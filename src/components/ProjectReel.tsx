@@ -9,58 +9,32 @@ import { projects } from "../data/projects";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-// Same category → color family as ProjectDetail's CATEGORY_THEME, just as a
-// luminous glow here instead of a flat panel background.
+// Same category → color family as ProjectDetail's CATEGORY_THEME.
 const CATEGORY_GLOW: Record<string, string> = {
-  Tourism: "rgba(248,18,149,0.22)",
-  Aggregator: "rgba(200,200,205,0.22)",
-  Healthcare: "rgba(45,170,180,0.22)",
-  Gaming: "rgba(220,60,140,0.24)",
+  Tourism: "rgba(248,18,149,0.28)",
+  Aggregator: "rgba(200,200,205,0.28)",
+  Healthcare: "rgba(45,170,180,0.28)",
+  Gaming: "rgba(220,60,140,0.3)",
 };
 
-function BrowserFrame({
-  project,
-  className = "",
-}: {
-  project: (typeof projects)[number];
-  className?: string;
-}) {
+function ChapterPanel({ project, active }: { project: (typeof projects)[number]; active: boolean }) {
   return (
-    <div className={`rounded-xl border border-white/10 bg-charcoal overflow-hidden shadow-2xl ${className}`}>
-      <div className="flex items-center gap-3 px-3 py-2.5 bg-black/40 border-b border-white/10">
-        <div className="flex gap-1.5 shrink-0">
-          <span className="w-2 h-2 rounded-full bg-white/20" />
-          <span className="w-2 h-2 rounded-full bg-white/20" />
-          <span className="w-2 h-2 rounded-full bg-white/20" />
-        </div>
-        <span className="font-mono text-[10px] text-white/40 truncate">
-          {project.liveUrl.replace(/^https?:\/\//, "")}
-        </span>
-      </div>
-      {/* images live at /projects/{slug}.jpg — see note below */}
-      <img
-        src={`/projects/${project.slug}.jpg`}
-        alt={`${project.name} — live site`}
-        className="w-full aspect-video object-cover object-top"
-        loading="lazy"
-      />
-    </div>
-  );
-}
-
-function ProjectMeta({ project }: { project: (typeof projects)[number] }) {
-  return (
-    <>
-      <span className="font-mono text-xs text-gray-400 uppercase tracking-wide">
-        {project.category}
-      </span>
-      <h3 className="font-display text-3xl lg:text-4xl font-semibold mt-3">{project.name}</h3>
-      <p className="text-gray-700/70 mt-3 max-w-md leading-relaxed">{project.tagline}</p>
-      <div className="flex flex-wrap gap-2 mt-6">
+    <motion.div
+      className={`absolute inset-x-6 bottom-6 md:inset-x-14 md:bottom-14 md:max-w-2xl ${active ? "" : "pointer-events-none"}`}
+      animate={{ opacity: active ? 1 : 0, y: active ? 0 : 28 }}
+      transition={{ duration: 0.6 }}
+      aria-hidden={!active}
+    >
+      <span className="font-mono text-xs text-white/60 uppercase tracking-wide">{project.category}</span>
+      <h3 className="font-display text-4xl md:text-6xl lg:text-7xl font-semibold text-white mt-2 leading-[0.95]">
+        {project.name}
+      </h3>
+      <p className="text-white/70 mt-4 max-w-md leading-relaxed">{project.tagline}</p>
+      <div className="flex flex-wrap gap-2 mt-5">
         {project.stack.map((s) => (
           <span
             key={s}
-            className="font-mono text-[11px] bg-blush/20 border border-blush-100 text-gray-700 rounded-full px-3 py-1.5"
+            className="font-mono text-[11px] bg-white/10 backdrop-blur-sm border border-white/20 text-white rounded-full px-3 py-1.5"
           >
             {s}
           </span>
@@ -68,20 +42,43 @@ function ProjectMeta({ project }: { project: (typeof projects)[number] }) {
       </div>
       <Link
         to={`/work/${project.slug}`}
-        className="inline-flex items-center gap-2 mt-8 font-mono text-sm text-hotpink hover:text-hotpink-glow transition-colors w-fit"
+        className="inline-flex items-center gap-2 mt-6 font-mono text-sm text-white bg-hotpink/90 hover:bg-hotpink rounded-full px-5 py-2.5 transition-colors w-fit"
       >
         full case study <ArrowUpRight size={15} />
       </Link>
-    </>
+    </motion.div>
+  );
+}
+
+function ChapterImage({ project, active }: { project: (typeof projects)[number]; active: boolean }) {
+  return (
+    <motion.div
+      className={`absolute inset-0 ${active ? "" : "pointer-events-none"}`}
+      animate={{ opacity: active ? 1 : 0, scale: active ? 1 : 1.06 }}
+      transition={{ duration: 0.7 }}
+      aria-hidden={!active}
+    >
+      <img
+        src={`/projects/${project.slug}.jpg`}
+        alt={`${project.name} — live site`}
+        className="w-full h-full object-cover object-top"
+        loading="lazy"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/10" />
+      <div
+        className="absolute inset-0 opacity-25 mix-blend-overlay"
+        style={{ background: `radial-gradient(circle at 15% 85%, ${CATEGORY_GLOW[project.category] ?? CATEGORY_GLOW.Tourism}, transparent 60%)` }}
+        aria-hidden="true"
+      />
+    </motion.div>
   );
 }
 
 /**
- * Replaces the old flip-card grid: a pinned, scroll-scrubbed sequence
- * that gives each project its own full moment instead of competing for
- * space in a grid. Desktop only — mobile gets a simple stacked list,
- * since scroll-jacking on touch scroll tends to fight the user rather
- * than help them.
+ * Full-bleed, pinned scroll-scrubbed sequence. Each project takes over the
+ * entire frame — no browser-chrome box this time, the screenshot IS the
+ * background, text floats over it. Desktop only; mobile gets a simpler
+ * stacked version of the same full-bleed-card idea, no pinning.
  */
 export default function ProjectReel() {
   const pinRef = useRef<HTMLDivElement>(null);
@@ -96,7 +93,7 @@ export default function ProjectReel() {
       ScrollTrigger.create({
         trigger: pinRef.current,
         start: "top 96px",
-        end: "+=3600",
+        end: "+=3800",
         pin: true,
         scrub: 1,
         onUpdate: (self) => {
@@ -110,62 +107,36 @@ export default function ProjectReel() {
 
   return (
     <>
-      {/* Desktop: pinned scroll reel */}
+      {/* Desktop: full-bleed pinned reel */}
       <div
         ref={pinRef}
-        className="hidden md:grid relative grid-cols-2 gap-14 items-center h-[calc(100vh-6rem)]"
+        className="hidden md:block relative h-[calc(100vh-6rem)] rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
       >
-        <div className="absolute -top-4 left-0 flex items-center gap-3 font-mono text-xs text-gray-400">
+        {projects.map((p, i) => (
+          <ChapterImage key={p.slug} project={p} active={stage === i} />
+        ))}
+        {projects.map((p, i) => (
+          <ChapterPanel key={p.slug} project={p} active={stage === i} />
+        ))}
+
+        <div className="absolute top-6 left-8 z-10 flex items-center gap-3 font-mono text-xs text-white/80 bg-black/30 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
           <span className="text-hotpink">{String(stage + 1).padStart(2, "0")}</span>
           <span>/ {String(count).padStart(2, "0")}</span>
-          <div className="flex gap-1.5 ml-2" aria-hidden="true">
+          <div className="flex gap-1.5 ml-1" aria-hidden="true">
             {projects.map((_, i) => (
               <span
                 key={i}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === stage ? "w-6 bg-hotpink" : "w-1.5 bg-white/20"
+                  i === stage ? "w-6 bg-hotpink" : "w-1.5 bg-white/30"
                 }`}
               />
             ))}
           </div>
         </div>
-
-        <div className="relative h-full">
-          {projects.map((p, i) => (
-            <motion.div
-              key={p.slug}
-              className={`absolute inset-0 flex flex-col justify-center ${stage === i ? "" : "pointer-events-none"}`}
-              animate={{ opacity: stage === i ? 1 : 0, y: stage === i ? 0 : 20 }}
-              transition={{ duration: 0.5 }}
-              aria-hidden={stage !== i}
-            >
-              <ProjectMeta project={p} />
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="relative aspect-video">
-          {projects.map((p, i) => (
-            <motion.div
-              key={p.slug}
-              className={`absolute inset-0 ${stage === i ? "" : "pointer-events-none"}`}
-              animate={{ opacity: stage === i ? 1 : 0, scale: stage === i ? 1 : 0.96 }}
-              transition={{ duration: 0.5 }}
-              aria-hidden={stage !== i}
-            >
-              <div
-                className="absolute -inset-8 rounded-full blur-3xl -z-10 opacity-70"
-                style={{ background: `radial-gradient(circle, ${CATEGORY_GLOW[p.category] ?? CATEGORY_GLOW.Tourism}, transparent 70%)` }}
-                aria-hidden="true"
-              />
-              <BrowserFrame project={p} />
-            </motion.div>
-          ))}
-        </div>
       </div>
 
-      {/* Mobile: simple stacked list, no pinning */}
-      <div className="md:hidden space-y-16">
+      {/* Mobile: stacked full-bleed cards, no pinning */}
+      <div className="md:hidden space-y-8">
         {projects.map((p, i) => (
           <motion.div
             key={p.slug}
@@ -173,12 +144,28 @@ export default function ProjectReel() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.5 }}
+            className="relative h-[70vh] rounded-2xl overflow-hidden border border-white/10 shadow-xl"
           >
-            <span className="font-mono text-xs text-hotpink">
-              {String(i + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}
-            </span>
-            <BrowserFrame project={p} className="mt-3" />
-            <ProjectMeta project={p} />
+            <img
+              src={`/projects/${p.slug}.jpg`}
+              alt={`${p.name} — live site`}
+              className="w-full h-full object-cover object-top"
+              loading={i === 0 ? "eager" : "lazy"}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" />
+            <div className="absolute inset-x-5 bottom-5">
+              <span className="font-mono text-[11px] text-white/60">
+                {String(i + 1).padStart(2, "0")} / {String(count).padStart(2, "0")} · {p.category}
+              </span>
+              <h3 className="font-display text-3xl font-semibold text-white mt-1">{p.name}</h3>
+              <p className="text-sm text-white/70 mt-2">{p.tagline}</p>
+              <Link
+                to={`/work/${p.slug}`}
+                className="inline-flex items-center gap-2 mt-4 font-mono text-sm text-white bg-hotpink/90 rounded-full px-4 py-2"
+              >
+                full case study <ArrowUpRight size={14} />
+              </Link>
+            </div>
           </motion.div>
         ))}
       </div>

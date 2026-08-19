@@ -57,17 +57,24 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.5, delay: i * 0.08 }}
-            whileHover={{ y: -8, scale: 1.01 }}
-            className="group border border-blush-100 rounded-2xl p-7 bg-charcoal flex flex-col hover:border-hotpink/40 hover:shadow-[0_30px_80px_rgba(248,18,149,0.08)] transition-all"
+            whileHover={{ y: -6 }}
+            className="border border-blush-100 rounded-2xl p-7 bg-charcoal flex flex-col hover:border-hotpink/40 hover:shadow-lg transition-[box-shadow,border-color]"
           >
             <span className="font-mono text-xs text-hotpink">{s.tag}</span>
             <h3 className="font-display text-2xl font-semibold mt-4">{s.title}</h3>
             <p className="text-sm text-gray-700/70 mt-3 flex-1">{s.body}</p>
             <ul className="mt-6 space-y-2">
-              {s.items.map((it) => (
-                <li key={it} className="text-sm text-gray-700/80 flex items-start gap-2">
+              {s.items.map((it, j) => (
+                <motion.li
+                  key={it}
+                  initial={{ opacity: 0, x: -8 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: i * 0.08 + 0.2 + j * 0.05 }}
+                  className="text-sm text-gray-700/80 flex items-start gap-2"
+                >
                   <span className="text-hotpink mt-1">·</span> {it}
-                </li>
+                </motion.li>
               ))}
             </ul>
           </motion.div>
@@ -85,12 +92,8 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="rounded-[1.5rem] border border-blush-100 bg-white/[0.02] p-5 shadow-[0_18px_40px_rgba(0,0,0,0.04)]"
             >
-              <span className="font-mono text-xs text-gray-400">
-                {String(i + 1).padStart(2, "0")}
-              </span>
+              <span className="font-mono text-xs text-gray-400">{String(i + 1).padStart(2, "0")}</span>
               <h3 className="font-display text-xl font-semibold mt-2 capitalize">{p.step}</h3>
               <p className="text-sm text-gray-700/70 mt-2">{p.body}</p>
             </motion.div>
@@ -98,14 +101,20 @@ export default function Services() {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto mt-24 text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="max-w-3xl mx-auto mt-24 text-center"
+      >
         <Link
           to="/contact"
           className="inline-flex items-center gap-2 bg-charcoal text-white font-heading text-sm font-medium rounded-full px-7 py-4 hover:bg-hotpink transition-colors"
         >
           Start a conversation
         </Link>
-      </div>
+      </motion.div>
     </div>
   );
 }
