@@ -21,11 +21,11 @@ const PHILOSOPHY = [
 
 // Kept tight on purpose — low-effort to scan beats a Spotify Wrapped dump.
 const INTERESTS = [
-  "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "Kendrick Lamar", "Shekhinah",
-  "Deep House", "Amapiano", "Afro House", "Alt-R&B",
-  "Iron Man / MCU", "Liverpool FC", "Moodboard Curation", "Chrome & Metallic Everything", "Matatiele Roots",
+  "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "AKA", "Kendrick Lamar", "SAILORR", "Drake", "Dominic Fike", "KAYTRANADA",
+  "Deep House", "Amapiano", "Afro House", "Alt-R&B", "Neo-Soul", "Indie",
+  "Iron Man / MCU", "Liverpool FC", "Moodboard Curation", "Shuri / T'Challa", "Peter Parker", "Sci-Fi", "Chrome & Metallic Everything", "A Patriot",
 ];
-const ANCHOR_TAGS = ["DJ Kent", "Iron Man / MCU", "Liverpool FC"];
+const ANCHOR_TAGS = ["DJ Kent", "Iron Man / MCU", "Liverpool FC", "AKA", "Sci-Fi"];
 
 const PHOTOS = [
   { src: "about-photo-1.jpg", rotate: "-rotate-2" },
@@ -57,7 +57,7 @@ export default function About() {
           <div className="space-y-5 text-gray-700/80 leading-relaxed text-lg">
             <p>
               No bootcamp, no computer science degree behind this — just a
-              habit of thinking in systems since primary school, and a
+              habit of thinking in systems since forever, and a
               refusal to ship something I don't understand end to end. I
               design full-stack digital platforms that are technically
               robust, visually intentional, and culturally grounded.
@@ -95,7 +95,7 @@ export default function About() {
         >
           <SectionTag>how this started</SectionTag>
           <p className="mt-4 text-gray-700/80 leading-relaxed">
-            An uncle handed me a half-finished tourism site as a test — see
+            My uncle handed me a half-finished tourism site as a test — see
             if you can finish it. I didn't just finish it. I gave it a
             visual identity and a brand system it didn't have before. That's
             been the pattern since: hand me the thing that's broken or
@@ -183,7 +183,7 @@ export default function About() {
               </div>
             </div>
             <p className="text-center md:text-left text-xs font-mono text-gray-400 mt-3">
-              this one's giving Steve Lacy album cover, no notes
+              this one's giving Steve Lacy album cover, on some real shit, lol
             </p>
 
             <p className="text-gray-700/70 leading-relaxed mt-8">
