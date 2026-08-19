@@ -31,12 +31,12 @@ export default function Home() {
             <SectionTag>creative technologist · south africa</SectionTag>
           </motion.div>
 
-          <div className="relative isolate grid gap-6 pt-4 md:min-h-[520px] md:grid-cols-[1.08fr_0.92fr] md:items-center">
+          <div className="hero-stage">
             <motion.div
-              initial={{ opacity: 0, x: 32, y: 18, filter: "blur(12px)" }}
-              animate={{ opacity: 1, x: 0, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.85, delay: 1.05, ease: [0.22, 1, 0.36, 1] }}
-              className="relative z-10 max-w-3xl md:pr-8"
+              className="hero-copy"
+              initial={{ opacity: 0, x: -14 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
             >
               <RevealText
                 as="h1"
@@ -46,14 +46,14 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: -700, y: -160, rotate: -18, scale: 0.72 }}
-              animate={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
-              transition={{ duration: 2.4, delay: 0.12, ease: [0.12, 0.82, 0.2, 1] }}
-              className="hero-orb-wrap pointer-events-none relative z-0 flex justify-center md:justify-end"
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+              className="hero-orbital"
             >
-              <div className="hero-orb-shell relative flex h-[280px] w-[280px] items-center justify-center overflow-visible md:h-[560px] md:w-[560px]">
-                <div className="absolute inset-8 rounded-full bg-[radial-gradient(circle,_rgba(248,18,149,0.22),_transparent_62%)] blur-3xl" />
-                <OrbitalScene className="relative h-[280px] w-[280px] overflow-visible md:h-[520px] md:w-[520px]" />
+              <div className="hero-orbital-shell">
+                <div className="hero-orbital-glow" aria-hidden="true" />
+                <OrbitalScene className="hero-orbital-scene" />
               </div>
             </motion.div>
           </div>
