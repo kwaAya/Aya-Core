@@ -125,17 +125,17 @@ export default function Contact() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mt-16 flex flex-wrap gap-x-8 gap-y-3 font-mono text-sm"
           >
-            <a href="mailto:aya@ayacore.studio" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
-              <Mail size={16} /> aya@ayacore.studio
+            <a href="mailto:ayacorestudios@gmail.com" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
+              <Mail size={16} /> ayacorestudios@gmail.com
             </a>
-            <a href="https://github.com/ayacore" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
-              <Link2 size={16} /> github.com/ayacore
+            <a href="https://github.com/kwaAya" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
+              <Link2 size={16} /> github.com/kwaAya
             </a>
-            <a href="https://linkedin.com/in/ayacore" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
-              <Link2 size={16} /> linkedin.com/in/ayacore
+            <a href="https://www.linkedin.com/in/unako-mtumtum/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
+              <Link2 size={16} /> linkedin.com/in/unako-mtumtum
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
-              <Link2 size={16} /> @ayacorestudios
+            <a href="https://www.instagram.com/ayabukwaaaa/?__pwa=1#" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-gray-700/70 hover:text-hotpink transition-colors">
+              <Link2 size={16} /> @ayabukwaaaa
             </a>
           </motion.div>
         </div>
