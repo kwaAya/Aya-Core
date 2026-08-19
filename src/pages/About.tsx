@@ -24,14 +24,14 @@ const INTERESTS = [
   "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "AKA", "Kendrick Lamar", "SAILORR", "Drake", "Dominic Fike", "KAYTRANADA",
   "Deep House", "Amapiano", "Afro House", "Alt-R&B", "Neo-Soul", "Indie",
   "Iron Man / MCU", "Liverpool FC", "Moodboard Curation", "Shuri / T'Challa", "Peter Parker", "PC Gaming (Steam / Roblox)", "Sci-Fi", "Chrome & Metallic Everything", "A Patriot",
-  "Recent Interests / Obsessions: Anime, Manga, a bit of Graphic Designing", 
+  "Recent Interests / Obsessions: Anime, Manga, a bit of Graphic Designing", "Messing around with AI", 
   "Past Interests: Trading (Crypto and Forex), SketchUp (3D Modeling / Interior Design)"
 ];
 const ANCHOR_TAGS = ["DJ Kent", "Iron Man / MCU", "Liverpool FC", "AKA", "Sci-Fi"];
 
 const PHOTOS = [
-  { src: "about-photo-1.jpg", rotate: "-rotate-2" },
-  { src: "about-photo-4.jpg", rotate: "rotate-2" },
+  //{ src: "about-photo-1.jpg", rotate: "-rotate-2" },
+  //{ src: "about-photo-4.jpg", rotate: "rotate-2" },
   { src: "about-photo-2.jpg", rotate: "rotate-3" },
   { src: "about-photo-3.jpg", rotate: "-rotate-3" },
   { src: "about-photo-5.jpg", rotate: "rotate-6" },
