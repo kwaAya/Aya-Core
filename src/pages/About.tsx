@@ -10,22 +10,32 @@ const DISCIPLINES = [
   { title: "Community focus", body: "Grounded in South African context, culture and real users." },
 ];
 
-const CORE_VALUES = ["Intentionality", "Craftsmanship", "Systems thinking", "Community impact", "Cultural authenticity"];
+const CORE_VALUES = ["Intentionality", "Craftsmanship", "Systems thinking", "Community impact", "Cultural authenticity", "Balanced maximalism"];
 
 const PHILOSOPHY = [
-  { n: "01", title: "Intentionality", body: "Every decision is deliberate. Nothing shipped by default." },
-  { n: "02", title: "Craftsmanship", body: "Built with precision and care — from schema to spacing." },
+  { n: "01", title: "Feeling in, structure out", body: "The things I care about get the architecture. That's the whole method." },
+  { n: "02", title: "Balanced maximalism", body: "More going on, never more going wrong. Rich, not cluttered." },
   { n: "03", title: "Systems thinking", body: "Zoom out. Every screen is a node in a larger graph." },
   { n: "04", title: "Cultural authenticity", body: "Grounded in South African context, not generic templates." },
 ];
 
 // Kept tight on purpose — low-effort to scan beats a Spotify Wrapped dump.
 const INTERESTS = [
-  "DJ Kent", "Steve Lacy", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "Kendrick Lamar", "Shekhinah",
+  "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "Kendrick Lamar", "Shekhinah",
   "Deep House", "Amapiano", "Afro House", "Alt-R&B",
   "Iron Man / MCU", "Liverpool FC", "Moodboard Curation", "Chrome & Metallic Everything", "Matatiele Roots",
 ];
 const ANCHOR_TAGS = ["DJ Kent", "Iron Man / MCU", "Liverpool FC"];
+
+const PHOTOS = [
+  { src: "about-photo-1.jpg", rotate: "-rotate-2" },
+  { src: "about-photo-4.jpg", rotate: "rotate-2" },
+  { src: "about-photo-2.jpg", rotate: "rotate-3" },
+  { src: "about-photo-3.jpg", rotate: "-rotate-3" },
+  { src: "about-photo-5.jpg", rotate: "rotate-6" },
+  { src: "about-photo-7.jpg", rotate: "-rotate-2" },
+  { src: "about-photo-6.jpg", rotate: "rotate-3" },
+];
 
 export default function About() {
   return (
@@ -34,7 +44,7 @@ export default function About() {
         <SectionTag>about</SectionTag>
         <RevealText
           as="h1"
-          text="Systems thinking meets creative vision."
+          text="Self-taught. Systems-minded. Building on purpose."
           className="font-display text-4xl md:text-6xl font-semibold mt-6 leading-tight max-w-3xl"
         />
         <motion.div
@@ -46,10 +56,11 @@ export default function About() {
         >
           <div className="space-y-5 text-gray-700/80 leading-relaxed text-lg">
             <p>
-              I've been thinking in systems since primary school. That's not
-              just how I code — it's how I approach every problem. I design
-              full-stack digital platforms that are technically robust,
-              visually intentional, and culturally grounded.
+              No bootcamp, no computer science degree behind this — just a
+              habit of thinking in systems since primary school, and a
+              refusal to ship something I don't understand end to end. I
+              design full-stack digital platforms that are technically
+              robust, visually intentional, and culturally grounded.
             </p>
             <p className="font-heading font-medium text-ink">
               I don't build for corporations. I build for communities.
@@ -62,6 +73,34 @@ export default function About() {
           <div className="flex justify-center">
             <OrbitalScene interactive={false} className="w-[260px] h-[260px]" />
           </div>
+        </motion.div>
+      </div>
+
+      {/* Origin */}
+      <div className="max-w-5xl mx-auto mt-24 grid md:grid-cols-[0.8fr_1.2fr] gap-10 items-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{ duration: 0.6 }}
+          className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl rotate-1 max-w-[280px] mx-auto md:mx-0"
+        >
+          <img src="/about/about-photo-baby.jpg" alt="" className="w-full object-cover" />
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <SectionTag>how this started</SectionTag>
+          <p className="mt-4 text-gray-700/80 leading-relaxed">
+            An uncle handed me a half-finished tourism site as a test — see
+            if you can finish it. I didn't just finish it. I gave it a
+            visual identity and a brand system it didn't have before. That's
+            been the pattern since: hand me the thing that's broken or
+            unfinished, get back more structure than you asked for.
+          </p>
         </motion.div>
       </div>
 
@@ -109,26 +148,22 @@ export default function About() {
           className="font-display text-3xl md:text-5xl font-medium leading-tight mt-6 max-w-2xl"
         />
 
-        <div className="mt-14 grid md:grid-cols-[1fr_1.2fr] gap-12 items-start">
+        <div className="mt-14 grid md:grid-cols-[1.2fr_1fr] gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.6 }}
-            className="relative h-[420px] sm:h-[480px]"
+            className="columns-2 sm:columns-3 gap-4 [&>*]:mb-4 [&>*]:break-inside-avoid"
           >
-            <div className="absolute left-0 top-4 w-[62%] rounded-2xl overflow-hidden border border-white/10 shadow-2xl -rotate-3">
-              <img src="/about/about-photo-1.jpg" alt="" className="w-full aspect-[4/5] object-cover" />
-            </div>
-            <div className="absolute right-0 top-0 w-[48%] rounded-2xl overflow-hidden border border-white/10 shadow-2xl rotate-2">
-              <img src="/about/about-photo-2.jpg" alt="" className="w-full aspect-[4/5] object-cover" />
-            </div>
-            <div className="absolute left-[8%] bottom-0 w-[44%] rounded-2xl overflow-hidden border border-white/10 shadow-2xl rotate-6">
-              <img src="/about/about-photo-3.jpg" alt="" className="w-full aspect-[4/5] object-cover" />
-            </div>
-            <div className="absolute right-[6%] bottom-6 w-16 h-16 rounded-full overflow-hidden border-2 border-hotpink shadow-xl -rotate-6">
-              <img src="/about/about-photo-texture.jpg" alt="" className="w-full h-full object-cover" />
-            </div>
+            {PHOTOS.map((p) => (
+              <div
+                key={p.src}
+                className={`rounded-2xl overflow-hidden border border-white/10 shadow-2xl ${p.rotate}`}
+              >
+                <img src={`/about/${p.src}`} alt="" className="w-full object-cover" loading="lazy" />
+              </div>
+            ))}
           </motion.div>
 
           <motion.div
@@ -137,7 +172,21 @@ export default function About() {
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <p className="text-gray-700/70 leading-relaxed">
+            <div className="relative w-40 h-40 mx-auto md:mx-0">
+              <div
+                className="absolute -inset-6 rounded-full blur-2xl -z-10"
+                style={{ background: "radial-gradient(circle, rgba(200,90,255,0.35), rgba(248,18,149,0.25), transparent 70%)" }}
+                aria-hidden="true"
+              />
+              <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-hotpink shadow-2xl">
+                <img src="/about/about-photo-texture.jpg" alt="" className="w-full h-full object-cover" />
+              </div>
+            </div>
+            <p className="text-center md:text-left text-xs font-mono text-gray-400 mt-3">
+              this one's giving Steve Lacy album cover, no notes
+            </p>
+
+            <p className="text-gray-700/70 leading-relaxed mt-8">
               Outside the build queue: deep house on loop, whatever Marvel's
               dropped most recently, and a permanent soft spot for anything
               chrome.
@@ -153,6 +202,8 @@ export default function About() {
                   className={`font-mono text-xs rounded-full px-3.5 py-1.5 border ${
                     ANCHOR_TAGS.includes(tag)
                       ? "bg-hotpink/20 border-hotpink/40 text-white"
+                      : tag === "Steve Lacy"
+                      ? "bg-gradient-to-r from-[#c85aff]/20 to-hotpink/20 border-hotpink/40 text-white"
                       : "border-white/15 text-gray-700/80"
                   }`}
                 >
