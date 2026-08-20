@@ -62,7 +62,7 @@ function Field() {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
-      <pointsMaterial size={0.045} vertexColors transparent opacity={0.55} sizeAttenuation depthWrite={false} />
+      <pointsMaterial size={0.045} vertexColors transparent opacity={0.38} sizeAttenuation depthWrite={false} />
     </points>
   );
 }

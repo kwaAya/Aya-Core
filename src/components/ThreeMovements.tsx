@@ -105,17 +105,25 @@ export default function ThreeMovements() {
         });
       };
 
+      let activeStage = -1;
+
       const st = ScrollTrigger.create({
         trigger,
         start: "top 80%",
         end: "bottom 20%",
         scrub: 1.35,
         onUpdate: (self) => {
-          setStage(self.progress < 0.33 ? 0 : self.progress < 0.67 ? 1 : 2);
+          const nextStage = self.progress < 0.33 ? 0 : self.progress < 0.67 ? 1 : 2;
+          if (nextStage !== activeStage) {
+            activeStage = nextStage;
+            setStage(nextStage);
+          }
           applyOrb(self.progress);
         },
       });
 
+      activeStage = st.progress < 0.33 ? 0 : st.progress < 0.67 ? 1 : 2;
+      setStage(activeStage);
       applyOrb(st.progress);
 
       // Anything that changes this section's real height after GSAP has
@@ -152,7 +160,7 @@ export default function ThreeMovements() {
   );
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden px-6 md:px-10">
+    <section ref={sectionRef} className="relative overflow-x-clip px-6 md:px-10">
       <WatermarkText
         text="SYSTEM"
         className="select-none absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[20vw] font-semibold leading-none text-ink/[0.03] md:text-[10rem]"

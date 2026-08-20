@@ -135,7 +135,7 @@ function Core() {
 
   useFrame(({ clock }) => {
     if (!pulseRef.current) return;
-    const t = clock.getElapsedTime();
+    const t = clock.elapsedTime;
     const s = 1 + Math.sin(t * 1.2) * 0.03;
     pulseRef.current.scale.setScalar(s);
   });
@@ -194,7 +194,7 @@ function Sparks() {
   }, []);
   useFrame(({ clock }) => {
     if (!group.current) return;
-    group.current.rotation.y = clock.getElapsedTime() * 0.15;
+    group.current.rotation.y = clock.elapsedTime * 0.15;
   });
   return (
     <group ref={group}>
