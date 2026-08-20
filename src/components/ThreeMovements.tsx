@@ -124,17 +124,27 @@ export default function ThreeMovements() {
       // fonts settle, and keep refreshing any time the section itself
       // resizes (covers the orb's canvas mounting in late).
       document.fonts?.ready.then(() => ScrollTrigger.refresh());
+      window.addEventListener("load", () => ScrollTrigger.refresh());
 
       let resizeTimeout: ReturnType<typeof setTimeout>;
       const ro = new ResizeObserver(() => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => ScrollTrigger.refresh(), 200);
       });
-      ro.observe(trigger);
+      // Watch the whole page, not just this section. This section's height
+      // is a fixed vh value so it never resizes on its own — the real
+      // culprit is the hero's lazy-loaded OrbitalScene above it finishing
+      // its WebGL mount late and shifting this section down the page after
+      // ScrollTrigger already measured it.
+      ro.observe(document.body);
+
+      // One more late refresh to catch any straggler layout settling.
+      const lateRefresh = setTimeout(() => ScrollTrigger.refresh(), 1200);
 
       return () => {
         ro.disconnect();
         clearTimeout(resizeTimeout);
+        clearTimeout(lateRefresh);
       };
     },
     { scope: sectionRef, dependencies: [isDesktop] }
