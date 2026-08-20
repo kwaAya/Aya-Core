@@ -6,8 +6,8 @@ import OrbitalScene from "../components/LazyOrbitalScene";
 import ThreeMovements from "../components/ThreeMovements";
 import StatCounter from "../components/StatCounter";
 import SectionTag from "../components/SectionTag";
-import ProjectCard from "../components/ProjectCard";
-import { projects } from "../data/projects";
+import FeaturedDuo from "../components/FeaturedDuo";
+//import { projects } from "../data/projects";
 
 export default function Home() {
   return (
@@ -129,11 +129,7 @@ export default function Home() {
               view all projects →
             </Link>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {projects.slice(0, 4).map((p, i) => (
-              <ProjectCard key={p.slug} project={p} index={i} />
-            ))}
-          </div>
+          <FeaturedDuo />
         </div>
       </section>
 

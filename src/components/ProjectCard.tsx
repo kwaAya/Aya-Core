@@ -54,6 +54,10 @@ export default function ProjectCard({ project, index }: { project: Project; inde
                 </span>
               </div>
 
+              <div className="logo-chip mb-3 h-10 w-10 rounded-xl">
+                <img src={`/brand/logos/${project.slug}.png`} alt="" aria-hidden="true" />
+              </div>
+
               <h3 className="font-display text-2xl font-semibold text-white">{project.name}</h3>
               <p className="mt-2 text-sm leading-relaxed text-white/60">{project.tagline}</p>
             </div>

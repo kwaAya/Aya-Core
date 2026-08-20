@@ -59,12 +59,24 @@ export default function Nav() {
               key={l.to}
               to={l.to}
               className={({ isActive }) =>
-                `font-heading text-sm font-medium tracking-wide transition-colors ${
+                `group relative font-heading text-sm font-medium tracking-wide transition-colors ${
                   isActive ? "text-hotpink" : "text-ink/70 hover:text-ink"
                 }`
               }
             >
-              {l.label}
+              {({ isActive }) => (
+                <>
+                  {l.label}
+                  <span
+                    className={`pointer-events-none absolute -bottom-1.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-hotpink transition-all duration-300 ${
+                      isActive
+                        ? "w-1 opacity-100"
+                        : "w-0 opacity-0 group-hover:w-1 group-hover:opacity-100"
+                    }`}
+                    aria-hidden="true"
+                  />
+                </>
+              )}
             </NavLink>
           ))}
           <NavLink

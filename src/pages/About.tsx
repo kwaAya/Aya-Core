@@ -41,7 +41,13 @@ const PHOTOS: { src: string; area: string; position?: string }[] = [
 
 export default function About() {
   return (
-    <div className="pt-40 pb-28 px-6 md:px-10">
+    <div className="relative overflow-hidden pt-40 pb-28 px-6 md:px-10">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -top-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[22vw] font-semibold leading-none text-ink/[0.03] md:text-[12rem]"
+      >
+        ORBIT
+      </span>
       <div className="max-w-5xl mx-auto">
         <SectionTag>about</SectionTag>
         <RevealText

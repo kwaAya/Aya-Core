@@ -24,7 +24,13 @@ export default function ProjectDetail() {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
-    <div className="pt-40 pb-28 px-6 md:px-10">
+    <div className="relative overflow-hidden pt-40 pb-28 px-6 md:px-10">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -top-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[22vw] font-semibold uppercase leading-none text-ink/[0.03] md:text-[12rem]"
+      >
+        {project.category}
+      </span>
       <div className="max-w-3xl mx-auto">
         <Link
           to="/work"
@@ -33,7 +39,12 @@ export default function ProjectDetail() {
           <ArrowLeft size={14} /> all projects
         </Link>
 
-        <SectionTag>{`${project.category} · case study`}</SectionTag>
+        <div className="flex items-center gap-3">
+          <div className="logo-chip h-12 w-12 rounded-2xl">
+            <img src={`/brand/logos/${project.slug}.png`} alt={`${project.name} logo`} />
+          </div>
+          <SectionTag>{`${project.category} · case study`}</SectionTag>
+        </div>
         <RevealText
           as="h1"
           text={project.name}

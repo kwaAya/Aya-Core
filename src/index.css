@@ -190,7 +190,7 @@ body {
   height: 520px;
   border-radius: 9999px;
   pointer-events: none;
-  z-index: 30;
+  z-index: 60;
   mix-blend-mode: screen;
   background: radial-gradient(circle, rgba(248,18,149,0.65) 0%, rgba(248,18,149,0.32) 20%, rgba(248,18,149,0.10) 45%, transparent 72%);
   filter: blur(8px);
@@ -218,31 +218,43 @@ html.has-core-cursor,
 html.has-core-cursor * {
   cursor: none !important;
 }
+html.has-core-cursor input,
+html.has-core-cursor textarea,
+html.has-core-cursor [contenteditable="true"] {
+  cursor: text !important;
+}
 
 .cursor-core-ring {
   position: fixed;
   top: 0;
   left: 0;
-  width: 26px;
-  height: 26px;
+  width: 14px;
+  height: 14px;
   border-radius: 9999px;
-  border: 1px solid rgba(192, 192, 192, 0.75);
+  border: 1px solid rgba(192, 192, 192, 0.8);
   pointer-events: none;
-  z-index: 40;
+  z-index: 60;
   translate: -50% -50%;
-  box-shadow: 0 0 12px rgba(192, 192, 192, 0.15);
-  animation: cursorRingSpin 8s linear infinite;
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.2);
+  opacity: 1;
   transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
     height 0.25s cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease,
+    opacity 0.2s ease;
 }
 
 .cursor-core-ring.is-active {
-  width: 46px;
-  height: 46px;
+  width: 34px;
+  height: 34px;
   border-color: rgba(248, 18, 149, 0.9);
-  background: rgba(248, 18, 149, 0.08);
-  box-shadow: 0 0 24px rgba(248, 18, 149, 0.45);
+  background: rgba(248, 18, 149, 0.1);
+  box-shadow: 0 0 24px rgba(248, 18, 149, 0.5);
+}
+
+.cursor-core-ring.is-hidden,
+.cursor-core-dot.is-hidden,
+.cursor-glow.is-hidden {
+  opacity: 0;
 }
 
 .cursor-core-dot {
@@ -255,14 +267,9 @@ html.has-core-cursor * {
   background: var(--color-hotpink);
   box-shadow: 0 0 8px rgba(248, 18, 149, 0.9);
   pointer-events: none;
-  z-index: 40;
+  z-index: 60;
   translate: -50% -50%;
-}
-
-@keyframes cursorRingSpin {
-  to {
-    rotate: 360deg;
-  }
+  transition: opacity 0.2s ease;
 }
 
 /* thin scrollbar for terminal card */

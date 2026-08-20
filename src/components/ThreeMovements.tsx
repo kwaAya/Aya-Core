@@ -103,7 +103,13 @@ export default function ThreeMovements() {
   );
 
   return (
-    <section ref={sectionRef} className="px-6 md:px-10">
+    <section ref={sectionRef} className="relative overflow-hidden px-6 md:px-10">
+      <span
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[20vw] font-semibold leading-none text-ink/[0.03] md:text-[10rem]"
+      >
+        SYSTEM
+      </span>
       <div className="mx-auto max-w-3xl pb-8 pt-28 text-center">
         <SectionTag>the core, in three movements</SectionTag>
         <RevealText
