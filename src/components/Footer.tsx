@@ -26,7 +26,7 @@ export default function Footer() {
               <img
                 src="/brand/aya-core-symbol.png"
                 alt="Aya Core Studios"
-                className="h-10 w-auto opacity-95"
+                className="h-full w-full object-contain p-2 opacity-95"
               />
             </div>
 
@@ -35,8 +35,11 @@ export default function Footer() {
                 <span className="text-hotpink">A</span>
                 <span className="brand-metallic">YA CORE</span>
               </p>
+              <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.32em] text-hotpink/80">
+                Studios
+              </p>
               <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.28em] text-white/45">
-                Studios · intentional · crafted · real
+                Intentional · crafted · real
               </p>
             </div>
           </div>
