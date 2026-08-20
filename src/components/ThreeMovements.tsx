@@ -125,10 +125,17 @@ export default function ThreeMovements() {
       // resizes (covers the orb's canvas mounting in late).
       document.fonts?.ready.then(() => ScrollTrigger.refresh());
 
-      const ro = new ResizeObserver(() => ScrollTrigger.refresh());
+      let resizeTimeout: ReturnType<typeof setTimeout>;
+      const ro = new ResizeObserver(() => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => ScrollTrigger.refresh(), 200);
+      });
       ro.observe(trigger);
 
-      return () => ro.disconnect();
+      return () => {
+        ro.disconnect();
+        clearTimeout(resizeTimeout);
+      };
     },
     { scope: sectionRef, dependencies: [isDesktop] }
   );

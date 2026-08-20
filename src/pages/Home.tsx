@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import RevealText from "../components/RevealText";
 import OrbitalScene from "../components/LazyOrbitalScene";
 import WatermarkText from "../components/WatermarkText";
+import WatermarkHint from "../components/WatermarkHint";
 import ThreeMovements from "../components/ThreeMovements";
 import StatCounter from "../components/StatCounter";
 import SectionTag from "../components/SectionTag";
@@ -17,7 +18,13 @@ export default function Home() {
         <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(248,18,149,0.10)_0%,_rgba(248,18,149,0.04)_18%,_transparent_45%),_radial-gradient(circle_at_bottom_right,_rgba(139,92,246,0.07)_0%,_rgba(139,92,246,0.03)_16%,_transparent_42%)] blur-3xl" />
         <WatermarkText
           text="CORE"
+          playful
           className="absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[26vw] font-semibold leading-none text-ink/[0.035] md:top-4 md:text-[16rem]"
+        />
+        <WatermarkHint
+          id="home"
+          anchorClassName="left-1/2 top-40 -translate-x-1/2"
+          messages={["there's a core hiding in plain sight", "hover the big word up there"]}
         />
 
         <div className="mx-auto max-w-6xl">
