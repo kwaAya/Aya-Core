@@ -4,9 +4,9 @@ import { lazy, Suspense, useEffect, useRef } from "react";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
-import AmbientField from "./components/AmbientField";
 import Home from "./pages/Home";
 import { projects } from "./data/projects";
+const AmbientField = lazy(() => import("./components/AmbientField"));
 
 const DEFAULT_TITLE = "Aya Core Studios — Creative Technologist";
 const DEFAULT_DESCRIPTION =
@@ -114,7 +114,7 @@ function App() {
     <div className="relative min-h-screen">
       <DocumentTitle />
       <CursorGlow />
-      <AmbientField />
+      <Suspense fallback={null}><AmbientField /></Suspense>
       <Nav />
       <AnimatePresence mode="wait">
         <Suspense fallback={null}>

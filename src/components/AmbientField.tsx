@@ -7,6 +7,7 @@ const COUNT = 50;
 function Field() {
   const pointsRef = useRef<THREE.Points>(null);
   const scrollRef = useRef(0);
+  const scrollTargetRef = useRef(0);
 
   const { positions, colors } = useMemo(() => {
     const positions = new Float32Array(COUNT * 3);
@@ -26,17 +27,18 @@ function Field() {
   }, []);
 
   const velocityRef = useRef(0);
+  const velocityTargetRef = useRef(0);
 
   useEffect(() => {
     let lastY = window.scrollY;
     let lastT = performance.now();
     const onScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      scrollRef.current = max > 0 ? window.scrollY / max : 0;
+      scrollTargetRef.current = max > 0 ? window.scrollY / max : 0;
 
       const now = performance.now();
       const dt = Math.max(now - lastT, 1);
-      velocityRef.current = Math.min(Math.abs((window.scrollY - lastY) / dt), 3);
+      velocityTargetRef.current = Math.max(-3, Math.min((window.scrollY - lastY) / dt, 3));
       lastY = window.scrollY;
       lastT = now;
     };
@@ -48,12 +50,19 @@ function Field() {
   useFrame((_, delta) => {
     const points = pointsRef.current;
     if (!points) return;
-    const boost = 1 + velocityRef.current * 4; // a fast scroll briefly quickens the drift
+    scrollRef.current += (scrollTargetRef.current - scrollRef.current) * 0.045;
+    velocityRef.current += (velocityTargetRef.current - velocityRef.current) * 0.18;
+    velocityTargetRef.current *= 0.9;
+
+    const scrollProgress = scrollRef.current;
+    const scrollMomentum = velocityRef.current;
+    const boost = 1 + Math.abs(scrollMomentum) * 2.5;
     points.rotation.y += delta * 0.015 * boost;
-    const targetTilt = scrollRef.current * 0.6 - 0.3;
+    const targetTilt = scrollProgress * 0.6 - 0.3;
     points.rotation.x += (targetTilt - points.rotation.x) * 0.02;
-    points.position.y = scrollRef.current * 6;
-    velocityRef.current *= 0.94; // decays back to the calm baseline between scroll events
+    points.rotation.z += (scrollMomentum * 0.16 - points.rotation.z) * 0.045;
+    points.position.y += (scrollProgress * 6 - points.position.y) * 0.035;
+    points.scale.y += (1 + Math.abs(scrollMomentum) * 0.04 - points.scale.y) * 0.08;
   });
 
   return (

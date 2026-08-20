@@ -282,7 +282,7 @@ export default function About() {
                 <div className="flex flex-wrap gap-2 mt-2">
                   {group.tags.map((tag, i) => (
                     <motion.span
-                      key={tag}
+                      key={`${tag}-${i}`}
                       initial={{ opacity: 0, scale: 0.9 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
