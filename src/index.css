@@ -80,6 +80,12 @@ html {
 @media (min-width: 1024px) {
   .hero-orbital {
     min-height: 560px;
+    transform: translateX(min(9vw, 160px));
+  }
+}
+@media (min-width: 1440px) {
+  .hero-orbital {
+    transform: translateX(min(14vw, 260px));
   }
 }
 
@@ -185,14 +191,27 @@ body {
   border-radius: 9999px;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(circle, rgba(248,18,149,0.16) 0%, rgba(248,18,149,0.08) 30%, rgba(248,18,149,0.02) 55%, transparent 75%);
-  filter: blur(20px);
+  background: radial-gradient(circle, rgba(248,18,149,0.22) 0%, rgba(248,18,149,0.11) 30%, rgba(248,18,149,0.03) 55%, transparent 75%);
+  filter: blur(14px);
   transform: translate(-50%, -50%);
+  scale: 1;
+  animation: cursorGlowBreathe 4.5s ease-in-out infinite;
   will-change: transform;
 }
 
 .dark-section .cursor-glow {
-  background: radial-gradient(circle, rgba(248,18,149,0.30) 0%, rgba(248,18,149,0.14) 30%, rgba(248,18,149,0.04) 55%, transparent 75%);
+  background: radial-gradient(circle, rgba(248,18,149,0.38) 0%, rgba(248,18,149,0.18) 30%, rgba(248,18,149,0.05) 55%, transparent 75%);
+}
+
+@keyframes cursorGlowBreathe {
+  0%, 100% {
+    scale: 1;
+    opacity: 0.85;
+  }
+  50% {
+    scale: 1.12;
+    opacity: 1;
+  }
 }
 
 /* thin scrollbar for terminal card */
