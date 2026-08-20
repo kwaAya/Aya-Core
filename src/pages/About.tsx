@@ -21,14 +21,14 @@ const PHILOSOPHY = [
 
 // Kept tight on purpose — low-effort to scan beats a Spotify Wrapped dump.
 const SOUND = [
-  "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "AKA",
+  "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "AKA", "Lil Nas X", "Bucie",
   "Kendrick Lamar", "SAILORR", "Drake", "Dominic Fike", "KAYTRANADA",
   "Deep House", "Amapiano", "Afro House", "Alt-R&B", "Neo-Soul", "Indie",
 ];
-const FANDOM = ["Iron Man / MCU", "Shuri / T'Challa", "Peter Parker", "Sci-Fi", "PC Gaming (Steam / Roblox)"];
-const CULTURE = ["Liverpool FC", "Moodboard Curation", "Chrome & Metallic Everything", "A Patriot"];
-const CURRENT_INTERESTS = ["Anime", "Manga", "Graphic Designing", "Messing around with AI"];
-const PAST_INTERESTS = ["Trading (Crypto & Forex)", "SketchUp (3D Modeling / Interior Design)"];
+const FANDOM = ["Iron Man / MCU", "Shuri / T'Challa", "Peter Parker", "Sci-Fi", "Black Panther", "Trevor Noah!!", "PC Gaming (Steam / Roblox)", "Marvel Lore", "What Now? & BWSS (Podcasts)", "Superhero Edits"];
+const CULTURE = ["Liverpool FC", "Moodboard Curation", "Chrome & Metallic Everything", "A Patriot", "House Music", "South African Twitter / Lore", "Being a Hater Professionally", "Podcasts "];
+const CURRENT_INTERESTS = ["Anime", "Manga", "Graphic Designing", "Messing around with AI", "Hot Pink", "Literally anything Cool"];
+const PAST_INTERESTS = ["Trading (Crypto & Forex)", "SketchUp (3D Modeling / Interior Design)", "Failed Dropshipping Attempts"];
 const ANCHOR_TAGS = ["DJ Kent", "Iron Man / MCU", "Liverpool FC", "AKA", "Sci-Fi"];
 
 const PHOTOS: { src: string; area: string; position?: string }[] = [
@@ -68,7 +68,7 @@ export default function About() {
               I don't build for corporations. I build for communities.
             </p>
             <p className="text-sm text-gray-700/60">
-              Unako "Aya" Mtumtum — 19, second-year Computer Networking
+              Unako "Aya" Mtumtum — forever 19 {`(actually 20)`}, second-year Computer Networking
               student at CUT, South Africa.
             </p>
           </div>
@@ -101,15 +101,15 @@ export default function About() {
               <dl className="mt-5 space-y-3 text-gray-300/80">
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500">role</dt>
-                  <dd className="text-right">founder · full-stack</dd>
+                  <dd className="text-right">lead digital architect · full-stack</dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500">based</dt>
-                  <dd className="text-right">south africa</dd>
+                  <dd className="text-right">bfn, south africa</dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500">shipped</dt>
-                  <dd className="text-right">5 platforms</dd>
+                  <dd className="text-right">{`5 platforms (only professionally)`}</dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500">stack</dt>
