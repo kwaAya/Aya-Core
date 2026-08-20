@@ -2,7 +2,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { useEffect, useMemo, useRef, useState } from "react";
 import * as THREE from "three";
 
-const COUNT = 90;
+const COUNT = 50;
 
 function Field() {
   const pointsRef = useRef<THREE.Points>(null);

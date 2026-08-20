@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import RevealText from "../components/RevealText";
 import OrbitalScene from "../components/LazyOrbitalScene";
+import WatermarkText from "../components/WatermarkText";
 import ThreeMovements from "../components/ThreeMovements";
 import StatCounter from "../components/StatCounter";
 import SectionTag from "../components/SectionTag";
@@ -14,12 +15,10 @@ export default function Home() {
     <div>
       <section className="relative overflow-hidden px-6 pb-24 pt-40 md:px-10">
         <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top,_rgba(248,18,149,0.10)_0%,_rgba(248,18,149,0.04)_18%,_transparent_45%),_radial-gradient(circle_at_bottom_right,_rgba(139,92,246,0.07)_0%,_rgba(139,92,246,0.03)_16%,_transparent_42%)] blur-3xl" />
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[26vw] font-semibold leading-none text-ink/[0.035] md:top-4 md:text-[16rem]"
-        >
-          CORE
-        </span>
+        <WatermarkText
+          text="CORE"
+          className="absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[26vw] font-semibold leading-none text-ink/[0.035] md:top-4 md:text-[16rem]"
+        />
 
         <div className="mx-auto max-w-6xl">
           <motion.div
@@ -110,12 +109,11 @@ export default function Home() {
 
       {/* ---------- FEATURED WORK ---------- */}
       <section className="relative px-6 md:px-10 py-24 bg-charcoal overflow-hidden">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none select-none absolute top-6 right-6 md:right-16 font-display font-semibold text-[9rem] md:text-[13rem] leading-none text-blush/25 -z-0"
-        >
-          05
-        </span>
+        <WatermarkText
+          text="05"
+          revealColor="#ffffff"
+          className="select-none absolute top-6 right-6 md:right-16 font-display font-semibold text-[9rem] md:text-[13rem] leading-none text-blush/25 -z-0"
+        />
         <div className="relative max-w-6xl mx-auto">
           <div className="mb-12">
             <SectionTag>featured projects</SectionTag>

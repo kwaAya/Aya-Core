@@ -5,11 +5,14 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { projects } from "../data/projects";
 import SectionTag from "../components/SectionTag";
 import RevealText from "../components/RevealText";
+import WatermarkText from "../components/WatermarkText";
 
 export default function ProjectDetail() {
   const { slug } = useParams();
   const project = projects.find((p) => p.slug === slug);
   const index = projects.findIndex((p) => p.slug === slug);
+
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   if (!project) return <Navigate to="/work" replace />;
 
@@ -21,14 +24,16 @@ export default function ProjectDetail() {
     alt: `${project.name} — detail ${n - 1}`,
   }));
   const lightboxImages = [heroImage, ...detailImages];
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
     <div className="relative overflow-hidden pt-40 pb-28 px-6 md:px-10">
       <span
         aria-hidden="true"
         className="pointer-events-none select-none absolute -top-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[22vw] font-semibold uppercase leading-none text-ink/[0.03] md:text-[12rem]"
-      >
+      >      <WatermarkText
+        text={project.category}
+        className="select-none absolute -top-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[22vw] font-semibold uppercase leading-none text-ink/[0.03] md:text-[12rem]"
+      />
         {project.category}
       </span>
       <div className="max-w-3xl mx-auto">
@@ -220,15 +225,15 @@ function Lightbox({
     document.body.style.overflow = "hidden";
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
-      if (e.key === "ArrowLeft") goPrev();
-      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") onChange((index - 1 + images.length) % images.length);
+      if (e.key === "ArrowRight") onChange((index + 1) % images.length);
     };
     window.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [index]);
+  }, [index, images.length, onChange, onClose]);
 
   const current = images[index];
 

@@ -306,6 +306,21 @@ html.has-core-cursor [contenteditable="true"] {
   color: transparent;
 }
 
+.watermark-reveal {
+  cursor: default;
+}
+.watermark-reveal::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  color: var(--watermark-reveal-color, var(--color-hotpink));
+  opacity: 0.55;
+  mask-image: radial-gradient(circle 200px at var(--rx, -9999px) var(--ry, -9999px), black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle 200px at var(--rx, -9999px) var(--ry, -9999px), black 0%, transparent 70%);
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
 .photo-blend {
   mask-image: radial-gradient(ellipse 75% 75% at center, black 45%, transparent 92%);
   -webkit-mask-image: radial-gradient(ellipse 75% 75% at center, black 45%, transparent 92%);

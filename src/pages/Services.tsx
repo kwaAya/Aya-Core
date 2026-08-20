@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import RevealText from "../components/RevealText";
 import SectionTag from "../components/SectionTag";
 import TerminalCard from "../components/TerminalCard";
+import WatermarkText from "../components/WatermarkText";
 
 const SERVICES = [
   {
@@ -38,12 +39,10 @@ const PROCESS = [
 export default function Services() {
   return (
     <div className="relative overflow-hidden pt-40 pb-28 px-6 md:px-10">
-      <span
-        aria-hidden="true"
-        className="pointer-events-none select-none absolute -top-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[22vw] font-semibold leading-none text-ink/[0.03] md:text-[12rem]"
-      >
-        BUILD
-      </span>
+      <WatermarkText
+        text="BUILD"
+        className="select-none absolute -top-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[22vw] font-semibold leading-none text-ink/[0.03] md:text-[12rem]"
+      />
       <div className="max-w-6xl mx-auto grid md:grid-cols-[1.3fr_1fr] gap-10 items-center">
         <div>
           <SectionTag>services</SectionTag>

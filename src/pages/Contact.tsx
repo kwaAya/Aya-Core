@@ -4,6 +4,7 @@ import { Mail, Link2, Loader2 } from "lucide-react";
 import RevealText from "../components/RevealText";
 import SectionTag from "../components/SectionTag";
 import OrbitalScene from "../components/LazyOrbitalScene";
+import WatermarkText from "../components/WatermarkText";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mppakljw";
 
@@ -61,12 +62,10 @@ export default function Contact() {
   return (
     <div>
       <section className="relative overflow-hidden pt-40 pb-28 px-6 md:px-10">
-        <span
-          aria-hidden="true"
-          className="pointer-events-none select-none absolute -top-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[26vw] font-semibold leading-none text-ink/[0.03] md:text-[12rem]"
-        >
-          SIGNAL
-        </span>
+        <WatermarkText
+          text="SIGNAL"
+          className="select-none absolute -top-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[26vw] font-semibold leading-none text-ink/[0.03] md:text-[12rem]"
+        />
         <div className="max-w-2xl mx-auto">
           <SectionTag>contact</SectionTag>
           <RevealText

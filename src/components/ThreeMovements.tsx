@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -6,6 +6,7 @@ import { useGSAP } from "@gsap/react";
 import OrbitalScene from "./LazyOrbitalScene";
 import SectionTag from "./SectionTag";
 import RevealText from "./RevealText";
+import WatermarkText from "./WatermarkText";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -66,6 +67,23 @@ export default function ThreeMovements() {
   const orbRef = useRef<HTMLDivElement>(null);
   const [stage, setStage] = useState(0);
 
+  // The desktop and mobile layouts below were only ever meant to show one
+  // at a time, but `hidden md:block` / `md:hidden` still mount BOTH — so
+  // both OrbitalScene instances were rendering a live WebGL canvas at once,
+  // permanently, on top of the hero's own canvas. That's the real source
+  // of the scroll jank: 2-3 continuous WebGL render loops competing for
+  // the same frame budget. Only mount whichever one is actually visible.
+  const [isDesktop, setIsDesktop] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onChange = () => setIsDesktop(mq.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
   useGSAP(
     () => {
       if (window.matchMedia("(max-width: 767px)").matches) return;
@@ -98,18 +116,24 @@ export default function ThreeMovements() {
       });
 
       applyOrb(st.progress);
+
+      // Google Fonts load with display=swap, so the page first paints with
+      // a fallback font and swaps to Playfair/Poppins once they download —
+      // after this trigger's start/end positions are already calculated.
+      // The swap reflows every heading above this section (including the
+      // hero h1), which desyncs the scrub from what's actually on screen.
+      // Recalculate once the real fonts have settled.
+      document.fonts?.ready.then(() => ScrollTrigger.refresh());
     },
     { scope: sectionRef }
   );
 
   return (
     <section ref={sectionRef} className="relative overflow-hidden px-6 md:px-10">
-      <span
-        aria-hidden="true"
-        className="pointer-events-none select-none absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[20vw] font-semibold leading-none text-ink/[0.03] md:text-[10rem]"
-      >
-        SYSTEM
-      </span>
+      <WatermarkText
+        text="SYSTEM"
+        className="select-none absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[20vw] font-semibold leading-none text-ink/[0.03] md:text-[10rem]"
+      />
       <div className="mx-auto max-w-3xl pb-8 pt-28 text-center">
         <SectionTag>the core, in three movements</SectionTag>
         <RevealText
@@ -122,7 +146,8 @@ export default function ThreeMovements() {
         </p>
       </div>
 
-      <div className="relative mx-auto hidden h-[260vh] max-w-6xl md:block">
+      {isDesktop && (
+      <div className="relative mx-auto h-[260vh] max-w-6xl">
         <div className="sticky top-20 h-[calc(100vh-5rem)]">
           <div className="grid h-full grid-cols-[1.1fr_0.9fr] items-center gap-12">
             <div className="relative h-[420px] overflow-hidden">
@@ -157,8 +182,10 @@ export default function ThreeMovements() {
           </div>
         </div>
       </div>
+      )}
 
-      <div className="mx-auto max-w-md py-8 md:hidden">
+      {!isDesktop && (
+      <div className="mx-auto max-w-md py-8">
         <div className="relative mb-10 flex justify-center">
           <div
             className="absolute inset-0 rounded-full blur-3xl"
@@ -183,6 +210,7 @@ export default function ThreeMovements() {
           ))}
         </div>
       </div>
+      )}
     </section>
   );
 }

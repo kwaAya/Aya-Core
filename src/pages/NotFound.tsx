@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-react";
 import { useEffect } from "react";
 import RevealText from "../components/RevealText";
 import SectionTag from "../components/SectionTag";
+import WatermarkText from "../components/WatermarkText";
 
 export default function NotFound() {
   useEffect(() => {
@@ -11,12 +12,10 @@ export default function NotFound() {
 
   return (
     <div className="relative flex min-h-[80vh] items-center px-6 pt-40 pb-28 md:px-10">
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[26vw] font-semibold leading-none text-ink/[0.035] md:top-4 md:text-[16rem]"
-      >
-        404
-      </span>
+      <WatermarkText
+        text="404"
+        className="absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[26vw] font-semibold leading-none text-ink/[0.035] md:top-4 md:text-[16rem]"
+      />
 
       <div className="mx-auto max-w-xl text-center">
         <SectionTag>lost in orbit</SectionTag>
