@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
@@ -14,6 +15,13 @@ export default function ProjectDetail() {
 
   const next = projects[(index + 1) % projects.length];
   const value = project.metrics.find((m) => m.label === "Value")?.value;
+  const heroImage = { src: `/projects/${project.slug}.jpg`, alt: `${project.name} — live site` };
+  const detailImages = [2, 3, 4].map((n) => ({
+    src: `/projects/${project.slug}-${n}.jpg`,
+    alt: `${project.name} — detail ${n - 1}`,
+  }));
+  const lightboxImages = [heroImage, ...detailImages];
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   return (
     <div className="pt-40 pb-28 px-6 md:px-10">
@@ -36,7 +44,7 @@ export default function ProjectDetail() {
           <p className="mt-2 font-mono text-[11px] text-gray-700/40">est. project value {value}</p>
         )}
 
-        <ProjectHeroPanel project={project} />
+        <ProjectHeroPanel project={project} onImageClick={() => setLightboxIndex(0)} />
       </div>
 
       {/* Gallery — full width, breaks out of the narrow text column */}
@@ -47,20 +55,31 @@ export default function ProjectDetail() {
         transition={{ duration: 0.5 }}
         className="max-w-5xl mx-auto grid sm:grid-cols-3 gap-4 mt-6"
       >
-        {[2, 3, 4].map((n) => (
-          <div
-            key={n}
-            className="rounded-xl overflow-hidden border border-white/10 bg-charcoal aspect-[4/3] group"
+        {detailImages.map((img, i) => (
+          <button
+            key={img.src}
+            type="button"
+            onClick={() => setLightboxIndex(i + 1)}
+            className="rounded-xl overflow-hidden border border-white/10 bg-charcoal aspect-[4/3] group cursor-pointer"
           >
             <img
-              src={`/projects/${project.slug}-${n}.jpg`}
-              alt={`${project.name} — detail ${n - 1}`}
+              src={img.src}
+              alt={img.alt}
               className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
             />
-          </div>
+          </button>
         ))}
       </motion.div>
+
+      {lightboxIndex !== null && (
+        <Lightbox
+          images={lightboxImages}
+          index={lightboxIndex}
+          onClose={() => setLightboxIndex(null)}
+          onChange={setLightboxIndex}
+        />
+      )}
 
       <div className="max-w-3xl mx-auto">
         <div className="mt-14 space-y-6 text-gray-700/80 leading-relaxed">
@@ -127,7 +146,13 @@ const CATEGORY_THEME: Record<string, { from: string; to: string; dark?: boolean 
  * technique used on the homepage) tinted per project category, plus a
  * live-looking status line pulled from real project data.
  */
-function ProjectHeroPanel({ project }: { project: (typeof import("../data/projects").projects)[number] }) {
+function ProjectHeroPanel({
+  project,
+  onImageClick,
+}: {
+  project: (typeof import("../data/projects").projects)[number];
+  onImageClick?: () => void;
+}) {
   const theme = CATEGORY_THEME[project.category] ?? CATEGORY_THEME.Tourism;
 
   return (
@@ -154,12 +179,104 @@ function ProjectHeroPanel({ project }: { project: (typeof import("../data/projec
             {project.liveUrl.replace(/^https?:\/\//, "")}
           </span>
         </div>
-        <img
-          src={`/projects/${project.slug}.jpg`}
-          alt={`${project.name} — live site`}
-          className="w-full aspect-video object-cover object-top"
-        />
+        <button type="button" onClick={onImageClick} className="block w-full cursor-pointer">
+          <img
+            src={`/projects/${project.slug}.jpg`}
+            alt={`${project.name} — live site`}
+            className="w-full aspect-video object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
+          />
+        </button>
       </div>
+    </motion.div>
+  );
+}
+
+function Lightbox({
+  images,
+  index,
+  onClose,
+  onChange,
+}: {
+  images: { src: string; alt: string }[];
+  index: number;
+  onClose: () => void;
+  onChange: (i: number) => void;
+}) {
+  const goPrev = () => onChange((index - 1 + images.length) % images.length);
+  const goNext = () => onChange((index + 1) % images.length);
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowLeft") goPrev();
+      if (e.key === "ArrowRight") goNext();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [index]);
+
+  const current = images[index];
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center px-4"
+      onClick={onClose}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close"
+        className="absolute top-5 right-5 text-white/70 hover:text-white text-3xl leading-none"
+      >
+        &times;
+      </button>
+
+      {images.length > 1 && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            goPrev();
+          }}
+          aria-label="Previous image"
+          className="absolute left-4 md:left-8 text-white/70 hover:text-white text-4xl leading-none"
+        >
+          ‹
+        </button>
+      )}
+
+      <img
+        src={current.src}
+        alt={current.alt}
+        onClick={(e) => e.stopPropagation()}
+        className="max-h-[85vh] max-w-[90vw] object-contain rounded-lg shadow-2xl"
+      />
+
+      {images.length > 1 && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            goNext();
+          }}
+          aria-label="Next image"
+          className="absolute right-4 md:right-8 text-white/70 hover:text-white text-4xl leading-none"
+        >
+          ›
+        </button>
+      )}
+
+      {images.length > 1 && (
+        <div className="absolute bottom-6 font-mono text-xs text-white/50">
+          {index + 1} / {images.length}
+        </div>
+      )}
     </motion.div>
   );
 }
