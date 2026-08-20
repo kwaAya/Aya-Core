@@ -44,7 +44,7 @@ export default function Nav() {
           <span className="font-display text-base font-semibold tracking-wide leading-none">
             <span className="text-hotpink">A</span>
             <span className="brand-metallic">YA CORE</span>
-            <span className="block w-10 h-px bg-hotpink my-1" aria-hidden="true" />
+            <span className="block w-10 h-px bg-gradient-to-r from-transparent via-hotpink to-transparent my-1" aria-hidden="true" />
             <span className="block font-mono text-[9px] tracking-[0.25em] text-hotpink font-normal">
               STUDIOS
             </span>
