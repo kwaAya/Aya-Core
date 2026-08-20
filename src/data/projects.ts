@@ -19,7 +19,7 @@ export const projects: Project[] = [
     description:
       "A digital hub for the town of Matatiele. Business directory, attractions, accommodation listings and SEO-tuned content built to make a place discoverable.",
     story:
-      "Matatiele needed to exist online the way it exists on the ground — as a full town, not a single hotel's landing page. The build centres on a business directory and attractions index that a small tourism office can maintain themselves, with SEO structure doing the work of making the town findable in the first place.",
+      "Matatiele needed to exist online the way it exists on the ground — as a full town, not a single hotel's landing page. The build centres on a business directory and attractions index that a small tourism office can maintain themselves, with SEO structure doing the work of making the town findable in the first place. I co-developed and significantly enhanced the Matatiele Tourism website (matatiele.co.za), a comprehensive platform promoting tourism in the Eastern Cape, South Africa. My contributions focused on improving the frontend, UI, and UX, resulting in a more engaging and user-friendly experience for visitors exploring Matatiele's natural wonders, cultural heritage, and adventure activities. I also played a role in backend development, contributing to the site's overall functionality and content management. This project involved close collaboration and a commitment to showcasing the region's unique appeal to a global audience.",
     stack: ["PHP", "MySQL", "SEO"],
     metrics: [
       { label: "Value", value: "R54,000" },
@@ -36,7 +36,7 @@ export const projects: Project[] = [
     description:
       "A dynamic directory-driven travel platform for Kokstad — dynamic listings, filterable content and a travel planning surface tuned for discovery.",
     story:
-      "Kokstad sits at the gateway to East Griqualand, and the platform was built around that role — helping a visitor plan outward from the town rather than just book a single stay. Filterable listings do the heavy lifting so the site scales with new operators without a rebuild.",
+      "Kokstad sits at the gateway to East Griqualand, and the platform was built around that role — helping a visitor plan outward from the town rather than just book a single stay. Filterable listings do the heavy lifting so the site scales with new operators without a rebuild. As a co-developer for the Kokstad Tourism website (kokstadtourism.co.za), I was responsible for significant frontend, UI, and UX enhancements, transforming it into an intuitive and visually engaging platform for visitors to East Griqualand. My work ensured that the website effectively showcases Kokstad's diverse attractions, activities, and local businesses. I also contributed to the backend development, supporting the site's robust functionality and content delivery. This project underscored my ability to collaborate on impactful web solutions for regional promotion.",
     stack: ["PHP", "MySQL", "SEO"],
     metrics: [
       { label: "Value", value: "R45,000" },
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     description:
       "Interactive browser game with collision detection, state management and game-loop architecture written from scratch — a demo of raw JavaScript craft.",
     story:
-      "No frameworks, no engine — just a canvas and a game loop built by hand. This one exists to show the craft underneath the craft: collision detection, state management, and frame timing written from first principles rather than assembled from a library.",
+      "Conceived, designed, and developed 'Digital Break' (digitalbreak.netlify.app), an engaging, fast-paced web-based game launched in May of last year. As a solo developer, I was responsible for the entire game development lifecycle, including game design, frontend and backend programming, UI/UX design, and deployment. The game features intuitive tap mechanics, dynamic challenges with power-ups and boss targets, and a global leaderboard. This project demonstrates my capabilities in full-stack game development, creative problem-solving, and delivering interactive web experiences. No frameworks, no engine — just a canvas and a game loop built by hand. This one exists to show the craft underneath the craft: collision detection, state management, and frame timing written from first principles rather than assembled from a library.",
     stack: ["JavaScript", "HTML5 Canvas", "CSS3"],
     metrics: [
       { label: "Value", value: "R27,000" },
