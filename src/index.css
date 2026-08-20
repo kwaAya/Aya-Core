@@ -186,22 +186,18 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 480px;
-  height: 480px;
+  width: 520px;
+  height: 520px;
   border-radius: 9999px;
   pointer-events: none;
   z-index: 30;
   mix-blend-mode: screen;
-  background: radial-gradient(circle, rgba(248,18,149,0.22) 0%, rgba(248,18,149,0.11) 30%, rgba(248,18,149,0.03) 55%, transparent 75%);
-  filter: blur(14px);
+  background: radial-gradient(circle, rgba(248,18,149,0.65) 0%, rgba(248,18,149,0.32) 20%, rgba(248,18,149,0.10) 45%, transparent 72%);
+  filter: blur(8px);
   transform: translate(-50%, -50%);
   scale: 1;
   animation: cursorGlowBreathe 4.5s ease-in-out infinite;
   will-change: transform;
-}
-
-.dark-section .cursor-glow {
-  background: radial-gradient(circle, rgba(248,18,149,0.38) 0%, rgba(248,18,149,0.18) 30%, rgba(248,18,149,0.05) 55%, transparent 75%);
 }
 
 @keyframes cursorGlowBreathe {
@@ -212,6 +208,60 @@ body {
   50% {
     scale: 1.12;
     opacity: 1;
+  }
+}
+
+/* Only hides the native cursor once React confirms a mouse + motion are
+   both actually available — see the `ready` check in CursorGlow.tsx.
+   Never applied blind, so there's no risk of an invisible cursor. */
+html.has-core-cursor,
+html.has-core-cursor * {
+  cursor: none !important;
+}
+
+.cursor-core-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  border: 1px solid rgba(192, 192, 192, 0.75);
+  pointer-events: none;
+  z-index: 40;
+  translate: -50% -50%;
+  box-shadow: 0 0 12px rgba(192, 192, 192, 0.15);
+  animation: cursorRingSpin 8s linear infinite;
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    height 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.cursor-core-ring.is-active {
+  width: 46px;
+  height: 46px;
+  border-color: rgba(248, 18, 149, 0.9);
+  background: rgba(248, 18, 149, 0.08);
+  box-shadow: 0 0 24px rgba(248, 18, 149, 0.45);
+}
+
+.cursor-core-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background: var(--color-hotpink);
+  box-shadow: 0 0 8px rgba(248, 18, 149, 0.9);
+  pointer-events: none;
+  z-index: 40;
+  translate: -50% -50%;
+}
+
+@keyframes cursorRingSpin {
+  to {
+    rotate: 360deg;
   }
 }
 
