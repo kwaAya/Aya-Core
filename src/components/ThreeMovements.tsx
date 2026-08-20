@@ -7,6 +7,7 @@ import OrbitalScene from "./LazyOrbitalScene";
 import SectionTag from "./SectionTag";
 import RevealText from "./RevealText";
 import WatermarkText from "./WatermarkText";
+import WatermarkHint from "./WatermarkHint";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -155,6 +156,11 @@ export default function ThreeMovements() {
       <WatermarkText
         text="SYSTEM"
         className="select-none absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[20vw] font-semibold leading-none text-ink/[0.03] md:text-[10rem]"
+      />
+      <WatermarkHint
+        id="system"
+        anchorClassName="left-1/2 top-8 -translate-x-1/2"
+        messages={["there's a system running behind the text", "hover the big word up there"]}
       />
       <div className="mx-auto max-w-3xl pb-8 pt-28 text-center">
         <SectionTag>the core, in three movements</SectionTag>

@@ -15,7 +15,7 @@ export default function Work() {
         />
         <WatermarkHint
           id="work"
-          anchorClassName="left-1/2 bottom-6 -translate-x-1/2"
+          anchorClassName="left-1/2 bottom-6 -translate-x-1/2 z-30"
           messages={["SHIPPED's hiding down here", "catch it before it ships off"]}
         />
         <div className="max-w-6xl mx-auto">

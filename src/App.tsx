@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useRef } from "react";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
@@ -80,16 +80,27 @@ const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function PageWrapper({ children }: { children: React.ReactNode }) {
+  const ref = useRef<HTMLElement>(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <motion.main
+      ref={ref}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -12 }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      onAnimationComplete={() => {
+        // Motion leaves an inline transform on this element after the enter
+        // animation settles at y:0. A transform on ANY ancestor — even a
+        // no-op one — breaks position:sticky for every descendant, which is
+        // what's been stalling the sticky orbital panel in ThreeMovements.
+        // Strip it once we've reached rest so sticky works normally again.
+        if (ref.current) ref.current.style.transform = "none";
+      }}
     >
       {children}
     </motion.main>
