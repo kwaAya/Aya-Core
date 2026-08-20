@@ -13,6 +13,7 @@ export default function ProjectDetail() {
   if (!project) return <Navigate to="/work" replace />;
 
   const next = projects[(index + 1) % projects.length];
+  const value = project.metrics.find((m) => m.label === "Value")?.value;
 
   return (
     <div className="pt-40 pb-28 px-6 md:px-10">
@@ -31,26 +32,37 @@ export default function ProjectDetail() {
           className="font-display text-4xl md:text-6xl font-semibold mt-6"
         />
         <p className="mt-4 text-lg text-gray-700/70">{project.tagline}</p>
+        {value && (
+          <p className="mt-2 font-mono text-[11px] text-gray-700/40">est. project value {value}</p>
+        )}
 
-        {/* generative hero panel — no photo yet, so this fills the space on
-            purpose instead of leaving an empty placeholder box */}
         <ProjectHeroPanel project={project} />
+      </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid sm:grid-cols-3 gap-6 mt-12"
-        >
-          {project.metrics.map((m) => (
-            <div key={m.label} className="border border-blush-100 rounded-xl p-5">
-              <p className="font-display text-3xl font-semibold">{m.value}</p>
-              <p className="font-mono text-[11px] text-gray-700/60 uppercase mt-1">{m.label}</p>
-            </div>
-          ))}
-        </motion.div>
+      {/* Gallery — full width, breaks out of the narrow text column */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-10% 0px" }}
+        transition={{ duration: 0.5 }}
+        className="max-w-5xl mx-auto grid sm:grid-cols-3 gap-4 mt-6"
+      >
+        {[2, 3, 4].map((n) => (
+          <div
+            key={n}
+            className="rounded-xl overflow-hidden border border-white/10 bg-charcoal aspect-[4/3] group"
+          >
+            <img
+              src={`/projects/${project.slug}-${n}.jpg`}
+              alt={`${project.name} — detail ${n - 1}`}
+              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+        ))}
+      </motion.div>
 
+      <div className="max-w-3xl mx-auto">
         <div className="mt-14 space-y-6 text-gray-700/80 leading-relaxed">
           <div>
             <h2 className="font-heading text-sm uppercase tracking-wide text-hotpink mb-2">
@@ -141,10 +153,6 @@ function ProjectHeroPanel({ project }: { project: (typeof import("../data/projec
           <span className="font-mono text-xs text-white/40 truncate">
             {project.liveUrl.replace(/^https?:\/\//, "")}
           </span>
-          <div className="ml-auto inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-wide text-white/50 shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-hotpink animate-pulse" />
-            {project.metrics[0].value}
-          </div>
         </div>
         <img
           src={`/projects/${project.slug}.jpg`}
