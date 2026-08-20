@@ -320,6 +320,34 @@ html.has-core-cursor [contenteditable="true"] {
   pointer-events: none;
   transition: opacity 0.2s ease;
 }
+.watermark-reveal {
+  touch-action: pan-y;
+}
+.watermark-reveal--playful.is-active {
+  animation: watermark-wiggle 2.2s ease-in-out infinite;
+}
+.watermark-reveal--playful::before {
+  content: "✦";
+  position: absolute;
+  left: var(--rx, -9999px);
+  top: var(--ry, -9999px);
+  transform: translate(-50%, -60%) scale(0.5);
+  font-size: 0.12em;
+  color: var(--watermark-reveal-color, var(--color-hotpink));
+  opacity: 0;
+  pointer-events: none;
+}
+.watermark-reveal--playful.is-active::before {
+  animation: watermark-sparkle 1s ease-in-out infinite;
+}
+@keyframes watermark-wiggle {
+  0%, 100% { letter-spacing: 0em; }
+  50% { letter-spacing: 0.015em; }
+}
+@keyframes watermark-sparkle {
+  0%, 100% { opacity: 0.35; transform: translate(-50%, -60%) scale(0.5) rotate(0deg); }
+  50% { opacity: 0.9; transform: translate(-50%, -90%) scale(0.9) rotate(20deg); }
+}
 
 .photo-blend {
   mask-image: radial-gradient(ellipse 75% 75% at center, black 45%, transparent 92%);

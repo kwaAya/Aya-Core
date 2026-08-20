@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import RevealText from "../components/RevealText";
-import WatermarkText from "../components/WatermarkText";
 import SectionTag from "../components/SectionTag";
 import { Code2, Palette, TrendingUp, Users } from "lucide-react";
 
@@ -43,10 +42,6 @@ const PHOTOS: { src: string; area: string; position?: string }[] = [
 export default function About() {
   return (
     <div className="relative overflow-hidden pt-40 pb-28 px-6 md:px-10">
-      <WatermarkText
-        text="ORBIT"
-        className="select-none absolute -top-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[22vw] font-semibold leading-none text-ink/[0.03] md:text-[12rem]"
-      />
       <div className="max-w-5xl mx-auto">
         <SectionTag>about</SectionTag>
         <RevealText
@@ -255,6 +250,13 @@ export default function About() {
                 style={{ background: "radial-gradient(circle, rgba(200,90,255,0.35), rgba(248,18,149,0.25), transparent 70%)" }}
                 aria-hidden="true"
               />
+              <div
+                aria-hidden="true"
+                className="absolute -inset-3 rounded-full border border-hotpink/25"
+                style={{ animation: "core-orbit-spin 10s linear infinite" }}
+              >
+                <span className="absolute -top-[3px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-hotpink shadow-[0_0_8px_rgba(248,18,149,0.9)]" />
+              </div>
               <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-hotpink shadow-2xl">
                 <img src="/About/about-photo-texture.jpg" alt="Portrait of Aya" className="w-full h-full object-cover" />
               </div>

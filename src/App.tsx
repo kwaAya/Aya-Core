@@ -5,7 +5,6 @@ import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
 import AmbientField from "./components/AmbientField";
-import WatermarkHint from "./components/WatermarkHint";
 import Home from "./pages/Home";
 import { projects } from "./data/projects";
 
@@ -106,7 +105,6 @@ function App() {
       <CursorGlow />
       <AmbientField />
       <Nav />
-      <WatermarkHint />
       <AnimatePresence mode="wait">
         <Suspense fallback={null}>
           <Routes location={location} key={location.pathname}>

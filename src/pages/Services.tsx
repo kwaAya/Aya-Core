@@ -4,6 +4,7 @@ import RevealText from "../components/RevealText";
 import SectionTag from "../components/SectionTag";
 import TerminalCard from "../components/TerminalCard";
 import WatermarkText from "../components/WatermarkText";
+import WatermarkHint from "../components/WatermarkHint";
 
 const SERVICES = [
   {
@@ -41,7 +42,13 @@ export default function Services() {
     <div className="relative overflow-hidden pt-40 pb-28 px-6 md:px-10">
       <WatermarkText
         text="BUILD"
-        className="select-none absolute -top-6 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[22vw] font-semibold leading-none text-ink/[0.03] md:text-[12rem]"
+        playful
+        className="select-none absolute -top-6 left-[-4%] md:left-0 -z-10 whitespace-nowrap font-display text-[20vw] font-semibold leading-none text-ink/[0.03] md:text-[10rem]"
+      />
+      <WatermarkHint
+        id="services"
+        anchorClassName="left-6 top-28 md:left-16"
+        messages={["there's a blueprint hiding top-left", "psst — BUILD's tucked up there"]}
       />
       <div className="max-w-6xl mx-auto grid md:grid-cols-[1.3fr_1fr] gap-10 items-center">
         <div>

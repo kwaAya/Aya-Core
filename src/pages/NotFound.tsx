@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import RevealText from "../components/RevealText";
 import SectionTag from "../components/SectionTag";
 import WatermarkText from "../components/WatermarkText";
+import WatermarkHint from "../components/WatermarkHint";
 
 export default function NotFound() {
   useEffect(() => {
@@ -11,10 +12,16 @@ export default function NotFound() {
   }, []);
 
   return (
-    <div className="relative flex min-h-[80vh] items-center px-6 pt-40 pb-28 md:px-10">
+    <div className="relative overflow-hidden flex min-h-[80vh] items-center px-6 pt-40 pb-28 md:px-10">
       <WatermarkText
         text="404"
-        className="absolute -top-4 left-1/2 -z-10 -translate-x-1/2 whitespace-nowrap font-display text-[26vw] font-semibold leading-none text-ink/[0.035] md:top-4 md:text-[16rem]"
+        playful
+        className="absolute -bottom-6 left-[-4%] md:bottom-0 md:left-0 -z-10 whitespace-nowrap font-display text-[28vw] font-semibold leading-none text-ink/[0.035] md:text-[14rem]"
+      />
+      <WatermarkHint
+        id="404"
+        anchorClassName="left-6 bottom-28 md:left-16"
+        messages={["even the 404 is hiding", "psst — bottom left has a secret"]}
       />
 
       <div className="mx-auto max-w-xl text-center">

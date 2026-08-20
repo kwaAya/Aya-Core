@@ -1,23 +1,19 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 type Props = {
   text: string;
   className: string;
   revealColor?: string;
+  /** Adds a little sparkle + letter-wiggle while the reveal is actively
+   * engaged (hover on desktop, touch-drag on mobile). Leave off for the
+   * Home page's CORE watermark — that one stays as-is. */
+  playful?: boolean;
 };
 
-/**
- * The site's oversized background watermark words (CORE, SYSTEM, 404, and
- * so on) are normally just faint texture. This makes them light up like a
- * flashlight passing over the letters wherever the cursor happens to be —
- * a small reward for moving your mouse near the top of a page. Purely
- * decorative and purely CSS-driven (a masked ::after layer positioned via
- * two custom properties), so it costs nothing beyond an occasional
- * rAF-throttled style write on mousemove.
- */
-export default function WatermarkText({ text, className, revealColor }: Props) {
+export default function WatermarkText({ text, className, revealColor, playful = false }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   const frame = useRef<number | null>(null);
+  const [isActive, setIsActive] = useState(false);
 
   const track = (clientX: number, clientY: number) => {
     if (frame.current !== null) return;
@@ -37,6 +33,13 @@ export default function WatermarkText({ text, className, revealColor }: Props) {
       el.style.setProperty("--rx", "-9999px");
       el.style.setProperty("--ry", "-9999px");
     }
+    setIsActive(false);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLSpanElement>) => {
+    const touch = e.touches[0];
+    if (!touch) return;
+    track(touch.clientX, touch.clientY);
   };
 
   return (
@@ -45,8 +48,18 @@ export default function WatermarkText({ text, className, revealColor }: Props) {
       aria-hidden="true"
       data-text={text}
       onMouseMove={(e) => track(e.clientX, e.clientY)}
+      onMouseEnter={() => setIsActive(true)}
       onMouseLeave={reset}
-      className={`watermark-reveal ${className}`}
+      onTouchStart={(e) => {
+        setIsActive(true);
+        handleTouchMove(e);
+      }}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={reset}
+      onTouchCancel={reset}
+      className={`watermark-reveal ${playful ? "watermark-reveal--playful" : ""} ${
+        isActive ? "is-active" : ""
+      } ${className}`}
       style={revealColor ? ({ ["--watermark-reveal-color" as string]: revealColor }) : undefined}
     >
       {text}
