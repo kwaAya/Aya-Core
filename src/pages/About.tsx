@@ -21,15 +21,15 @@ const PHILOSOPHY = [
 
 // Kept tight on purpose — low-effort to scan beats a Spotify Wrapped dump.
 const SOUND = [
-  "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "AKA", "Lil Nas X", "Bucie",
-  "Kendrick Lamar", "SAILORR", "Drake", "Dominic Fike", "KAYTRANADA", "Heavy-K", "Ye", "The Weekend", "Sykes", "Kelvin Momo!",
+  "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "AKA", "Lil Nas X", "Bucie", "Daniel Caesar",
+  "Kendrick Lamar", "SAILORR", "Drake", "Dominic Fike", "KAYTRANADA", "Heavy-K", "Ye", "The Weekend", "Sykes", "Kelvin Momo!", "Gqom (very important)",
   "Deep House", "Amapiano", "Afro House", "Alt-R&B", "Neo-Soul", "Indie", "Amapiano", "3-Step Groove"
 ];
-const FANDOM = ["Iron Man / MCU", "Shuri / T'Challa", "Peter Parker", "Sci-Fi", "Black Panther", "Trevor Noah!!", "PC Gaming (Steam / Roblox)", "Marvel Lore", "What Now? & BWSS (Podcasts)", "Superhero Edits"];
+const FANDOM = ["Iron Man / MCU", "Falling in luhh :)", "Shuri / T'Challa", "Peter Parker", "Sci-Fi", "Black Panther", "Trevor Noah!!", "PC Gaming (Steam / Roblox)", "Marvel Lore", "What Now? & BWSS (Podcasts)", "Superhero Edits"];
 const CULTURE = ["Liverpool FC", "Moodboard Curation", "Chrome & Metallic Everything", "A Patriot", "House Music", "South African Twitter / Lore", "Being a Hater Professionally", "Podcasts "];
 const CURRENT_INTERESTS = ["Anime", "Manga", "Claude 🫦", "Graphic Designing", "Messing around with AI", "Hot Pink", "Literally Anything Cool 🌟"];
-const PAST_INTERESTS = ["Trading (Crypto & Forex)", "SketchUp (3D Modeling / Interior Design)", "Failed Dropshipping Attempts"];
-const ANCHOR_TAGS = ["DJ Kent", "Iron Man / MCU", "Liverpool FC", "AKA", "Sci-Fi"];
+const PAST_INTERESTS = ["Trading (Crypto & Forex)", "SketchUp (3D Modeling / Interior Design)", "Dropshipping (it failed *sigh)"];
+const ANCHOR_TAGS = ["DJ Kent", "Iron Man / MCU", "Liverpool FC", "AKA", "Sci-Fi", "Alt-R&B", "Kelvin Momo!", "3-Step Groove", "Deep House"];
 
 const PHOTOS: { src: string; area: string; position?: string }[] = [
   { src: "about-photo-3.jpg", area: "p1" }, // large anchor tile — elevator shot
