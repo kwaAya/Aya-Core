@@ -28,7 +28,7 @@ export default function Nav() {
       }`}
     >
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-10 h-20">
-        <NavLink to="/" className="flex items-center gap-3">
+        <NavLink to="/" className="flex items-center gap-3.5">
           <div className="relative">
             <div
               className="absolute -inset-2 rounded-full bg-hotpink/25 blur-md -z-10"
@@ -37,15 +37,15 @@ export default function Nav() {
             <img
               src="/brand/aya-core-symbol.png"
               alt=""
-              className="h-14 w-auto"
+              className="h-16 w-auto"
               aria-hidden="true"
             />
           </div>
-          <span className="font-display text-base font-semibold tracking-wide leading-none">
+          <span className="font-display text-xl font-semibold tracking-wide leading-none">
             <span className="text-hotpink">A</span>
             <span className="brand-metallic">YA CORE</span>
-            <span className="block w-10 h-px bg-gradient-to-r from-transparent via-hotpink to-transparent my-1" aria-hidden="true" />
-            <span className="block font-mono text-[9px] tracking-[0.25em] text-hotpink font-normal">
+            <span className="block w-12 h-px bg-gradient-to-r from-transparent via-hotpink to-transparent my-1.5" aria-hidden="true" />
+            <span className="block font-mono text-[10px] tracking-[0.25em] text-hotpink font-normal">
               STUDIOS
             </span>
           </span>

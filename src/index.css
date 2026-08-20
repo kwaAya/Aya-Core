@@ -166,18 +166,19 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 420px;
-  height: 420px;
+  width: 480px;
+  height: 480px;
   border-radius: 9999px;
   pointer-events: none;
   z-index: 0;
-  background: radial-gradient(circle, rgba(248,18,149,0.18) 0%, rgba(248,18,149,0) 70%);
+  background: radial-gradient(circle, rgba(248,18,149,0.16) 0%, rgba(248,18,149,0.08) 30%, rgba(248,18,149,0.02) 55%, transparent 75%);
+  filter: blur(20px);
   transform: translate(-50%, -50%);
   will-change: transform;
 }
 
 .dark-section .cursor-glow {
-  background: radial-gradient(circle, rgba(248,18,149,0.35) 0%, rgba(248,18,149,0) 70%);
+  background: radial-gradient(circle, rgba(248,18,149,0.30) 0%, rgba(248,18,149,0.14) 30%, rgba(248,18,149,0.04) 55%, transparent 75%);
 }
 
 /* thin scrollbar for terminal card */

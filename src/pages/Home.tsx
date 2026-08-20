@@ -41,7 +41,7 @@ export default function Home() {
               <RevealText
                 as="h1"
                 text="Built for communities. Engineered for scale."
-                className="font-display text-5xl font-semibold leading-[0.96] tracking-[-0.05em] text-ink md:text-7xl"
+                className="font-display text-5xl font-semibold leading-[0.96] tracking-[-0.01em] text-ink md:text-7xl lg:text-8xl"
               />
 
               <motion.p
