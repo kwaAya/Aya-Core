@@ -216,13 +216,13 @@ function Scene({ interactive }: { interactive: boolean }) {
     if (!root) return;
 
     if (prefersReducedMotion()) {
-      root.position.set(0.7, 0, 0);
-      root.rotation.set(-0.12, 0.15, 0);
+      root.position.set(0, 0, 0);
+      root.rotation.set(0, 0, 0);
       return;
     }
 
     const motion = { x: -11.5, y: 0.35, z: -3.8, ry: -1.1, rx: 0.5 };
-    const target = { x: 1.5, y: 0, z: 0.6, ry: 0.18, rx: -0.12 };
+    const target = { x: 0, y: 0, z: 0, ry: 0, rx: 0 };
 
     root.position.set(motion.x, motion.y, motion.z);
     root.rotation.set(motion.rx, motion.ry, 0);

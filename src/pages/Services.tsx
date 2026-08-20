@@ -8,18 +8,21 @@ const SERVICES = [
   {
     title: "Platform build",
     tag: "$ build --full-stack",
+    timeline: "6–10 weeks",
     body: "End-to-end design and development of the core product — from the first low-connectivity prototype to something a community runs on daily.",
     items: ["Product discovery in-context", "Full-stack build", "Deployment & handover"],
   },
   {
     title: "Rescue & rebuild",
     tag: "$ migrate --legacy",
+    timeline: "3–6 weeks",
     body: "A spreadsheet, a WhatsApp group, or an abandoned app that's outgrown itself. Aya rebuilds it without losing what already works.",
     items: ["Audit of existing workaround", "Incremental migration plan", "Zero-downtime cutover"],
   },
   {
     title: "Advisory & audit",
     tag: "$ review --architecture",
+    timeline: "1–2 weeks",
     body: "A second set of eyes on an in-progress build — architecture, UX, and whether the software is solving the right problem at all.",
     items: ["Technical + UX audit", "Prioritised fix list", "Ongoing advisory retainer"],
   },
@@ -60,7 +63,12 @@ export default function Services() {
             whileHover={{ y: -6 }}
             className="border border-blush-100 rounded-2xl p-7 bg-charcoal flex flex-col hover:border-hotpink/40 hover:shadow-lg transition-[box-shadow,border-color]"
           >
-            <span className="font-mono text-xs text-hotpink">{s.tag}</span>
+            <div className="flex items-center justify-between">
+              <span className="font-mono text-xs text-hotpink">{s.tag}</span>
+              <span className="font-mono text-[10px] uppercase tracking-wide text-gray-400 border border-white/10 rounded-full px-2 py-1">
+                {s.timeline}
+              </span>
+            </div>
             <h3 className="font-display text-2xl font-semibold mt-4">{s.title}</h3>
             <p className="text-sm text-gray-700/70 mt-3 flex-1">{s.body}</p>
             <ul className="mt-6 space-y-2">
@@ -84,20 +92,39 @@ export default function Services() {
       {/* Process */}
       <div className="max-w-5xl mx-auto mt-28">
         <SectionTag>process</SectionTag>
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mt-10">
-          {PROCESS.map((p, i) => (
-            <motion.div
-              key={p.step}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-            >
-              <span className="font-mono text-xs text-gray-400">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="font-display text-xl font-semibold mt-2 capitalize">{p.step}</h3>
-              <p className="text-sm text-gray-700/70 mt-2">{p.body}</p>
-            </motion.div>
-          ))}
+        <div className="relative mt-14">
+          <div aria-hidden="true" className="absolute left-0 right-0 top-5 hidden md:block h-px bg-white/10" />
+          <motion.div
+            aria-hidden="true"
+            className="absolute left-0 right-0 top-5 hidden md:block h-px bg-hotpink origin-left"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          />
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 relative">
+            {PROCESS.map((p, i) => (
+              <motion.div
+                key={p.step}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.12 }}
+              >
+                <motion.span
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.12 + 0.3, type: "spring", stiffness: 300, damping: 20 }}
+                  className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full border border-hotpink/40 bg-charcoal font-mono text-xs text-hotpink"
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </motion.span>
+                <h3 className="font-display text-xl font-semibold mt-4 capitalize">{p.step}</h3>
+                <p className="text-sm text-gray-700/70 mt-2">{p.body}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 

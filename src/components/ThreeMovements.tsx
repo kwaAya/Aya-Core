@@ -33,6 +33,34 @@ const GLOW_BY_STAGE = [
   "radial-gradient(circle, rgba(255,255,255,0.28), transparent 65%)",
 ];
 
+// Continuous orb pose across the scroll, interpolated frame-by-frame instead
+// of snapping between 3 fixed poses — this is what actually reads as smooth
+// under a scrubbed ScrollTrigger.
+const ORB_FRAMES = [
+  { x: 160, y: -120, rotate: 14, scale: 0.85, opacity: 0.85 },
+  { x: 10, y: -6, rotate: 4, scale: 1, opacity: 1 },
+  { x: -20, y: 14, rotate: -6, scale: 1.05, opacity: 1 },
+];
+
+function lerp(a: number, b: number, t: number) {
+  return a + (b - a) * t;
+}
+
+function orbAtProgress(p: number) {
+  const seg = p * (ORB_FRAMES.length - 1);
+  const i = Math.min(Math.floor(seg), ORB_FRAMES.length - 2);
+  const t = seg - i;
+  const a = ORB_FRAMES[i];
+  const b = ORB_FRAMES[i + 1];
+  return {
+    x: lerp(a.x, b.x, t),
+    y: lerp(a.y, b.y, t),
+    rotate: lerp(a.rotate, b.rotate, t),
+    scale: lerp(a.scale, b.scale, t),
+    opacity: lerp(a.opacity, b.opacity, t),
+  };
+}
+
 export default function ThreeMovements() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const orbRef = useRef<HTMLDivElement>(null);
@@ -46,25 +74,33 @@ export default function ThreeMovements() {
       const trigger = sectionRef.current;
       if (!trigger) return;
 
-      ScrollTrigger.create({
+      const applyOrb = (p: number) => {
+        if (!orbRef.current) return;
+        const f = orbAtProgress(p);
+        gsap.set(orbRef.current, {
+          x: f.x,
+          y: f.y,
+          rotate: f.rotate,
+          scale: f.scale,
+          opacity: f.opacity,
+        });
+      };
+
+      const st = ScrollTrigger.create({
         trigger,
         start: "top 80%",
         end: "bottom 20%",
         scrub: 1.35,
         onUpdate: (self) => {
-          const p = self.progress;
-          setStage(p < 0.33 ? 0 : p < 0.67 ? 1 : 2);
+          setStage(self.progress < 0.33 ? 0 : self.progress < 0.67 ? 1 : 2);
+          applyOrb(self.progress);
         },
       });
+
+      applyOrb(st.progress);
     },
     { scope: sectionRef }
   );
-
-  const orbMotion = {
-    0: { x: 200, y: -160, rotate: 18, scale: 0.82, opacity: 0.8 },
-    1: { x: 30, y: -12, rotate: 6, scale: 1, opacity: 1 },
-    2: { x: -28, y: 18, rotate: -8, scale: 1.08, opacity: 1 },
-  }[stage];
 
   return (
     <section ref={sectionRef} className="px-6 md:px-10">
@@ -108,14 +144,9 @@ export default function ThreeMovements() {
                 style={{ background: GLOW_BY_STAGE[stage] }}
                 aria-hidden="true"
               />
-              <motion.div
-                ref={orbRef}
-                className="relative"
-                animate={orbMotion}
-                transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              >
+              <div ref={orbRef} className="relative">
                 <OrbitalScene interactive={false} className="relative h-[480px] w-[480px]" />
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>

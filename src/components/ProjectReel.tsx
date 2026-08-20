@@ -82,6 +82,7 @@ function ChapterImage({ project, active }: { project: (typeof projects)[number];
  */
 export default function ProjectReel() {
   const pinRef = useRef<HTMLDivElement>(null);
+  const stRef = useRef<ScrollTrigger | null>(null);
   const [stage, setStage] = useState(0);
   const count = projects.length;
 
@@ -90,7 +91,7 @@ export default function ProjectReel() {
       if (window.matchMedia("(max-width: 767px)").matches) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-      ScrollTrigger.create({
+      const st = ScrollTrigger.create({
         trigger: pinRef.current,
         start: "top 96px",
         end: "+=3800",
@@ -101,9 +102,17 @@ export default function ProjectReel() {
           setStage(i);
         },
       });
+      stRef.current = st;
     },
     { scope: pinRef }
   );
+
+  function goToProject(i: number) {
+    const st = stRef.current;
+    if (!st) return;
+    const mid = (i + 0.5) / count;
+    window.scrollTo({ top: st.start + (st.end - st.start) * mid, behavior: "smooth" });
+  }
 
   return (
     <>
@@ -122,12 +131,16 @@ export default function ProjectReel() {
         <div className="absolute top-6 left-8 z-10 flex items-center gap-3 font-mono text-xs text-white/80 bg-black/30 backdrop-blur-sm rounded-full px-4 py-2 border border-white/10">
           <span className="text-hotpink">{String(stage + 1).padStart(2, "0")}</span>
           <span>/ {String(count).padStart(2, "0")}</span>
-          <div className="flex gap-1.5 ml-1" aria-hidden="true">
-            {projects.map((_, i) => (
-              <span
-                key={i}
+          <div className="flex gap-1.5 ml-1">
+            {projects.map((p, i) => (
+              <button
+                key={p.slug}
+                type="button"
+                onClick={() => goToProject(i)}
+                aria-label={`Jump to ${p.name}`}
+                aria-current={i === stage ? "true" : undefined}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === stage ? "w-6 bg-hotpink" : "w-1.5 bg-white/30"
+                  i === stage ? "w-6 bg-hotpink" : "w-1.5 bg-white/30 hover:bg-white/50"
                 }`}
               />
             ))}

@@ -163,6 +163,23 @@ export default function Contact() {
             One rescue-and-rebuild slot and one full platform build left this
             quarter. Advisory calls stay open year-round.
           </p>
+
+          <div className="mt-10 inline-flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-5 text-left font-mono text-xs backdrop-blur-sm">
+            {[
+              { label: "platform build", status: "1 slot left" },
+              { label: "rescue & rebuild", status: "1 slot left" },
+              { label: "advisory & audit", status: "open year-round" },
+            ].map((row) => (
+              <div key={row.label} className="flex items-center gap-3">
+                <span className="relative flex h-2 w-2 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-hotpink opacity-50" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-hotpink" />
+                </span>
+                <span className="text-white/80">{row.label}</span>
+                <span className="ml-auto text-white/40">{row.status}</span>
+              </div>
+            ))}
+          </div>
        </motion.div>
       </section>
     </div>

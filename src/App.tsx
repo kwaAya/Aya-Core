@@ -1,11 +1,36 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
 import AmbientField from "./components/AmbientField";
 import Home from "./pages/Home";
+import { projects } from "./data/projects";
+
+const ROUTE_TITLES: Record<string, string> = {
+  "/": "Aya Core Studios — Creative Technologist",
+  "/work": "Work — Aya Core Studios",
+  "/about": "About — Aya Core Studios",
+  "/services": "Services — Aya Core Studios",
+  "/contact": "Contact — Aya Core Studios",
+};
+
+function DocumentTitle() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const projectMatch = pathname.match(/^\/work\/([^/]+)/);
+    if (projectMatch) {
+      const project = projects.find((p) => p.slug === projectMatch[1]);
+      document.title = project
+        ? `${project.name} — Aya Core Studios`
+        : "Aya Core Studios — Creative Technologist";
+      return;
+    }
+    document.title = ROUTE_TITLES[pathname] ?? "Aya Core Studios — Creative Technologist";
+  }, [pathname]);
+  return null;
+}
 
 // Everything past the landing page loads on demand, so a first-time
 // visitor only pays for Home — not Work, About, Services, and Contact
@@ -17,6 +42,10 @@ const Services = lazy(() => import("./pages/Services"));
 const Contact = lazy(() => import("./pages/Contact"));
 
 function PageWrapper({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <motion.main
       initial={{ opacity: 0, y: 12 }}
@@ -34,6 +63,7 @@ function App() {
 
   return (
     <div className="relative min-h-screen">
+      <DocumentTitle />
       <CursorGlow />
       <AmbientField />
       <Nav />

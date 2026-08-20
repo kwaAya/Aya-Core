@@ -46,9 +46,9 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, scale: 0.94 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 1.9, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, ease: "easeOut", delay: 0.15 }}
               className="hero-orbital"
             >
               <div className="hero-orbital-shell">
@@ -101,7 +101,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5">
           <StatCounter value="5" label="live platforms" />
           <StatCounter value="many" label="hours, we don't talk about it" />
-          <StatCounter value="16" label="towns, one corridor" />
+          <StatCounter value="self-taught" label="no bootcamp, no CS degree" />
         </div>
       </section>
 
@@ -144,7 +144,23 @@ export default function Home() {
           style={{ background: "radial-gradient(circle, #F81295, transparent 70%)" }}
           aria-hidden="true"
         />
-        <div className="relative max-w-3xl mx-auto text-center">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 400 400"
+          className="pointer-events-none absolute left-1/2 top-1/2 -z-0 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 opacity-[0.15]"
+          style={{ animation: "core-orbit-spin 40s linear infinite" }}
+        >
+          <ellipse cx="200" cy="200" rx="190" ry="70" stroke="#F81295" strokeWidth="1" fill="none" transform="rotate(-18 200 200)" />
+          <ellipse cx="200" cy="200" rx="150" ry="150" stroke="#c9c9c9" strokeWidth="0.75" fill="none" />
+        </svg>
+
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-10% 0px" }}
+          transition={{ duration: 0.6 }}
+          className="relative mx-auto max-w-3xl text-center"
+        >
           <SectionTag tone="dark">let's build something great</SectionTag>
           <h2 className="font-display text-3xl md:text-5xl font-semibold mt-6 leading-tight">
             Tourism platform, healthcare system, gaming experience, or a custom web system?
@@ -154,11 +170,12 @@ export default function Home() {
           </p>
           <Link
             to="/contact"
-            className="mt-10 inline-flex items-center gap-2 bg-hotpink text-white font-mono text-sm rounded-full px-7 py-4 hover:bg-hotpink-glow transition-colors shadow-[0_0_40px_-8px_rgba(248,18,149,0.55)]"
+            className="group mt-10 inline-flex items-center gap-2 bg-hotpink text-white font-mono text-sm rounded-full px-7 py-4 transition-all duration-200 hover:-translate-y-0.5 hover:bg-hotpink-glow shadow-[0_0_40px_-8px_rgba(248,18,149,0.55)]"
           >
             $ initiate_contact
+            <ArrowRight size={15} className="transition-transform duration-200 group-hover:translate-x-1" />
           </Link>
-        </div>
+        </motion.div>
       </section>
     </div>
   );
