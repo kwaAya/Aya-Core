@@ -39,14 +39,27 @@ html {
 }
 @media (min-width: 768px) {
   .hero-stage {
-    grid-template-columns: 1.15fr 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    gap: 0;
   }
 }
 
 .hero-copy {
   position: relative;
   z-index: 10;
+}
+@media (min-width: 768px) {
+  .hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+    max-width: 640px;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-copy {
+    max-width: 780px;
+  }
 }
 
 .hero-orbital {
@@ -58,14 +71,15 @@ html {
 }
 @media (min-width: 768px) {
   .hero-orbital {
+    grid-column: 1;
+    grid-row: 1;
     min-height: 420px;
-    margin-left: -3rem;
+    justify-content: flex-end;
   }
 }
 @media (min-width: 1024px) {
   .hero-orbital {
     min-height: 560px;
-    margin-left: -4.5rem;
   }
 }
 

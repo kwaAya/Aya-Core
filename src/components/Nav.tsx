@@ -41,10 +41,12 @@ export default function Nav() {
               aria-hidden="true"
             />
           </div>
-          <span className="font-display text-xl font-semibold tracking-wide leading-none">
-            <span className="text-hotpink">A</span>
-            <span className="brand-metallic">YA CORE</span>
-            <span className="block w-12 h-px bg-gradient-to-r from-transparent via-hotpink to-transparent my-1.5" aria-hidden="true" />
+          <span className="font-display text-xl font-semibold tracking-wide leading-none flex flex-col items-center">
+            <span className="whitespace-nowrap">
+              <span className="text-hotpink">A</span>
+              <span className="brand-metallic">YA CORE</span>
+            </span>
+            <span className="block w-full h-px bg-gradient-to-r from-transparent via-hotpink to-transparent my-1.5" aria-hidden="true" />
             <span className="block font-mono text-[10px] tracking-[0.25em] text-hotpink font-normal">
               STUDIOS
             </span>

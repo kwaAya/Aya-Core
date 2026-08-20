@@ -48,7 +48,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="mt-4 max-w-lg text-lg text-gray-700/80"
+                className="mt-4 max-w-xl text-lg text-gray-700/80"
               >
                 Aya Core Studios is the practice of Unako "Aya" Mtumtum — designing and shipping immersive digital products where systems thinking, cultural intention, and full-stack craft meet at a single luminous core.
               </motion.p>
