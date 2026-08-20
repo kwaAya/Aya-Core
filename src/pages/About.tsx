@@ -255,7 +255,7 @@ export default function About() {
               </div>
             </div>
             <p className="text-center md:text-left text-xs font-mono text-gray-400 mt-3">
-              this one's giving Steve Lacy album cover, on some real shit, lol
+              this one's giving Steve Lacy's album cover, on some, oh yeah? lmaoo
             </p>
 
             <p className="text-gray-700/70 leading-relaxed mt-8">
