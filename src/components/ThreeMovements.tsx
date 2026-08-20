@@ -117,15 +117,20 @@ export default function ThreeMovements() {
 
       applyOrb(st.progress);
 
-      // Google Fonts load with display=swap, so the page first paints with
-      // a fallback font and swaps to Playfair/Poppins once they download —
-      // after this trigger's start/end positions are already calculated.
-      // The swap reflows every heading above this section (including the
-      // hero h1), which desyncs the scrub from what's actually on screen.
-      // Recalculate once the real fonts have settled.
+      // Anything that changes this section's real height after GSAP has
+      // already measured it — fonts swapping in, the WebGL orb finishing
+      // its first render, isDesktop flipping across the breakpoint — leaves
+      // the scrub desynced from what's actually on screen. Refresh once
+      // fonts settle, and keep refreshing any time the section itself
+      // resizes (covers the orb's canvas mounting in late).
       document.fonts?.ready.then(() => ScrollTrigger.refresh());
+
+      const ro = new ResizeObserver(() => ScrollTrigger.refresh());
+      ro.observe(trigger);
+
+      return () => ro.disconnect();
     },
-    { scope: sectionRef }
+    { scope: sectionRef, dependencies: [isDesktop] }
   );
 
   return (
