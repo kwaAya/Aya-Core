@@ -80,12 +80,12 @@ html {
 @media (min-width: 1024px) {
   .hero-orbital {
     min-height: 560px;
-    transform: translateX(min(9vw, 160px));
+    transform: translateX(min(6vw, 110px));
   }
 }
 @media (min-width: 1440px) {
   .hero-orbital {
-    transform: translateX(min(14vw, 260px));
+    transform: translateX(min(10vw, 190px));
   }
 }
 
@@ -190,7 +190,8 @@ body {
   height: 480px;
   border-radius: 9999px;
   pointer-events: none;
-  z-index: 0;
+  z-index: 30;
+  mix-blend-mode: screen;
   background: radial-gradient(circle, rgba(248,18,149,0.22) 0%, rgba(248,18,149,0.11) 30%, rgba(248,18,149,0.03) 55%, transparent 75%);
   filter: blur(14px);
   transform: translate(-50%, -50%);

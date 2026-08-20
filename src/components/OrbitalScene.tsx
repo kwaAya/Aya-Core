@@ -248,10 +248,10 @@ function Scene({ interactive }: { interactive: boolean }) {
 
   useFrame(({ pointer }) => {
     if (!group.current) return;
-    const targetY = interactive ? pointer.x * 0.18 : 0;
-    const targetX = interactive ? -pointer.y * 0.12 : 0;
-    group.current.rotation.y += (targetY - group.current.rotation.y) * 0.05;
-    group.current.rotation.x += (targetX - group.current.rotation.x) * 0.05;
+    const targetY = interactive ? pointer.x * 0.4 : 0;
+    const targetX = interactive ? -pointer.y * 0.28 : 0;
+    group.current.rotation.y += (targetY - group.current.rotation.y) * 0.09;
+    group.current.rotation.x += (targetX - group.current.rotation.x) * 0.09;
   });
 
   return (
