@@ -68,6 +68,11 @@ html {
   height: 320px;
   will-change: transform, opacity, filter;
   animation: heroOrbEnter 1.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  /* Soft radial fade at the outer rim so the entrance (scale + blur in)
+     never shows a hard rectangular clip against the section's
+     overflow-hidden boundary — the shell dissolves before it gets there. */
+  mask-image: radial-gradient(circle at center, black 76%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at center, black 76%, transparent 100%);
 }
 @media (min-width: 640px) {
   .hero-orbital-shell {
@@ -190,6 +195,16 @@ body {
 .term-scroll::-webkit-scrollbar-thumb:hover {
   background: rgba(248,18,149,0.85);
   box-shadow: 0 0 14px rgba(248,18,149,0.22);
+}
+
+/* Shared metallic-text treatment for the "AYA CORE" wordmark, used
+   identically in Nav and Footer so the two don't drift apart. */
+.brand-metallic {
+  background: linear-gradient(115deg, #ffffff 0%, #dcdce0 20%, #8c8c93 42%, #ffffff 58%, #b2b2ba 76%, #ffffff 100%);
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .photo-blend {

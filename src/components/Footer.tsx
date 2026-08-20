@@ -18,7 +18,11 @@ export default function Footer() {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_0_40px_rgba(248,18,149,0.12)] backdrop-blur-sm">
+            <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_0_40px_rgba(248,18,149,0.12)] backdrop-blur-sm">
+              <div
+                className="absolute -inset-3 rounded-full bg-hotpink/20 blur-xl -z-10"
+                aria-hidden="true"
+              />
               <img
                 src="/brand/aya-core-symbol.png"
                 alt="Aya Core Studios"
@@ -27,9 +31,12 @@ export default function Footer() {
             </div>
 
             <div>
-              <p className="font-display text-2xl leading-tight text-white md:text-[2.2rem]">Aya Core Studios</p>
-              <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.28em] text-white/45">
-                intentional · crafted · real
+              <p className="font-display text-2xl font-semibold leading-tight tracking-wide md:text-[2.2rem]">
+                <span className="text-hotpink">A</span>
+                <span className="brand-metallic">YA CORE</span>
+              </p>
+              <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.28em] text-white/45">
+                Studios · intentional · crafted · real
               </p>
             </div>
           </div>

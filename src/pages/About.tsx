@@ -22,19 +22,19 @@ const PHILOSOPHY = [
 // Kept tight on purpose — low-effort to scan beats a Spotify Wrapped dump.
 const SOUND = [
   "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "AKA", "Lil Nas X", "Bucie",
-  "Kendrick Lamar", "SAILORR", "Drake", "Dominic Fike", "KAYTRANADA",
-  "Deep House", "Amapiano", "Afro House", "Alt-R&B", "Neo-Soul", "Indie",
+  "Kendrick Lamar", "SAILORR", "Drake", "Dominic Fike", "KAYTRANADA", "Heavy-K", "Ye", "The Weekend", "Sykes", "Kelvin Momo!",
+  "Deep House", "Amapiano", "Afro House", "Alt-R&B", "Neo-Soul", "Indie", "Amapiano", "3-Step Groove"
 ];
 const FANDOM = ["Iron Man / MCU", "Shuri / T'Challa", "Peter Parker", "Sci-Fi", "Black Panther", "Trevor Noah!!", "PC Gaming (Steam / Roblox)", "Marvel Lore", "What Now? & BWSS (Podcasts)", "Superhero Edits"];
 const CULTURE = ["Liverpool FC", "Moodboard Curation", "Chrome & Metallic Everything", "A Patriot", "House Music", "South African Twitter / Lore", "Being a Hater Professionally", "Podcasts "];
-const CURRENT_INTERESTS = ["Anime", "Manga", "Graphic Designing", "Messing around with AI", "Hot Pink", "Literally anything Cool"];
+const CURRENT_INTERESTS = ["Anime", "Manga", "Claude 🫦", "Graphic Designing", "Messing around with AI", "Hot Pink", "Literally Anything Cool 🌟"];
 const PAST_INTERESTS = ["Trading (Crypto & Forex)", "SketchUp (3D Modeling / Interior Design)", "Failed Dropshipping Attempts"];
 const ANCHOR_TAGS = ["DJ Kent", "Iron Man / MCU", "Liverpool FC", "AKA", "Sci-Fi"];
 
 const PHOTOS: { src: string; area: string; position?: string }[] = [
   { src: "about-photo-3.jpg", area: "p1" }, // large anchor tile — elevator shot
   { src: "about-photo-2.jpg", area: "p2" }, // b&w closeup, now the smaller tile
-  { src: "about-photo-5.jpg", area: "p3" },
+  { src: "about-photo-8.jpg", area: "p3" },
   { src: "about-photo-7.jpg", area: "p4" },
   { src: "about-photo-6.jpg", area: "p5", position: "50% 15%" }, // wide bottom tile — crop pushed up off the chin/shirt
 ];
@@ -78,7 +78,7 @@ export default function About() {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="relative w-full max-w-[280px] rounded-2xl border border-white/10 bg-charcoal/60 p-6 font-mono text-xs backdrop-blur-sm overflow-hidden"
+              className="relative w-full max-w-[340px] sm:max-w-[380px] rounded-2xl border border-white/10 bg-charcoal/60 p-6 sm:p-7 font-mono text-xs backdrop-blur-sm overflow-hidden"
             >
               <div
                 aria-hidden="true"
@@ -98,22 +98,22 @@ export default function About() {
                 aya.core // status: online
               </div>
 
-              <dl className="mt-5 space-y-3 text-gray-300/80">
+              <dl className="mt-5 space-y-3.5 text-gray-300/80">
                 <div className="flex justify-between gap-4">
-                  <dt className="text-gray-500">role</dt>
-                  <dd className="text-right">lead digital architect · full-stack</dd>
+                  <dt className="text-gray-500 shrink-0">role</dt>
+                  <dd className="text-right whitespace-nowrap">lead digital architect · full-stack</dd>
                 </div>
                 <div className="flex justify-between gap-4">
-                  <dt className="text-gray-500">based</dt>
-                  <dd className="text-right">bfn, south africa</dd>
+                  <dt className="text-gray-500 shrink-0">based</dt>
+                  <dd className="text-right whitespace-nowrap">bfn, south africa</dd>
                 </div>
                 <div className="flex justify-between gap-4">
-                  <dt className="text-gray-500">shipped</dt>
-                  <dd className="text-right">{`5 platforms (only professionally)`}</dd>
+                  <dt className="text-gray-500 shrink-0">shipped</dt>
+                  <dd className="text-right whitespace-nowrap">{`5 platforms (only professionally)`}</dd>
                 </div>
                 <div className="flex justify-between gap-4">
-                  <dt className="text-gray-500">stack</dt>
-                  <dd className="text-right">react · node · sql</dd>
+                  <dt className="text-gray-500 shrink-0">stack</dt>
+                  <dd className="text-right whitespace-nowrap">react · node · sql</dd>
                 </div>
               </dl>
 
@@ -366,6 +366,17 @@ export default function About() {
               className="group"
             >
               <div className="relative w-9 h-9">
+                {/* Node pulse — marks where this card meets the connecting
+                    line above, echoing "the rest is orbit" a little more
+                    literally. */}
+                <motion.span
+                  aria-hidden="true"
+                  className="absolute -top-[26px] left-1/2 -translate-x-1/2 hidden md:block w-1.5 h-1.5 rounded-full bg-hotpink"
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.08 + 0.3 }}
+                />
                 <span
                   aria-hidden="true"
                   className="absolute inset-0 rounded-full border border-hotpink/30 group-hover:border-hotpink/70 transition-colors duration-300"

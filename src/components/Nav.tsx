@@ -29,17 +29,21 @@ export default function Nav() {
     >
       <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 md:px-10 h-20">
         <NavLink to="/" className="flex items-center gap-3">
-          <img
-            src="/brand/aya-core-symbol.png"
-            alt=""
-            className="h-14 w-auto"
-            aria-hidden="true"
-          />
-          <span className="font-heading text-base font-semibold tracking-wide leading-none">
+          <div className="relative">
+            <div
+              className="absolute -inset-2 rounded-full bg-hotpink/25 blur-md -z-10"
+              aria-hidden="true"
+            />
+            <img
+              src="/brand/aya-core-symbol.png"
+              alt=""
+              className="h-14 w-auto"
+              aria-hidden="true"
+            />
+          </div>
+          <span className="font-display text-base font-semibold tracking-wide leading-none">
             <span className="text-hotpink">A</span>
-            <span className="bg-gradient-to-b from-white via-[#c9c9c9] to-[#8f8f8f] bg-clip-text text-transparent">
-              YA CORE
-            </span>
+            <span className="brand-metallic">YA CORE</span>
             <span className="block w-10 h-px bg-hotpink my-1" aria-hidden="true" />
             <span className="block font-mono text-[9px] tracking-[0.25em] text-hotpink font-normal">
               STUDIOS
@@ -77,6 +81,23 @@ export default function Nav() {
 
 function MobileMenu() {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [open]);
 
   return (
     <div className="md:hidden">
