@@ -26,7 +26,7 @@ Date: 2026-08-21
 | B3 Lab | Done | `/lab` route, nav entry, two entries, sitemap entry |
 | B4 About stack | Done | Three honest groups; learning group links to Lab |
 | C1-C6 copy and About cleanup | Partial | Copy, movements, principles, tag volume, caption, and Services voice updated; full visual review remains |
-| D1 logo payload | Done | Header/footer use `aya-core-symbol.svg` at 1,319 bytes; old 291 KB PNG removed |
+| D1 logo payload | Partial | Original `aya-core-symbol.png` restored in the nav/footer at the owner's request; lightweight SVG alternative remains available, but the PNG is still 291 KB |
 | D2 social card | Partial | 1200x630 SVG card added; raster compatibility still owner question |
 | D3 image stability | Partial | Logo dimensions and About CSS ratios added; full site-wide intrinsic audit remains |
 | D4-D6 accessibility | Partial | Dedicated accent token and decorative SVG handling improved; axe and full heading audit blocked |

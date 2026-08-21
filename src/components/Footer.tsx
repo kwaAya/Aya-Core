@@ -24,7 +24,7 @@ export default function Footer() {
                 aria-hidden="true"
               />
               <img
-                src="/brand/aya-core-symbol.svg"
+                src="/brand/aya-core-symbol.png"
                 alt="Aya Core Studios"
                 width="128"
                 height="128"

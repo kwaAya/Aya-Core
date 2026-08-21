@@ -36,7 +36,7 @@ export default function Nav() {
               aria-hidden="true"
             />
             <img
-              src="/brand/aya-core-symbol.svg"
+              src="/brand/aya-core-symbol.png"
               alt=""
               width="128"
               height="128"
