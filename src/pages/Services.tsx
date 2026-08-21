@@ -13,6 +13,7 @@ const SERVICES = [
     timeline: "scope-led",
     body: "End-to-end design and development of the core product — from the first low-connectivity prototype to something a community runs on daily.",
     items: ["Product discovery in-context", "Full-stack build", "Deployment & handover"],
+    range: "typically R35,000 – R75,000 · scope-led",
   },
   {
     title: "Rescue & rebuild",
@@ -20,6 +21,7 @@ const SERVICES = [
     timeline: "scope-led",
     body: "A spreadsheet, a WhatsApp group, or an abandoned app that's outgrown itself. I rebuild it without losing what already works.",
     items: ["Audit of existing workaround", "Incremental migration plan", "Careful handover"],
+    range: "typically R15,000 – R35,000 · scope-led",
   },
   {
     title: "Advisory & audit",
@@ -27,6 +29,7 @@ const SERVICES = [
     timeline: "scope-led",
     body: "A second set of eyes on an in-progress build — architecture, UX, and whether the software is solving the right problem at all.",
     items: ["Technical + UX audit", "Prioritised fix list", "Practical next steps"],
+    range: "from R6,000 per day · scope-led",
   },
 ];
 
@@ -58,6 +61,15 @@ export default function Services() {
             text="Three ways to work together."
             className="font-display text-4xl md:text-6xl font-semibold mt-6"
           />
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mt-6 text-gray-700/80"
+          >
+            Ranges, not quotes. They're here so we find out early if this is a fit — that conversation is cheaper for both of us up front than three calls in.
+          </motion.p>
         </div>
         <div className="flex justify-center md:justify-end">
           <TerminalCard />
@@ -82,7 +94,7 @@ export default function Services() {
               </span>
             </div>
             <h3 className="font-display text-2xl font-semibold mt-4">{s.title}</h3>
-            <p className="text-sm text-gray-700/70 mt-3 flex-1">{s.body}</p>
+            <p className="text-sm text-white/60 mt-3 flex-1">{s.body}</p>
             <ul className="mt-6 space-y-2">
               {s.items.map((it, j) => (
                 <motion.li
@@ -91,12 +103,15 @@ export default function Services() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.35, delay: i * 0.08 + 0.2 + j * 0.05 }}
-                  className="text-sm text-gray-700/80 flex items-start gap-2"
+                  className="text-sm text-white/60 flex items-start gap-2"
                 >
                   <span className="text-hotpink mt-1">·</span> {it}
                 </motion.li>
               ))}
             </ul>
+            <p className="mt-5 font-mono text-[10px] uppercase tracking-wide text-gray-400">
+              {s.range}
+            </p>
           </motion.div>
         ))}
       </div>
@@ -133,7 +148,7 @@ export default function Services() {
                   {String(i + 1).padStart(2, "0")}
                 </motion.span>
                 <h3 className="font-display text-xl font-semibold mt-4 capitalize">{p.step}</h3>
-                <p className="text-sm text-gray-700/70 mt-2">{p.body}</p>
+                <p className="text-sm text-white/60 mt-2">{p.body}</p>
               </motion.div>
             ))}
           </div>

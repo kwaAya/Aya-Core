@@ -6,10 +6,17 @@ import SectionTag from "../components/SectionTag";
 import OrbitalScene from "../components/LazyOrbitalScene";
 import WatermarkText from "../components/WatermarkText";
 import WatermarkHint from "../components/WatermarkHint";
+import { AVAILABILITY_LINE } from "../config/availability";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mppakljw";
 const PROJECT_TYPES = ["Tourism platform", "Healthcare / booking system", "Gaming experience", "Rescue & rebuild", "Custom system", "Not sure yet"];
-const BUDGET_RANGES = ["Under R5,000", "R5,000 – R15,000", "R15,000+", "Not sure yet"];
+const BUDGET_RANGES = [
+  "A focused build or a rescue — R15,000 – R35,000",
+  "A full platform, with booking or payments — R35,000 – R75,000",
+  "Multi-site or aggregator work — R75,000+",
+  "An advisory call or audit — from R6,000",
+  "Still working it out",
+];
 const TIMELINES = ["ASAP", "1–2 months", "Flexible / exploring"];
 
 export default function Contact() {
@@ -119,7 +126,7 @@ export default function Contact() {
               <Field label="Email" name="email" type="email" error={errors.email} />
               <Field label="Project type" name="projectType" select options={PROJECT_TYPES} placeholder="What are we building?" />
               <div className="grid sm:grid-cols-2 gap-6">
-                <Field label="Budget" name="budget" select options={BUDGET_RANGES} placeholder="Ballpark is fine" />
+              <Field label="Budget" name="budget" select options={BUDGET_RANGES} placeholder="Where's your budget sitting?" />
                 <Field label="Timeline" name="timeline" select options={TIMELINES} placeholder="When's this live?" />
               </div>
               <Field
@@ -185,8 +192,7 @@ export default function Contact() {
           <SectionTag tone="dark">availability</SectionTag>
           <h2 className="font-display text-3xl md:text-5xl font-semibold mt-6">Currently booking Q4 builds.</h2>
           <p className="mt-6 text-white/60">
-            One rescue-and-rebuild slot and one full platform build left this
-            quarter. Advisory calls stay open year-round.
+            {AVAILABILITY_LINE}. Advisory calls stay open year-round.
           </p>
 
           <div className="mt-10 inline-flex flex-col gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-5 text-left font-mono text-xs backdrop-blur-sm">

@@ -37,7 +37,7 @@ export const projects: Project[] = [
     description:
       "A dynamic directory-driven travel platform for Kokstad — dynamic listings, filterable content and a travel planning surface tuned for discovery.",
     story:
-      "Kokstad sits at the gateway to East Griqualand, and the platform was built around that role — helping a visitor plan outward from the town rather than just book a single stay. Filterable listings do the heavy lifting so the site scales with new operators without a rebuild. As a co-developer for the Kokstad Tourism website (kokstadtourism.co.za), I was responsible for significant frontend, UI, and UX enhancements, transforming it into an intuitive and visually engaging platform for visitors to East Griqualand. My work ensured that the website effectively showcases Kokstad's diverse attractions, activities, and local businesses. I also contributed to the backend development, supporting the site's robust functionality and content delivery. This project underscored my ability to collaborate on impactful web solutions for regional promotion.",
+      "Kokstad sits at the gateway to East Griqualand, and the platform was built around that role — helping a visitor plan outward from the town rather than just book a single stay. Filterable listings do the heavy lifting so the site scales with new operators without a rebuild. My uncle handed it over half-finished as a test; I completed the build and gave it the structure and visual identity it didn't have.",
     stack: ["PHP", "MySQL", "SEO"],
     role: "The first one. My uncle handed it over half-finished as a test; I completed the build and gave it the structure and visual identity it didn't have.",
     status: "Live",

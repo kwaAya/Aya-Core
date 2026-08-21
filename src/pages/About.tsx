@@ -191,14 +191,6 @@ export default function About() {
           })}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap gap-3 mt-8"
-        >
-        </motion.div>
       </div>
 
       <div className="mx-auto mt-24 max-w-5xl">

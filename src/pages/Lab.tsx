@@ -48,7 +48,7 @@ export default function Lab() {
                 {index === 1 && <LazyOrbitalScene interactive={false} className="h-20 w-20 shrink-0" />}
               </div>
               <h2 className="mt-8 font-display text-3xl font-semibold">{entry.title}</h2>
-              <p className="mt-4 leading-relaxed text-gray-700/80">{entry.description}</p>
+              <p className="mt-4 leading-relaxed text-white/60">{entry.description}</p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {entry.stack.map((item) => (
                   <span key={item} className="rounded-full border border-white/10 px-3 py-1.5 font-mono text-xs text-gray-300">
