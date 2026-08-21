@@ -4,6 +4,7 @@ import { lazy, Suspense, useEffect, useRef } from "react";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import CursorGlow from "./components/CursorGlow";
+import ScreenRecorder from "./components/ScreenRecorder";
 import Home from "./pages/Home";
 import { projects } from "./data/projects";
 const AmbientField = lazy(() => import("./components/AmbientField"));
@@ -125,6 +126,7 @@ function App() {
     <div className="relative min-h-screen">
       <DocumentTitle />
       <CursorGlow />
+      <ScreenRecorder />
       <Suspense fallback={null}><AmbientField /></Suspense>
       <a href="#main-content" className="skip-link">Skip to content</a>
       <Nav />
