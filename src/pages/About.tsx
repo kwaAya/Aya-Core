@@ -68,8 +68,7 @@ export default function About() {
               I don't build for corporations. I build for communities.
             </p>
             <p className="text-sm text-gray-700/60">
-              Unako "Aya" Mtumtum — forever 19 {`(actually 20)`}, second-year Computer Networking
-              student at CUT, South Africa.
+              Unako "Aya" Mtumtum — second-year Computer Networking student at CUT, South Africa.
             </p>
           </div>
           <div className="flex justify-center">
@@ -101,7 +100,7 @@ export default function About() {
               <dl className="mt-5 space-y-3.5 text-gray-300/80">
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500 shrink-0">role</dt>
-                  <dd className="text-right whitespace-nowrap">lead digital architect · full-stack</dd>
+                  <dd className="text-right whitespace-nowrap">developer · full-stack</dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500 shrink-0">based</dt>
@@ -109,7 +108,7 @@ export default function About() {
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500 shrink-0">shipped</dt>
-                  <dd className="text-right whitespace-nowrap">{`5 platforms (only professionally)`}</dd>
+                  <dd className="text-right whitespace-nowrap">5 platforms shipped to production</dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500 shrink-0">stack</dt>
@@ -135,7 +134,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl rotate-1 max-w-[280px] mx-auto md:mx-0"
         >
-                    <img src="/About/about-photo-baby.jpg" alt="Aya as a baby" className="w-full object-cover" />
+                    <img src="/About/about-photo-baby.jpg" alt="Aya as a baby" className="w-full object-cover" loading="lazy" decoding="async" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -150,6 +149,9 @@ export default function About() {
             visual identity and a brand system it didn't have before. That's
             been the pattern since: hand me the thing that's broken or
             unfinished, get back more structure than you asked for.
+          </p>
+          <p className="mt-4 text-sm leading-relaxed text-gray-700/60">
+            Most of this work was built with Route 56 Adventures, a South African tourism venture founded by my uncle in 2026. I'm the developer on it.
           </p>
         </motion.div>
       </div>
@@ -233,6 +235,7 @@ export default function About() {
                   className="w-full h-full object-cover"
                   style={p.position ? { objectPosition: p.position } : undefined}
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
             ))}
@@ -258,7 +261,7 @@ export default function About() {
                 <span className="absolute -top-[3px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-hotpink shadow-[0_0_8px_rgba(248,18,149,0.9)]" />
               </div>
               <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-hotpink shadow-2xl">
-                <img src="/About/about-photo-texture.jpg" alt="Portrait of Aya" className="w-full h-full object-cover" />
+                <img src="/About/about-photo-texture.jpg" alt="Portrait of Aya" className="w-full h-full object-cover" loading="lazy" decoding="async" />
               </div>
             </div>
             <p className="text-center md:text-left text-xs font-mono text-gray-400 mt-3">

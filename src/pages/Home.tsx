@@ -9,6 +9,7 @@ import ThreeMovements from "../components/ThreeMovements";
 import StatCounter from "../components/StatCounter";
 import SectionTag from "../components/SectionTag";
 import FeaturedDuo from "../components/FeaturedDuo";
+import { AVAILABILITY_LINE } from "../config/availability";
 //import { projects } from "../data/projects";
 
 export default function Home() {
@@ -34,7 +35,7 @@ export default function Home() {
             transition={{ delay: 0.1 }}
             className="mb-3"
           >
-            <SectionTag>creative technologist · south africa</SectionTag>
+            <SectionTag>full-stack developer · php · mysql · react · south africa</SectionTag>
           </motion.div>
 
           <div className="hero-stage">
@@ -46,7 +47,7 @@ export default function Home() {
             >
               <RevealText
                 as="h1"
-                text="Built for communities. Engineered for scale."
+                text="Small towns deserve software that works."
                 className="font-display text-5xl font-semibold leading-[0.96] tracking-[-0.01em] text-ink md:text-7xl lg:text-8xl"
               />
 
@@ -56,7 +57,7 @@ export default function Home() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="mt-4 max-w-xl text-lg text-gray-700/80"
               >
-                Aya Core Studios is the practice of Unako "Aya" Mtumtum — designing and shipping immersive digital products where systems thinking, cultural intention, and full-stack craft meet at a single luminous core.
+                I'm Unako "Aya" Mtumtum, a self-taught developer in Bloemfontein. I build tourism directories, booking systems, and clinic platforms for Route 56 Adventures — a business serving real towns along the R56. Two platforms I built, one I rebuilt, one I audited. All four live in production.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -77,10 +78,13 @@ export default function Home() {
                   Let's collaborate
                 </Link>
               </motion.div>
+              <p className="mt-5 inline-flex max-w-xl border border-hotpink/30 bg-hotpink/10 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.12em] text-hotpink">
+                {AVAILABILITY_LINE}
+              </p>
               <div className="mt-8 flex flex-wrap gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-gray-400">
-                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">strategy</span>
-                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">ux systems</span>
-                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">product design</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">php</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">mysql</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">react</span>
               </div>
               <p className="mt-6 font-mono text-xs text-gray-400 md:hidden">
                 core.system // online — tilt or move your cursor above

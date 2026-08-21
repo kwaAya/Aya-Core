@@ -15,10 +15,10 @@ export default function ProjectDetail() {
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  if (!project) return <Navigate to="/work" replace />;
+  if (!project) return <Navigate to="/404" replace />;
+  if (project.slug === "digital-break") return <DigitalBreakDetail project={project} />;
 
   const next = projects[(index + 1) % projects.length];
-  const value = project.metrics.find((m) => m.label === "Value")?.value;
   const heroImage = { src: `/projects/${project.slug}.jpg`, alt: `${project.name} — live site` };
   const detailImages = [2, 3, 4].map((n) => ({
     src: `/projects/${project.slug}-${n}.jpg`,
@@ -58,9 +58,6 @@ export default function ProjectDetail() {
           className="font-display text-4xl md:text-6xl font-semibold mt-6"
         />
         <p className="mt-4 text-lg text-gray-700/70">{project.tagline}</p>
-        {value && (
-          <p className="mt-2 font-mono text-[11px] text-gray-700/40">est. project value {value}</p>
-        )}
 
         <ProjectHeroPanel project={project} onImageClick={() => setLightboxIndex(0)} />
       </div>
@@ -85,6 +82,7 @@ export default function ProjectDetail() {
               alt={img.alt}
               className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
               loading="lazy"
+              decoding="async"
             />
           </button>
         ))}
@@ -108,6 +106,22 @@ export default function ProjectDetail() {
             <p>{project.story}</p>
           </div>
           <div>
+            <h2 className="font-heading text-sm uppercase tracking-wide text-hotpink mb-2">My role</h2>
+            <p>{project.role}</p>
+          </div>
+          <div>
+            <h2 className="font-heading text-sm uppercase tracking-wide text-hotpink mb-2">Outcome</h2>
+            <p>{project.outcome}</p>
+          </div>
+          {project.testimonial && (
+            <blockquote className="border-l-2 border-hotpink pl-5">
+              <p>“{project.testimonial.quote}”</p>
+              <footer className="mt-3 text-sm text-gray-700/60">
+                {project.testimonial.name}, {project.testimonial.role}, {project.testimonial.organisation}
+              </footer>
+            </blockquote>
+          )}
+          <div>
             <h2 className="font-heading text-sm uppercase tracking-wide text-hotpink mb-2">
               What it does
             </h2>
@@ -127,14 +141,26 @@ export default function ProjectDetail() {
         </div>
 
         {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-10 inline-flex items-center gap-2 bg-charcoal text-white font-heading text-sm rounded-full px-6 py-3.5 hover:bg-hotpink transition-colors"
-          >
-            View live project <ArrowUpRight size={16} />
-          </a>
+          <div className="mt-10 flex flex-wrap gap-3">
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 bg-charcoal text-white font-heading text-sm rounded-full px-6 py-3.5 hover:bg-hotpink transition-colors"
+            >
+              View live project <ArrowUpRight size={16} />
+            </a>
+            {project.repoUrl && (
+              <a
+                href={project.repoUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 border border-white/15 text-ink font-heading text-sm rounded-full px-6 py-3.5 hover:border-hotpink hover:text-hotpink transition-colors"
+              >
+                View source <ArrowUpRight size={16} />
+              </a>
+            )}
+          </div>
         )}
 
         <div className="mt-24 pt-10 border-t border-blush-100 flex items-center justify-between">
@@ -145,6 +171,41 @@ export default function ProjectDetail() {
           >
             {next.name} →
           </Link>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function DigitalBreakDetail({ project }: { project: (typeof projects)[number] }) {
+  return (
+    <div className="relative overflow-hidden px-6 pb-28 pt-40 md:px-10">
+      <div className="mx-auto max-w-5xl">
+        <Link to="/work" className="mb-10 flex w-fit items-center gap-2 font-mono text-xs text-gray-700/60 transition-colors hover:text-hotpink">
+          <ArrowLeft size={14} /> all projects
+        </Link>
+        <SectionTag>self-directed · craft</SectionTag>
+        <RevealText as="h1" text="Digital Break V2.1" className="mt-6 max-w-3xl font-display text-4xl font-semibold md:text-6xl" />
+        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-gray-700/75">A browser game built to make the machinery visible: canvas rendering, collision detection, state management, and frame timing written by hand.</p>
+        <ProjectHeroPanel project={project} />
+
+        <div className="mt-14 grid gap-6 md:grid-cols-2">
+          {[
+            ["Game loop architecture", "A predictable update-and-render cycle keeps input, simulation, and drawing in a deliberate order."],
+            ["Collision detection", "Canvas geometry is tested directly against the active game objects instead of delegated to an engine."],
+            ["State management", "Screens, score, power-ups, targets, and game-over states are explicit parts of the loop."],
+            ["Why no engine", "The constraint was the point: understanding timing and interaction at the level beneath a framework."],
+          ].map(([title, body]) => (
+            <div key={title} className="border border-white/10 bg-charcoal p-6">
+              <h2 className="font-heading text-sm uppercase tracking-wide text-hotpink">{title}</h2>
+              <p className="mt-3 leading-relaxed text-gray-300/75">{body}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 flex flex-wrap gap-3">
+          <a href={project.liveUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-hotpink px-6 py-3.5 font-heading text-sm text-white transition-colors hover:bg-hotpink-glow">Play the build <ArrowUpRight size={16} /></a>
+          {project.repoUrl && <a href={project.repoUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3.5 font-heading text-sm text-ink transition-colors hover:border-hotpink hover:text-hotpink">View source <ArrowUpRight size={16} /></a>}
         </div>
       </div>
     </div>
@@ -202,6 +263,7 @@ function ProjectHeroPanel({
             src={`/projects/${project.slug}.jpg`}
             alt={`${project.name} — live site`}
             className="w-full aspect-video object-cover object-top transition-transform duration-500 hover:scale-[1.02]"
+            decoding="async"
           />
         </button>
       </div>

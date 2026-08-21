@@ -10,8 +10,8 @@ const AmbientField = lazy(() => import("./components/AmbientField"));
 
 const DEFAULT_TITLE = "Aya Core Studios — Creative Technologist";
 const DEFAULT_DESCRIPTION =
-  "Aya Core Studios — creative technology practice building platforms for communities, engineered for scale.";
-const SITE_URL = "https://ayacore.netlify.app";
+  "Full-stack developer building tourism directories, booking systems, and clinic platforms for real towns along South Africa's R56.";
+const SITE_URL = "https://ayacorestudios.netlify.app";
 
 const ROUTE_META: Record<string, { title: string; description: string }> = {
   "/": { title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION },
@@ -65,6 +65,11 @@ function DocumentTitle() {
     setMeta('meta[property="og:url"]', url);
     setMeta('meta[name="twitter:title"]', meta.title);
     setMeta('meta[name="twitter:description"]', meta.description);
+    const shareImage = project
+      ? `${SITE_URL}/projects/${project.slug}.jpg`
+      : `${SITE_URL}/brand/aya-core-symbol.png`;
+    setMeta('meta[property="og:image"]', shareImage);
+    setMeta('meta[name="twitter:image"]', shareImage);
   }, [pathname]);
   return null;
 }
@@ -88,6 +93,7 @@ function PageWrapper({ children }: { children: React.ReactNode }) {
 
   return (
     <motion.main
+      id="main-content"
       ref={ref}
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
@@ -115,6 +121,7 @@ function App() {
       <DocumentTitle />
       <CursorGlow />
       <Suspense fallback={null}><AmbientField /></Suspense>
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Nav />
       <AnimatePresence mode="wait">
         <Suspense fallback={null}>
@@ -125,6 +132,7 @@ function App() {
             <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
             <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
             <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+            <Route path="/404" element={<PageWrapper><NotFound /></PageWrapper>} />
             <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
           </Routes>
         </Suspense>

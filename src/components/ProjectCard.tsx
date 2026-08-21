@@ -17,19 +17,19 @@ export default function ProjectCard({ project, index }: { project: Project; inde
       className="relative h-[21rem] [perspective:1200px]"
     >
       <button
+        type="button"
         onClick={() => setFlipped((f) => !f)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") setFlipped((f) => !f);
-        }}
         aria-pressed={flipped}
         aria-label={`Flip card to ${flipped ? "hide" : "show"} details for ${project.name}`}
-        className="group h-full w-full text-left"
+        className="absolute inset-0 z-0 h-full w-full rounded-[1.5rem]"
+      />
+      <motion.div
+        className="group pointer-events-none relative h-full w-full [transform-style:preserve-3d]"
         style={{ transformStyle: "preserve-3d" }}
       >
         <motion.div
-          className="relative h-full w-full [transform-style:preserve-3d]"
           animate={{
             rotateY: flipped ? 180 : 0,
             y: hovered || flipped ? -8 : 0,
@@ -101,14 +101,14 @@ export default function ProjectCard({ project, index }: { project: Project; inde
               <Link
                 to={`/work/${project.slug}`}
                 onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.2em] text-hotpink-glow hover:text-white"
+                className="pointer-events-auto relative z-10 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.2em] text-hotpink-glow hover:text-white"
               >
                 details <ArrowUpRight size={14} />
               </Link>
             </div>
           </div>
         </motion.div>
-      </button>
+      </motion.div>
     </motion.div>
   );
 }

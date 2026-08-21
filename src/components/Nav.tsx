@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 const LINKS = [
-  { to: "/work", label: "Shipped" },
-  { to: "/about", label: "Behind the Core" },
-  { to: "/services", label: "Build With Me" },
+  { to: "/work", label: "Work" },
+  { to: "/about", label: "About" },
+  { to: "/services", label: "Services" },
 ];
 
 export default function Nav() {

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ayacore.netlify.app/sitemap.xml
+Sitemap: https://ayacorestudios.netlify.app/sitemap.xml

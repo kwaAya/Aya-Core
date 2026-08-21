@@ -51,6 +51,8 @@ export default function FeaturedDuo() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               className="absolute inset-0 h-full w-full object-cover object-top"
               aria-hidden="true"
+              loading="lazy"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-black/20" />
             <div className="absolute inset-0 bg-charcoal" style={{ opacity: isActive ? 0 : 1, transition: "opacity 0.5s" }} />

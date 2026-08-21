@@ -6,7 +6,10 @@ export type Project = {
   description: string;
   story: string;
   stack: string[];
-  metrics: { label: string; value: string }[];
+  role: string;
+  outcome: string;
+  testimonial?: { quote: string; name: string; role: string; organisation: string };
+  repoUrl?: string;
   liveUrl: string;
 };
 
@@ -21,11 +24,9 @@ export const projects: Project[] = [
     story:
       "Matatiele needed to exist online the way it exists on the ground — as a full town, not a single hotel's landing page. The build centres on a business directory and attractions index that a small tourism office can maintain themselves, with SEO structure doing the work of making the town findable in the first place. I co-developed and significantly enhanced the Matatiele Tourism website (matatiele.co.za), a comprehensive platform promoting tourism in the Eastern Cape, South Africa. My contributions focused on improving the frontend, UI, and UX, resulting in a more engaging and user-friendly experience for visitors exploring Matatiele's natural wonders, cultural heritage, and adventure activities. I also played a role in backend development, contributing to the site's overall functionality and content management. This project involved close collaboration and a commitment to showcasing the region's unique appeal to a global audience.",
     stack: ["PHP", "MySQL", "SEO"],
-    metrics: [
-      { label: "Value", value: "R54,000" },
-      { label: "Hours", value: "120" },
-      { label: "Rate", value: "R450/hr" },
-    ],
+    role: "Built by me, end to end, for Route 56 Adventures.",
+    outcome: "TODO(unako): outcome — e.g. accommodation listings live, monthly visits, bookings handled, search ranking for \"Matatiele accommodation\"",
+    repoUrl: "https://github.com/kwaAya/matatieletourism",
     liveUrl: "https://matatiele.co.za",
   },
   {
@@ -38,11 +39,9 @@ export const projects: Project[] = [
     story:
       "Kokstad sits at the gateway to East Griqualand, and the platform was built around that role — helping a visitor plan outward from the town rather than just book a single stay. Filterable listings do the heavy lifting so the site scales with new operators without a rebuild. As a co-developer for the Kokstad Tourism website (kokstadtourism.co.za), I was responsible for significant frontend, UI, and UX enhancements, transforming it into an intuitive and visually engaging platform for visitors to East Griqualand. My work ensured that the website effectively showcases Kokstad's diverse attractions, activities, and local businesses. I also contributed to the backend development, supporting the site's robust functionality and content delivery. This project underscored my ability to collaborate on impactful web solutions for regional promotion.",
     stack: ["PHP", "MySQL", "SEO"],
-    metrics: [
-      { label: "Value", value: "R45,000" },
-      { label: "Hours", value: "100" },
-      { label: "Rate", value: "R450/hr" },
-    ],
+    role: "Built by me, end to end, for Route 56 Adventures.",
+    outcome: "TODO(unako): outcome — e.g. accommodation listings live, monthly visits, bookings handled, search ranking for \"Kokstad accommodation\"",
+    repoUrl: "https://github.com/kwaAya/Route-56-Adventures",
     liveUrl: "https://kokstadtourism.co.za",
   },
   {
@@ -55,11 +54,8 @@ export const projects: Project[] = [
     story:
       "The hardest part of Route 56 wasn't any single town — it was making 16 of them behave like one coherent route without flattening what makes each stop different. That meant an information architecture built for a corridor first and a town second, plus SEO structured to hold up across the whole namespace.",
     stack: ["PHP", "MySQL", "Maps", "Advanced SEO"],
-    metrics: [
-      { label: "Value", value: "R67,500" },
-      { label: "Hours", value: "150" },
-      { label: "Rate", value: "R450/hr" },
-    ],
+    role: "Not my build. Founded and largely built by Nkosi Mtumtum; I came in to audit the platform and patch what was breaking.",
+    outcome: "TODO(unako): outcome — e.g. accommodation listings live, monthly visits, bookings handled, search ranking for \"Route 56 accommodation\"",
     liveUrl: "https://route56adventures.co.za",
   },
   {
@@ -72,11 +68,9 @@ export const projects: Project[] = [
     story:
       "A dental clinic's real bottleneck is the phone line, not the chair — so this build moved booking online entirely, with OTP verification to keep it trustworthy and Yoco handling payment. POPIA compliance wasn't a checkbox at the end; it shaped how patient data was modelled from the first schema.",
     stack: ["PHP", "Yoco", "OTP", "POPIA"],
-    metrics: [
-      { label: "Value", value: "R36,000" },
-      { label: "Hours", value: "80" },
-      { label: "Rate", value: "R450/hr" },
-    ],
+    role: "Started by Route 56 Adventures; I rebuilt the front end and did substantial back-end work, including the OTP flow, Yoco payment integration, and POPIA-shaped data modelling.",
+    outcome: "TODO(unako): outcome — e.g. accommodation listings live, monthly visits, bookings handled, search ranking for \"Ngejane Dental\"",
+    repoUrl: "https://github.com/kwaAya/Ngejane-Dental",
     liveUrl: "https://dental.konwaba-brands.co.za/ngejane",
   },
   {
@@ -89,11 +83,9 @@ export const projects: Project[] = [
     story:
       "Conceived, designed, and developed 'Digital Break' (digitalbreak.netlify.app), an engaging, fast-paced web-based game launched in May of last year. As a solo developer, I was responsible for the entire game development lifecycle, including game design, frontend and backend programming, UI/UX design, and deployment. The game features intuitive tap mechanics, dynamic challenges with power-ups and boss targets, and a global leaderboard. This project demonstrates my capabilities in full-stack game development, creative problem-solving, and delivering interactive web experiences. No frameworks, no engine — just a canvas and a game loop built by hand. This one exists to show the craft underneath the craft: collision detection, state management, and frame timing written from first principles rather than assembled from a library.",
     stack: ["JavaScript", "HTML5 Canvas", "CSS3"],
-    metrics: [
-      { label: "Value", value: "R27,000" },
-      { label: "Hours", value: "60" },
-      { label: "Rate", value: "R450/hr" },
-    ],
+    role: "Self-directed. No client, no brief, no framework.",
+    outcome: "TODO(unako): outcome — e.g. playable build, session count, or technical milestone",
+    repoUrl: "https://github.com/kwaAya/Digital-Break-V2.1",
     liveUrl: "https://digitalbreak.netlify.app",
   },
 ];

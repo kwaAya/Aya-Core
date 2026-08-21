@@ -51,10 +51,10 @@ export default function Footer() {
 
         <div className="flex flex-col gap-5 lg:items-end">
           <div className="flex flex-wrap items-center gap-4 text-sm text-white/75">
-            <Link to="/work" className="transition-all duration-200 hover:text-hotpink-glow hover:translate-y-[-1px]">Shipped</Link>
-            <Link to="/about" className="transition-all duration-200 hover:text-hotpink-glow hover:translate-y-[-1px]">Behind the Core</Link>
-            <Link to="/services" className="transition-all duration-200 hover:text-hotpink-glow hover:translate-y-[-1px]">Build With Me</Link>
-            <Link to="/contact" className="transition-all duration-200 hover:text-hotpink-glow hover:translate-y-[-1px]">Say Hi</Link>
+            <Link to="/work" className="transition-all duration-200 hover:text-hotpink-glow hover:translate-y-[-1px]">Work</Link>
+            <Link to="/about" className="transition-all duration-200 hover:text-hotpink-glow hover:translate-y-[-1px]">About</Link>
+            <Link to="/services" className="transition-all duration-200 hover:text-hotpink-glow hover:translate-y-[-1px]">Services</Link>
+            <Link to="/contact" className="transition-all duration-200 hover:text-hotpink-glow hover:translate-y-[-1px]">Contact</Link>
           </div>
 
           <Link

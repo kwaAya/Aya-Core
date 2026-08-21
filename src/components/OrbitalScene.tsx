@@ -1,5 +1,5 @@
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useRef, useMemo, useEffect, Suspense } from "react";
+import { useRef, useMemo, useEffect, useState, Suspense } from "react";
 import { animate } from "animejs";
 import * as THREE from "three";
 
@@ -208,7 +208,7 @@ function Sparks() {
   );
 }
 
-function Scene({ interactive }: { interactive: boolean }) {
+function Scene({ interactive, animateScene }: { interactive: boolean; animateScene: boolean }) {
   const group = useRef<THREE.Group>(null);
 
   useEffect(() => {
@@ -247,6 +247,7 @@ function Scene({ interactive }: { interactive: boolean }) {
   }, []);
 
   useFrame(({ pointer }) => {
+    if (!animateScene) return;
     if (!group.current) return;
     const targetY = interactive ? pointer.x * 0.4 : 0;
     const targetX = interactive ? -pointer.y * 0.28 : 0;
@@ -292,19 +293,50 @@ export function OrbitalScene({
   interactive?: boolean;
   className?: string;
 }) {
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(true);
+  const [tabVisible, setTabVisible] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(prefersReducedMotion);
+
+  useEffect(() => {
+    const element = sceneRef.current;
+    if (!element) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { threshold: 0 }
+    );
+    observer.observe(element);
+
+    const onVisibilityChange = () => setTabVisible(document.visibilityState === "visible");
+    const onMotionPreferenceChange = () => setReducedMotion(prefersReducedMotion());
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    mediaQuery.addEventListener("change", onMotionPreferenceChange);
+
+    return () => {
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+      mediaQuery.removeEventListener("change", onMotionPreferenceChange);
+    };
+  }, []);
+
+  const shouldAnimate = inView && tabVisible && !reducedMotion;
+
   return (
-    <div className={className}>
+    <div ref={sceneRef} className={className}>
       <Canvas
         camera={{ position: [0, 0, 5], fov: 45 }}
         dpr={[1, 2]}
         gl={{ antialias: true, alpha: true }}
+        frameloop={shouldAnimate ? "always" : "never"}
       >
         <Suspense fallback={null}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[3, 4, 5]} intensity={1.1} color="#ffffff" />
           <directionalLight position={[-4, -2, -3]} intensity={0.5} color={PEARL} />
           <pointLight position={[0, 0, 2]} intensity={0.8} color="#ffffff" />
-          <Scene interactive={interactive} />
+          <Scene interactive={interactive} animateScene={shouldAnimate} />
         </Suspense>
       </Canvas>
     </div>

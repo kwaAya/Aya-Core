@@ -10,23 +10,23 @@ const SERVICES = [
   {
     title: "Platform build",
     tag: "$ build --full-stack",
-    timeline: "6–10 weeks",
+    timeline: "scope-led",
     body: "End-to-end design and development of the core product — from the first low-connectivity prototype to something a community runs on daily.",
     items: ["Product discovery in-context", "Full-stack build", "Deployment & handover"],
   },
   {
     title: "Rescue & rebuild",
     tag: "$ migrate --legacy",
-    timeline: "3–6 weeks",
+    timeline: "scope-led",
     body: "A spreadsheet, a WhatsApp group, or an abandoned app that's outgrown itself. Aya rebuilds it without losing what already works.",
-    items: ["Audit of existing workaround", "Incremental migration plan", "Zero-downtime cutover"],
+    items: ["Audit of existing workaround", "Incremental migration plan", "Careful handover"],
   },
   {
     title: "Advisory & audit",
     tag: "$ review --architecture",
-    timeline: "1–2 weeks",
+    timeline: "scope-led",
     body: "A second set of eyes on an in-progress build — architecture, UX, and whether the software is solving the right problem at all.",
-    items: ["Technical + UX audit", "Prioritised fix list", "Ongoing advisory retainer"],
+    items: ["Technical + UX audit", "Prioritised fix list", "Practical next steps"],
   },
 ];
 

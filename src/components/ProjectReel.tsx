@@ -63,6 +63,7 @@ function ChapterImage({ project, active }: { project: (typeof projects)[number];
         alt={`${project.name} — live site`}
         className="w-full h-full object-cover object-top"
         loading="lazy"
+        decoding="async"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-black/10" />
       <div
@@ -84,7 +85,8 @@ export default function ProjectReel() {
   const pinRef = useRef<HTMLDivElement>(null);
   const stRef = useRef<ScrollTrigger | null>(null);
   const [stage, setStage] = useState(0);
-  const count = projects.length;
+  const reelProjects = projects.filter((project) => project.slug !== "digital-break");
+  const count = reelProjects.length;
 
   useGSAP(
     () => {
@@ -121,10 +123,10 @@ export default function ProjectReel() {
         ref={pinRef}
         className="hidden md:block relative h-[calc(100vh-6rem)] rounded-3xl overflow-hidden border border-white/10 shadow-2xl"
       >
-        {projects.map((p, i) => (
+        {reelProjects.map((p, i) => (
           <ChapterImage key={p.slug} project={p} active={stage === i} />
         ))}
-        {projects.map((p, i) => (
+        {reelProjects.map((p, i) => (
           <ChapterPanel key={p.slug} project={p} active={stage === i} />
         ))}
 
@@ -132,7 +134,7 @@ export default function ProjectReel() {
           <span className="text-hotpink">{String(stage + 1).padStart(2, "0")}</span>
           <span>/ {String(count).padStart(2, "0")}</span>
           <div className="flex gap-1.5 ml-1">
-            {projects.map((p, i) => (
+            {reelProjects.map((p, i) => (
               <button
                 key={p.slug}
                 type="button"
@@ -150,7 +152,7 @@ export default function ProjectReel() {
 
       {/* Mobile: stacked full-bleed cards, no pinning */}
       <div className="md:hidden space-y-8">
-        {projects.map((p, i) => (
+        {reelProjects.map((p, i) => (
           <motion.div
             key={p.slug}
             initial={{ opacity: 0, y: 20 }}
@@ -164,6 +166,7 @@ export default function ProjectReel() {
               alt={`${p.name} — live site`}
               className="w-full h-full object-cover object-top"
               loading={i === 0 ? "eager" : "lazy"}
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/10" />
             <div className="absolute inset-x-5 bottom-5">
