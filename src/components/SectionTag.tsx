@@ -9,7 +9,7 @@ type Props = {
  * reading as a leftover dev annotation.
  */
 export default function SectionTag({ children, tone = "light" }: Props) {
-  const color = tone === "dark" ? "var(--color-hotpink-glow)" : "var(--color-hotpink)";
+  const color = tone === "dark" ? "var(--color-hotpink-glow)" : "var(--color-accent-text)";
   return (
     <span
       className="inline-flex items-center gap-2 font-heading text-xs font-semibold tracking-[0.22em] uppercase"

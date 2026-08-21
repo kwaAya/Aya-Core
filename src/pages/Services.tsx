@@ -18,7 +18,7 @@ const SERVICES = [
     title: "Rescue & rebuild",
     tag: "$ migrate --legacy",
     timeline: "scope-led",
-    body: "A spreadsheet, a WhatsApp group, or an abandoned app that's outgrown itself. Aya rebuilds it without losing what already works.",
+    body: "A spreadsheet, a WhatsApp group, or an abandoned app that's outgrown itself. I rebuild it without losing what already works.",
     items: ["Audit of existing workaround", "Incremental migration plan", "Careful handover"],
   },
   {

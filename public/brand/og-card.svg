@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">Aya Core Studios</title>
+  <desc id="desc">Small towns deserve software that works.</desc>
+  <rect width="1200" height="630" fill="#000000"/>
+  <circle cx="965" cy="110" r="230" fill="#131316" stroke="#F81295" stroke-opacity=".28" stroke-width="2"/>
+  <ellipse cx="965" cy="110" rx="270" ry="90" fill="none" stroke="#F81295" stroke-opacity=".7" stroke-width="3" transform="rotate(-24 965 110)"/>
+  <ellipse cx="965" cy="110" rx="220" ry="200" fill="none" stroke="#c9c9c9" stroke-opacity=".38" stroke-width="2" transform="rotate(28 965 110)"/>
+  <circle cx="965" cy="110" r="34" fill="#f2f2f2"/>
+  <text x="88" y="112" fill="#ff68b9" font-family="monospace" font-size="22" letter-spacing="5">AYA CORE STUDIOS</text>
+  <text x="88" y="280" fill="#f2f2f0" font-family="Georgia, serif" font-size="72" font-weight="600">Small towns deserve</text>
+  <text x="88" y="362" fill="#f2f2f0" font-family="Georgia, serif" font-size="72" font-weight="600">software that works.</text>
+  <text x="88" y="470" fill="#a0a0a0" font-family="monospace" font-size="20" letter-spacing="3">CREATIVE TECHNOLOGIST · SOUTH AFRICA</text>
+  <rect x="88" y="520" width="130" height="4" fill="#F81295"/>
+</svg>

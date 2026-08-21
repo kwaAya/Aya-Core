@@ -14,7 +14,7 @@ export default function Footer() {
         <div className="max-w-xl">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.26em] text-white/50">
             <span className="h-1.5 w-1.5 rounded-full bg-hotpink" />
-            Select collaborations
+            Build for real places
           </div>
 
           <div className="flex items-center gap-4">
@@ -24,8 +24,10 @@ export default function Footer() {
                 aria-hidden="true"
               />
               <img
-                src="/brand/aya-core-symbol.png"
+                src="/brand/aya-core-symbol.svg"
                 alt="Aya Core Studios"
+                width="128"
+                height="128"
                 className="h-full w-full object-contain p-2 opacity-95"
               />
             </div>
@@ -45,7 +47,7 @@ export default function Footer() {
           </div>
 
           <p className="mt-5 max-w-md text-sm leading-6 text-white/60 md:text-[15px]">
-            Design, strategy, and product thinking for brands ready to feel sharper, richer, and more memorable.
+            I build production software for towns and communities: useful systems, clear interfaces, and work that holds up after launch.
           </p>
         </div>
 

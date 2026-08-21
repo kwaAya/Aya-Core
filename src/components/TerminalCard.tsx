@@ -6,7 +6,7 @@ const LINES = [
   { prompt: "$", text: "deploy --project matatiele-online" },
   { prompt: ">", text: "live at matatiele.co.za", dim: true },
   { prompt: "$", text: "status --all-platforms" },
-  { prompt: ">", text: "5 platforms, 16 towns covered", dim: true },
+  { prompt: ">", text: "4 platforms, 16 towns covered", dim: true },
   { prompt: "$", text: "core.hours --tally" },
   { prompt: ">", text: "many, many hours. we don't talk about it.", dim: true },
   { prompt: "$", text: 'git commit -m "it works now"' },

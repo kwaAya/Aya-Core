@@ -76,8 +76,8 @@ there's a console warning to remind you.
   description, metrics, and live link lives there in one place.
 - **Colors:** all brand colors are defined once in `src/index.css` under
   `@theme` -- change a hex there and it updates everywhere automatically.
-- **Logo:** the source files are in `public/brand/`. `aya-core-logo.png` is
-  the full lockup, `aya-core-symbol.png` is the circular mark used in the
+- **Logo:** the source files are in `public/brand/`. `aya-core-symbol.svg` is
+   the lightweight circular mark used in the
   nav bar and footer, `favicon.png` is the browser-tab icon.
 
 ## 5. Publish it live on the internet (free)

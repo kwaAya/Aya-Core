@@ -15,12 +15,12 @@ const MOVEMENTS = [
   {
     n: "I",
     title: "A single point",
-    body: "Every product begins as a nucleus — a small, dense idea about who it serves and why it matters. We name that core before we name a component.",
+    body: "Start with the people and the problem. Name the core before naming a component.",
   },
   {
     n: "II",
     title: "Systems form around it",
-    body: "Rings of architecture emerge — data, interface, ritual, culture. Each orbit is deliberate, tuned to reinforce the core rather than orbit itself.",
+    body: "The schema, interface, and content model form around it — built for the people who maintain the system.",
   },
   {
     n: "III",
@@ -174,7 +174,7 @@ export default function ThreeMovements() {
         <SectionTag>the core, in three movements</SectionTag>
         <RevealText
           as="h2"
-          text="A studio told the way its work is built."
+          text="A studio showing how its work is built."
           className="mt-6 font-display text-3xl font-medium leading-tight md:text-5xl"
         />
         <p className="mt-4 hidden font-mono text-xs text-gray-400 md:block">

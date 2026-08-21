@@ -110,8 +110,8 @@ export default function ProjectDetail() {
             <p>{project.role}</p>
           </div>
           <div>
-            <h2 className="font-heading text-sm uppercase tracking-wide text-hotpink mb-2">Outcome</h2>
-            <p>{project.outcome}</p>
+            <h2 className="font-heading text-sm uppercase tracking-wide text-hotpink mb-2">Status</h2>
+            <p>{project.status}</p>
           </div>
           {project.testimonial && (
             <blockquote className="border-l-2 border-hotpink pl-5">

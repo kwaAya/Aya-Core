@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import RevealText from "../components/RevealText";
 import SectionTag from "../components/SectionTag";
 import { Code2, Palette, TrendingUp, Users } from "lucide-react";
@@ -10,25 +11,25 @@ const DISCIPLINES = [
   { title: "Community focus", body: "Grounded in South African context, culture and real users.", icon: Users },
 ];
 
-const CORE_VALUES = ["Intentionality", "Craftsmanship", "Systems thinking", "Community impact", "Cultural authenticity", "Balanced maximalism"];
-
 const PHILOSOPHY = [
   { n: "01", title: "Feeling in, structure out", body: "The things I care about get the architecture. That's the whole method." },
   { n: "02", title: "Balanced maximalism", body: "More going on, never more going wrong. Rich, not cluttered." },
-  { n: "03", title: "Systems thinking", body: "Zoom out. Every screen is a node in a larger graph." },
-  { n: "04", title: "Cultural authenticity", body: "Grounded in South African context, not generic templates." },
+];
+
+const TECH_STACK = [
+  { title: "Ship with daily", items: ["PHP", "MySQL", "JavaScript", "CSS", "HTML5", "React"] },
+  { title: "Shipped in production", items: ["Yoco payments", "OTP auth", "POPIA-shaped data modelling", "SEO architecture", "Canvas rendering & game loops"] },
+  { title: "Currently learning", items: ["Three.js", "Node", "TypeScript", "C#"] },
 ];
 
 // Kept tight on purpose — low-effort to scan beats a Spotify Wrapped dump.
 const SOUND = [
-  "Steve Lacy", "DJ Kent", "Frank Ocean", "Tyler, The Creator", "Black Coffee", "AKA", "Lil Nas X", "Bucie", "Daniel Caesar",
-  "Kendrick Lamar", "SAILORR", "Drake", "Dominic Fike", "KAYTRANADA", "Heavy-K", "Ye", "The Weekend", "Sykes", "Kelvin Momo!", "Gqom (very important)",
-  "Deep House", "Amapiano", "Afro House", "Alt-R&B", "Neo-Soul", "Indie", "Amapiano", "3-Step Groove"
+  "Steve Lacy", "DJ Kent", "Frank Ocean", "Black Coffee", "AKA", "KAYTRANADA", "Kelvin Momo!", "Gqom (very important)",
 ];
-const FANDOM = ["Iron Man / MCU", "Falling in luhh :)", "Shuri / T'Challa", "Peter Parker", "Sci-Fi", "Black Panther", "Trevor Noah!!", "PC Gaming (Steam / Roblox)", "Marvel Lore", "What Now? & BWSS (Podcasts)", "Superhero Edits"];
-const CULTURE = ["Liverpool FC", "Moodboard Curation", "Chrome & Metallic Everything", "A Patriot", "House Music", "South African Twitter / Lore", "Being a Hater Professionally", "Podcasts "];
-const CURRENT_INTERESTS = ["Anime", "Manga", "Claude 🫦", "Graphic Designing", "Messing around with AI", "Hot Pink", "Literally Anything Cool 🌟"];
-const PAST_INTERESTS = ["Trading (Crypto & Forex)", "SketchUp (3D Modeling / Interior Design)", "Dropshipping (it failed *sigh)"];
+const FANDOM = ["Iron Man / MCU", "Shuri / T'Challa", "Peter Parker", "Sci-Fi", "Black Panther", "Trevor Noah!!", "PC Gaming", "Marvel Lore"];
+const CULTURE = ["Liverpool FC", "Chrome & Metallic Everything", "A Patriot", "House Music", "South African Twitter / Lore", "Being a Hater Professionally", "Podcasts", "Moodboard Curation"];
+const CURRENT_INTERESTS = ["Anime", "Manga", "Claude 🫦", "Graphic Designing", "Messing around with AI", "Hot Pink", "Literally Anything Cool 🌟", "Chrome"];
+const PAST_INTERESTS = ["Trading (Crypto & Forex)", "SketchUp", "Dropshipping (it failed *sigh)"];
 const ANCHOR_TAGS = ["DJ Kent", "Iron Man / MCU", "Liverpool FC", "AKA", "Sci-Fi", "Alt-R&B", "Kelvin Momo!", "3-Step Groove", "Deep House"];
 
 const PHOTOS: { src: string; area: string; position?: string }[] = [
@@ -108,11 +109,11 @@ export default function About() {
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500 shrink-0">shipped</dt>
-                  <dd className="text-right whitespace-nowrap">5 platforms shipped to production</dd>
+                  <dd className="text-right whitespace-nowrap">4 platforms shipped to production</dd>
                 </div>
                 <div className="flex justify-between gap-4">
                   <dt className="text-gray-500 shrink-0">stack</dt>
-                  <dd className="text-right whitespace-nowrap">react · node · sql</dd>
+                  <dd className="text-right whitespace-nowrap">php · mysql · javascript · react</dd>
                 </div>
               </dl>
 
@@ -134,7 +135,7 @@ export default function About() {
           transition={{ duration: 0.6 }}
           className="rounded-2xl overflow-hidden border border-white/10 shadow-2xl rotate-1 max-w-[280px] mx-auto md:mx-0"
         >
-                    <img src="/About/about-photo-baby.jpg" alt="Aya as a baby" className="w-full object-cover" loading="lazy" decoding="async" />
+                    <img src="/About/about-photo-baby.jpg" alt="Aya as a baby" className="aspect-[4/3] w-full object-cover" loading="lazy" decoding="async" />
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -144,7 +145,7 @@ export default function About() {
         >
           <SectionTag>how this started</SectionTag>
           <p className="mt-4 text-gray-700/80 leading-relaxed">
-            My uncle handed me a half-finished tourism site as a test — see
+            My uncle handed me <Link to="/work/kokstad-tourism" className="text-hotpink hover:underline">Kokstad Tourism</Link> half-finished as a test — see
             if you can finish it. I didn't just finish it. I gave it a
             visual identity and a brand system it didn't have before. That's
             been the pattern since: hand me the thing that's broken or
@@ -197,12 +198,54 @@ export default function About() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="flex flex-wrap gap-3 mt-8"
         >
-          {CORE_VALUES.map((v) => (
-            <span key={v} className="font-mono text-xs bg-blush/30 text-gray-700 rounded-full px-3 py-1.5">
-              {v}
-            </span>
-          ))}
         </motion.div>
+      </div>
+
+      <div className="mx-auto mt-24 max-w-5xl">
+        <SectionTag>the stack</SectionTag>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {TECH_STACK.map((group) => (
+            <div key={group.title} className="border border-white/10 bg-charcoal p-6">
+              <h3 className="font-display text-xl font-semibold">{group.title}</h3>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {group.items.map((item) => (
+                  <span key={item} className="rounded-full border border-white/10 px-3 py-1.5 font-mono text-xs text-gray-300">{item}</span>
+                ))}
+              </div>
+              {group.title === "Currently learning" && <Link to="/lab" className="mt-5 inline-block font-mono text-xs uppercase tracking-wide text-hotpink hover:underline">see the lab →</Link>}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Philosophy */}
+      <div className="max-w-3xl mx-auto mt-28 text-center">
+        <SectionTag>philosophy</SectionTag>
+        <RevealText
+          as="h2"
+          text="The core is what everything else orbits."
+          className="font-display text-3xl md:text-5xl font-medium leading-tight mt-6"
+        />
+        <p className="mt-6 text-gray-700/80 leading-relaxed">
+          "Aya Core" is a triple meaning — career is core to who I am, systems
+          thinking is core to how I work, and the core is the foundational,
+          essential nature of the product. The rest is orbit.
+        </p>
+      </div>
+
+      <div className="max-w-5xl mx-auto mt-16 relative">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 relative">
+          {PHILOSOPHY.map((p) => (
+            <div key={p.n} className="group">
+              <div className="relative w-9 h-9">
+                <span aria-hidden="true" className="absolute inset-0 rounded-full border border-hotpink/30" />
+                <span className="relative z-10 flex h-full w-full items-center justify-center font-mono text-xs text-gray-400">{p.n}</span>
+              </div>
+              <h3 className="font-display text-xl font-semibold mt-4">{p.title}</h3>
+              <p className="text-sm text-gray-700/70 mt-2">{p.body}</p>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* The person behind the studio */}
@@ -260,13 +303,15 @@ export default function About() {
               >
                 <span className="absolute -top-[3px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-hotpink shadow-[0_0_8px_rgba(248,18,149,0.9)]" />
               </div>
-              <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-hotpink shadow-2xl">
-                <img src="/About/about-photo-texture.jpg" alt="Portrait of Aya" className="w-full h-full object-cover" loading="lazy" decoding="async" />
-              </div>
+              <figure>
+                <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-hotpink shadow-2xl">
+                <img src="/About/about-photo-texture.jpg" alt="Portrait of Aya" className="aspect-square w-full h-full object-cover" loading="lazy" decoding="async" />
+                </div>
+                <figcaption className="text-center md:text-left text-xs font-mono text-gray-400 mt-3">
+                  this one's giving Steve Lacy's album cover, on some, oh yeah? lmaoo
+                </figcaption>
+              </figure>
             </div>
-            <p className="text-center md:text-left text-xs font-mono text-gray-400 mt-3">
-              this one's giving Steve Lacy's album cover, on some, oh yeah? lmaoo
-            </p>
 
             <p className="text-gray-700/70 leading-relaxed mt-8">
               Outside the build queue: deep house on loop, whatever Marvel's
@@ -278,7 +323,7 @@ export default function About() {
               { label: "fandom", tags: FANDOM },
               { label: "culture", tags: CULTURE },
             ].map((group, gi) => (
-              <div key={group.label} className="mt-6 first:mt-0">
+              <div key={group.label} className="mt-6">
                 <p className="text-[11px] font-body font-normal tracking-wide text-gray-400/60 italic">
                   {group.label}
                 </p>
@@ -334,74 +379,6 @@ export default function About() {
         </div>
       </div>
 
-      {/* Philosophy */}
-      <div className="max-w-3xl mx-auto mt-28 text-center">
-        <SectionTag>philosophy</SectionTag>
-        <RevealText
-          as="h2"
-          text="The core is what everything else orbits."
-          className="font-display text-3xl md:text-5xl font-medium leading-tight mt-6"
-        />
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-6 text-gray-700/80 leading-relaxed"
-        >
-          "Aya Core" is a triple meaning — career is core to who I am, systems
-          thinking is core to how I work, and the core is the foundational,
-          essential nature of the product. The rest is orbit.
-        </motion.p>
-      </div>
-
-      <div className="max-w-5xl mx-auto mt-16 relative">
-        <motion.div
-          aria-hidden="true"
-          className="absolute left-0 right-0 top-[18px] hidden md:block h-px bg-gradient-to-r from-transparent via-hotpink/40 to-transparent origin-left"
-          initial={{ scaleX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        />
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 relative">
-          {PHILOSOPHY.map((p, i) => (
-            <motion.div
-              key={p.n}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              whileHover={{ y: -4 }}
-              className="group"
-            >
-              <div className="relative w-9 h-9">
-                {/* Node pulse — marks where this card meets the connecting
-                    line above, echoing "the rest is orbit" a little more
-                    literally. */}
-                <motion.span
-                  aria-hidden="true"
-                  className="absolute -top-[26px] left-1/2 -translate-x-1/2 hidden md:block w-1.5 h-1.5 rounded-full bg-hotpink"
-                  initial={{ opacity: 0, scale: 0 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: i * 0.08 + 0.3 }}
-                />
-                <span
-                  aria-hidden="true"
-                  className="absolute inset-0 rounded-full border border-hotpink/30 group-hover:border-hotpink/70 transition-colors duration-300"
-                  style={{ animation: "core-orbit-spin 12s linear infinite" }}
-                />
-                <span className="relative z-10 flex h-full w-full items-center justify-center font-mono text-xs text-gray-400 group-hover:text-hotpink transition-colors">
-                  {p.n}
-                </span>
-              </div>
-              <h3 className="font-display text-xl font-semibold mt-4">{p.title}</h3>
-              <p className="text-sm text-gray-700/70 mt-2">{p.body}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
     </div>
   );
 }

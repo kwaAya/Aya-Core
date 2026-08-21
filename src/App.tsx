@@ -10,7 +10,7 @@ const AmbientField = lazy(() => import("./components/AmbientField"));
 
 const DEFAULT_TITLE = "Aya Core Studios — Creative Technologist";
 const DEFAULT_DESCRIPTION =
-  "Full-stack developer building tourism directories, booking systems, and clinic platforms for real towns along South Africa's R56.";
+  "Creative technologist building tourism directories, booking systems, and clinic platforms for real towns along South Africa's R56.";
 const SITE_URL = "https://ayacorestudios.netlify.app";
 
 const ROUTE_META: Record<string, { title: string; description: string }> = {
@@ -18,7 +18,7 @@ const ROUTE_META: Record<string, { title: string; description: string }> = {
   "/work": {
     title: "Work — Aya Core Studios",
     description:
-      "Five platforms shipped for five South African communities — tourism, healthcare, and custom web systems, built end to end.",
+      "Four platforms shipped for South African communities — tourism, healthcare, and custom web systems, built end to end.",
   },
   "/about": {
     title: "About — Aya Core Studios",
@@ -32,6 +32,10 @@ const ROUTE_META: Record<string, { title: string; description: string }> = {
   "/contact": {
     title: "Contact — Aya Core Studios",
     description: "Start a project with Aya Core Studios — tourism, healthcare, gaming, or a custom web system.",
+  },
+  "/lab": {
+    title: "Lab — Aya Core Studios",
+    description: "Self-directed experiments in game loops, rendering systems, and creative technology.",
   },
 };
 
@@ -67,7 +71,7 @@ function DocumentTitle() {
     setMeta('meta[name="twitter:description"]', meta.description);
     const shareImage = project
       ? `${SITE_URL}/projects/${project.slug}.jpg`
-      : `${SITE_URL}/brand/aya-core-symbol.png`;
+      : `${SITE_URL}/brand/og-card.svg`;
     setMeta('meta[property="og:image"]', shareImage);
     setMeta('meta[name="twitter:image"]', shareImage);
   }, [pathname]);
@@ -82,6 +86,7 @@ const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const About = lazy(() => import("./pages/About"));
 const Services = lazy(() => import("./pages/Services"));
 const Contact = lazy(() => import("./pages/Contact"));
+const Lab = lazy(() => import("./pages/Lab"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 function PageWrapper({ children }: { children: React.ReactNode }) {
@@ -132,6 +137,7 @@ function App() {
             <Route path="/about" element={<PageWrapper><About /></PageWrapper>} />
             <Route path="/services" element={<PageWrapper><Services /></PageWrapper>} />
             <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+            <Route path="/lab" element={<PageWrapper><Lab /></PageWrapper>} />
             <Route path="/404" element={<PageWrapper><NotFound /></PageWrapper>} />
             <Route path="*" element={<PageWrapper><NotFound /></PageWrapper>} />
           </Routes>

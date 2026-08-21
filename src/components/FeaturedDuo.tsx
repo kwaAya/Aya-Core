@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "../data/projects";
 
-// ⚠️ Replace these with your real slugs from data/projects.ts —
-// picked for contrast: one visual/tourism site, one technical system.
-const FEATURED_SLUGS = ["kokstad-tourism", "ngejane-dental"];
+const FEATURED_SLUGS = ["kokstad-tourism", "matatiele-online", "route-56-adventures", "ngejane-dental"];
 
 export default function FeaturedDuo() {
   const [active, setActive] = useState<number | null>(null);

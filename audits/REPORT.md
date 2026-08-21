@@ -1,51 +1,39 @@
-# Aya Core Studios Brief Report
+# Aya Core Studios Brief 02 Report
 
 Date: 2026-08-21
 
-## Verification summary
+## Verification
 
-- `npm run build`: PASS.
-- Local browser checks: PASS for `/`, `/work`, `/about`, `/404`, `/work/ngejane-dental`, and `/work/digital-break` after hydration.
-- Source audit: PASS for absence of old Netlify domains, `est. project value`, and `engineered for scale` in `src/`, `index.html`, and `public/`.
-- Lighthouse before/after: BLOCKED. No deployed-site Lighthouse run was available in this workspace, so no scores are claimed.
-- axe before/after: BLOCKED. No axe runner was available in this workspace, so no scores are claimed.
+- `npm run build`: PASS after the final edit.
+- Local browser checks: PASS for Home, About, Lab, and Matatiele case study.
+- Home featured cards: PASS, DOM count is 4 at 1440px and 390px.
+- `/lab`: PASS, real page with 2 entries and no horizontal overflow.
+- Matatiele case study: PASS, no TODO/outcome text; status is `Live`.
+- About order and caption: PASS, Philosophy precedes Off Duty; the caption is a `figcaption` inside a `figure`.
+- 1440px and 390px overflow checks: PASS on Home and Lab; About also passed without overflow.
+- Lighthouse before/after: BLOCKED. No deployed-site runner or baseline is available here.
+- axe before/after: BLOCKED. No axe runner is available here.
+- External live URL and retired-domain redirect checks: BLOCKED by lack of dashboard/network control.
 
-## Task status
+## Brief 02 status
 
-| Brief area | Status | Evidence or blocker |
+| Task | Status | Evidence or blocker |
 |---|---|---|
-| Hero positioning and copy | Done | `src/pages/Home.tsx`; browser checked |
-| Plain-language navigation | Done | `src/components/Nav.tsx`, `Footer.tsx` |
-| Canonical metadata | Partial | Head, sitemap, and robots corrected; build-time sitemap generation remains |
-| Retired-domain redirects | Blocked | Instructions written in `DOMAIN-MIGRATION.md`; Netlify dashboard access unavailable |
-| Monetary project claims | Done | Removed from project data and detail rendering; source audit clean |
-| Accurate project roles | Done | Added to all five project records and rendered in case studies |
-| Outcome sections | Partial | Structure and explicit TODO placeholders added; real outcomes still needed |
-| Testimonials | Partial | Data shape supports populated testimonials; no testimonials supplied yet |
-| Project source links | Done | Four named repositories linked |
-| Digital Break separation | Done | Separate Work section and technical detail route; browser checked |
-| Invalid project slug 404 | Done | Explicit `/404` route; browser checked |
-| Skip link and motion lifecycle | Done | Skip link, orbit observer, visibility pause, reduced-motion static frame |
-| Image loading | Partial | Async decoding added; full intrinsic-dimension audit remains. Duplicate logo removed, saving 291KB |
-| Accessibility audit | Partial | Nested interactive card fixed; axe and contrast verification remain blocked |
-| Services/About accuracy | Done | Unsupported role, professional, timeline, downtime, and retainer wording tightened |
-| Lighthouse/axe reports | Blocked | Tooling/deployed baseline unavailable |
-| Final external verification | Blocked | External redirects, live URL status, and profile edits require access outside this workspace |
+| A1-A4 case-study corrections | Done | Status replaces Outcome; roles and Matatiele story corrected; no rendered TODO remains |
+| A5-A6 platform count and featured work | Done | `PLATFORM_COUNT` is 4; Home DOM renders 4 cards |
+| A7 Kokstad origin story | Done | About links the named Kokstad case study |
+| B1-B2 brand title and metadata | Done | Creative-technologist hero, shared description source, and static metadata aligned |
+| B3 Lab | Done | `/lab` route, nav entry, two entries, sitemap entry |
+| B4 About stack | Done | Three honest groups; learning group links to Lab |
+| C1-C6 copy and About cleanup | Partial | Copy, movements, principles, tag volume, caption, and Services voice updated; full visual review remains |
+| D1 logo payload | Done | Header/footer use `aya-core-symbol.svg` at 1,319 bytes; old 291 KB PNG removed |
+| D2 social card | Partial | 1200x630 SVG card added; raster compatibility still owner question |
+| D3 image stability | Partial | Logo dimensions and About CSS ratios added; full site-wide intrinsic audit remains |
+| D4-D6 accessibility | Partial | Dedicated accent token and decorative SVG handling improved; axe and full heading audit blocked |
+| D7 retired deployments | Blocked | Exact redirect instructions remain in `DOMAIN-MIGRATION.md`; dashboards unavailable |
+| D8 performance | Partial | Route and WebGL lazy chunks verified in build; font self-hosting and full performance audit remain |
+| E verification/reporting | Partial | Local checks recorded; Lighthouse/axe and external checks blocked |
 
-## TODO(unako) follow-ups
+## Owner questions
 
-- Update the availability quarter before Q4 becomes stale.
-- Confirm Route 56 relationship wording before publishing.
-- Confirm Nkosi Mtumtum's preferred name and credit before publishing the Route 56 case study.
-- Add one-line GitHub descriptions to the four linked repositories.
-- Confirm whether fixed service timelines or an advisory arrangement should be published.
-- Supply one concrete outcome for each project.
-- Request two sentences from Nkosi Mtumtum confirming scope of work, attributed with full name and title.
-- Decide whether `Chris-Hani-District-Tourism` shipped; otherwise mark the repository in progress.
-- Update GitHub and LinkedIn profile links away from the retired domain.
-
-## Remaining engineering work
-
-- Complete exact image dimensions or verified CSS aspect-ratio coverage for every image.
-- Generate the sitemap from the route table at build time.
-- Run and save Lighthouse and axe before/after reports when the required tools and deployed URL are available.
+All remaining owner-only follow-ups are collected in `audits/OPEN-QUESTIONS.md` and are not rendered in the site. Availability remains as written, project outcomes remain intentionally omitted, the founder is credited only as “my uncle,” and age wording is confirmed as 20. Chris-Hani-District-Tourism is live but still in progress and is intentionally excluded from the four shipped-platform count. The uncle's name was not added to the product copy.

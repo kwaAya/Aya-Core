@@ -6,6 +6,7 @@ const LINKS = [
   { to: "/work", label: "Work" },
   { to: "/about", label: "About" },
   { to: "/services", label: "Services" },
+  { to: "/lab", label: "Lab" },
 ];
 
 export default function Nav() {
@@ -35,8 +36,10 @@ export default function Nav() {
               aria-hidden="true"
             />
             <img
-              src="/brand/aya-core-symbol.png"
+              src="/brand/aya-core-symbol.svg"
               alt=""
+              width="128"
+              height="128"
               className="h-16 w-auto"
               aria-hidden="true"
             />

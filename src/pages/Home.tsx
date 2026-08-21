@@ -9,7 +9,7 @@ import ThreeMovements from "../components/ThreeMovements";
 import StatCounter from "../components/StatCounter";
 import SectionTag from "../components/SectionTag";
 import FeaturedDuo from "../components/FeaturedDuo";
-import { AVAILABILITY_LINE } from "../config/availability";
+import { AVAILABILITY_LINE, PLATFORM_COUNT } from "../config/availability";
 //import { projects } from "../data/projects";
 
 export default function Home() {
@@ -35,7 +35,7 @@ export default function Home() {
             transition={{ delay: 0.1 }}
             className="mb-3"
           >
-            <SectionTag>full-stack developer · php · mysql · react · south africa</SectionTag>
+            <SectionTag>creative technologist · south africa</SectionTag>
           </motion.div>
 
           <div className="hero-stage">
@@ -57,7 +57,7 @@ export default function Home() {
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="mt-4 max-w-xl text-lg text-gray-700/80"
               >
-                I'm Unako "Aya" Mtumtum, a self-taught developer in Bloemfontein. I build tourism directories, booking systems, and clinic platforms for Route 56 Adventures — a business serving real towns along the R56. Two platforms I built, one I rebuilt, one I audited. All four live in production.
+                I'm Unako "Aya" Mtumtum, a self-taught creative technologist in Bloemfontein. Right now that means tourism directories, booking systems, and clinic platforms for Route 56 Adventures — four live in production.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 12 }}
@@ -85,6 +85,7 @@ export default function Home() {
                 <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">php</span>
                 <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">mysql</span>
                 <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">react</span>
+                <span className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5">three.js</span>
               </div>
               <p className="mt-6 font-mono text-xs text-gray-400 md:hidden">
                 core.system // online — tilt or move your cursor above
@@ -109,7 +110,7 @@ export default function Home() {
       {/* ---------- STATS ---------- */}
       <section className="px-6 md:px-10 py-20">
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5">
-          <StatCounter value="5" label="live platforms" />
+          <StatCounter value={String(PLATFORM_COUNT)} label="live platforms" />
           <StatCounter value="many" label="hours, we don't talk about it" />
           <StatCounter value="self-taught" label="no bootcamp, no CS degree" />
         </div>
@@ -121,13 +122,13 @@ export default function Home() {
       {/* ---------- FEATURED WORK ---------- */}
       <section className="relative px-6 md:px-10 py-24 bg-charcoal overflow-hidden">
         <WatermarkText
-          text="05"
+          text={String(PLATFORM_COUNT).padStart(2, "0")}
           revealColor="#ffffff"
           className="select-none absolute top-6 right-6 md:right-16 font-display font-semibold text-[9rem] md:text-[13rem] leading-none text-blush/25 -z-0"
         />
         <div className="relative max-w-6xl mx-auto">
           <div className="mb-12">
-            <SectionTag>featured projects</SectionTag>
+            <SectionTag>{`${PLATFORM_COUNT} / featured projects`}</SectionTag>
             <h2 className="font-display text-3xl md:text-4xl font-semibold mt-4 max-w-lg">
               Production-grade platforms. Real communities.
             </h2>
