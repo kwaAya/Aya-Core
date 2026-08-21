@@ -76,14 +76,14 @@ export const projects: Project[] = [
   {
     slug: "digital-break",
     name: "Digital Break V2.1",
-    tagline: "Browser game — JS from scratch",
+    tagline: "Browser game — built with p5.js",
     category: "Gaming",
     description:
-      "Interactive browser game with collision detection, state management and game-loop architecture written from scratch — a demo of raw JavaScript craft.",
+      "Interactive browser game with collision detection, state management and a hand-written game loop — built with p5.js as the rendering layer, with all game logic written from scratch.",
     story:
-      "Conceived, designed, and developed 'Digital Break' (digitalbreak.netlify.app), an engaging, fast-paced web-based game launched in May of last year. As a solo developer, I was responsible for the entire game development lifecycle, including game design, frontend and backend programming, UI/UX design, and deployment. The game features intuitive tap mechanics, dynamic challenges with power-ups and boss targets, and a global leaderboard. This project demonstrates my capabilities in full-stack game development, creative problem-solving, and delivering interactive web experiences. No frameworks, no engine — just a canvas and a game loop built by hand. This one exists to show the craft underneath the craft: collision detection, state management, and frame timing written from first principles rather than assembled from a library.",
-    stack: ["JavaScript", "HTML5 Canvas", "CSS3"],
-    role: "Self-directed. No client, no brief, no framework.",
+      "Conceived, designed, and built solo — a fast-paced browser game with tap mechanics, power-ups, boss targets, and a global leaderboard. p5.js handles the rendering layer; the game loop, collision detection, state machine, and interaction timing are all written by hand. The constraint was intentional: understand what's happening at the level underneath, even when a library is doing the drawing.",
+    stack: ["JavaScript", "p5.js", "CSS3"],
+    role: "Self-directed. No client, no brief.",
     status: "Self-directed",
     repoUrl: "https://github.com/kwaAya/Digital-Break-V2.1",
     liveUrl: "https://digitalbreak.netlify.app",

@@ -186,7 +186,7 @@ function DigitalBreakDetail({ project }: { project: (typeof projects)[number] })
         </Link>
         <SectionTag>self-directed · craft</SectionTag>
         <RevealText as="h1" text="Digital Break V2.1" className="mt-6 max-w-3xl font-display text-4xl font-semibold md:text-6xl" />
-        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-gray-700/75">A browser game built to make the machinery visible: canvas rendering, collision detection, state management, and frame timing written by hand.</p>
+        <p className="mt-5 max-w-2xl text-lg leading-relaxed text-gray-700/75">A browser game built to make the machinery visible: p5.js as the rendering layer, with collision detection, state management, and frame timing all written by hand.</p>
         <ProjectHeroPanel project={project} />
 
         <div className="mt-14 grid gap-6 md:grid-cols-2">
@@ -194,7 +194,7 @@ function DigitalBreakDetail({ project }: { project: (typeof projects)[number] })
             ["Game loop architecture", "A predictable update-and-render cycle keeps input, simulation, and drawing in a deliberate order."],
             ["Collision detection", "Canvas geometry is tested directly against the active game objects instead of delegated to an engine."],
             ["State management", "Screens, score, power-ups, targets, and game-over states are explicit parts of the loop."],
-            ["Why no engine", "The constraint was the point: understanding timing and interaction at the level beneath a framework."],
+            ["Why p5.js", "p5.js handles the rendering layer — the game loop, collision logic, and state machine are all written by hand. The point was understanding what sits beneath the drawing API."],
           ].map(([title, body]) => (
             <div key={title} className="border border-white/10 bg-charcoal p-6">
               <h2 className="font-heading text-sm uppercase tracking-wide text-hotpink">{title}</h2>

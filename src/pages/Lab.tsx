@@ -8,8 +8,8 @@ const ENTRIES = [
   {
     title: "Digital Break V2.1",
     description:
-      "A browser game built to expose the machinery: a hand-written update-and-render loop, direct canvas collision checks, explicit game states, and interaction timing without an engine.",
-    stack: ["JavaScript", "HTML5 Canvas", "CSS3"],
+      "A browser game built to expose the machinery: p5.js handles the rendering layer, but the game loop, collision checks, state machine, and interaction timing are all written by hand. The point was understanding what sits beneath the drawing API.",
+    stack: ["JavaScript", "p5.js", "CSS3"],
     liveUrl: "https://digitalbreak.netlify.app",
     repoUrl: "https://github.com/kwaAya/Digital-Break-V2.1",
     linkLabel: "Play the build",
