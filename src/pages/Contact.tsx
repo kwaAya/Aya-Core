@@ -76,7 +76,7 @@ export default function Contact() {
         <WatermarkText
           text="SIGNAL"
           playful
-          className="select-none absolute -bottom-10 right-[-4%] md:right-0 -z-10 whitespace-nowrap font-display text-[24vw] font-semibold leading-none text-ink/[0.03] md:text-[11rem]"
+          className="select-none absolute -bottom-10 right-[-4%] md:right-0 -z-10 whitespace-nowrap font-display text-[13vw] font-semibold leading-none text-ink/[0.03] md:text-[11rem]"
         />
         <WatermarkHint
           id="contact"

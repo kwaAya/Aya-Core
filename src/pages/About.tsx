@@ -248,32 +248,65 @@ export default function About() {
           text="There's a person behind the studio."
           className="font-display text-3xl md:text-5xl font-medium leading-tight mt-6 max-w-2xl"
         />
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          className="mt-4 max-w-xl text-sm text-gray-700/60 leading-relaxed"
+        >
+          This part of the page isn't portfolio — it's personal. The people who get what I build usually get this too.
+        </motion.p>
 
-        <div           className="mt-14 grid md:grid-cols-[1fr_1.3fr] gap-12 items-start">
+        <div className="mt-14 grid md:grid-cols-[1fr_1.3fr] gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.6 }}
-            className="grid gap-4 h-[460px] sm:h-[560px]"
+            className="grid gap-3 md:gap-4 md:h-[560px]"
             style={{
-              gridTemplateColumns: "repeat(3, 1fr)",
-              gridTemplateRows: "repeat(3, 1fr)",
-              gridTemplateAreas: `"p1 p1 p2" "p1 p1 p3" "p4 p5 p5"`,
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gridTemplateRows: "auto",
             }}
           >
-            {PHOTOS.map((p) => (
-              <div key={p.src} className="photo-blend overflow-hidden" style={{ gridArea: p.area }}>
-                <img
-                  src={`/About/${p.src}`}
-                  alt="Candid photo of Aya"
-                  className="w-full h-full object-cover"
-                  style={p.position ? { objectPosition: p.position } : undefined}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-            ))}
+            {/* Mobile: show first two photos only in a simple 2-col grid */}
+            <div className="contents md:hidden">
+              {PHOTOS.slice(0, 2).map((p) => (
+                <div key={p.src} className="photo-blend overflow-hidden aspect-[3/4] rounded-xl">
+                  <img
+                    src={`/About/${p.src}`}
+                    alt="Candid photo of Aya"
+                    className="w-full h-full object-cover"
+                    style={p.position ? { objectPosition: p.position } : undefined}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
+            {/* Desktop: full mosaic */}
+            <div
+              className="hidden md:grid gap-4 h-[560px] col-span-2"
+              style={{
+                gridTemplateColumns: "repeat(3, 1fr)",
+                gridTemplateRows: "repeat(3, 1fr)",
+                gridTemplateAreas: `"p1 p1 p2" "p1 p1 p3" "p4 p5 p5"`,
+              }}
+            >
+              {PHOTOS.map((p) => (
+                <div key={p.src} className="photo-blend overflow-hidden" style={{ gridArea: p.area }}>
+                  <img
+                    src={`/About/${p.src}`}
+                    alt="Candid photo of Aya"
+                    className="w-full h-full object-cover"
+                    style={p.position ? { objectPosition: p.position } : undefined}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              ))}
+            </div>
           </motion.div>
 
           <motion.div
