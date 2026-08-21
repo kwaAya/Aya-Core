@@ -290,24 +290,24 @@ export default function About() {
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <div className="relative w-40 mx-auto md:mx-0">
+            <div className="relative w-40 md:w-[380px] mx-auto md:mx-0">
               <div
-                className="absolute -inset-6 rounded-full blur-2xl -z-10"
+                className="absolute -inset-6 h-40 w-40 rounded-full blur-2xl -z-10"
                 style={{ background: "radial-gradient(circle, rgba(200,90,255,0.35), rgba(248,18,149,0.25), transparent 70%)" }}
                 aria-hidden="true"
               />
               <div
                 aria-hidden="true"
-                className="absolute -inset-3 rounded-full border border-hotpink/25"
+                className="absolute -inset-3 h-40 w-40 rounded-full border border-hotpink/25 pointer-events-none"
                 style={{ animation: "core-orbit-spin 10s linear infinite" }}
               >
                 <span className="absolute -top-[3px] left-1/2 -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-hotpink shadow-[0_0_8px_rgba(248,18,149,0.9)]" />
               </div>
-              <figure>
-                <div className="w-40 h-40 rounded-full overflow-hidden border-2 border-hotpink shadow-2xl">
-                <img src="/About/about-photo-texture.jpg" alt="Portrait of Aya" className="aspect-square w-full h-full object-cover" loading="lazy" decoding="async" />
+              <figure className="flex flex-col gap-3 md:flex-row md:items-center md:gap-5">
+                <div className="h-40 w-40 shrink-0 rounded-full overflow-hidden border-2 border-hotpink shadow-2xl">
+                  <img src="/About/about-photo-texture.jpg" alt="Portrait of Aya" className="aspect-square w-full h-full object-cover" loading="lazy" decoding="async" />
                 </div>
-                <figcaption className="text-center md:text-left text-xs font-mono text-gray-400 mt-3">
+                <figcaption className="text-center text-xs font-mono text-gray-400 md:mt-0 md:w-[210px] md:text-left">
                   this one's giving Steve Lacy's album cover, on some, oh yeah? lmaoo
                 </figcaption>
               </figure>
