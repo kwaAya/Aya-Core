@@ -290,7 +290,7 @@ export default function About() {
             viewport={{ once: true, margin: "-10% 0px" }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            <div className="relative w-40 h-40 mx-auto md:mx-0">
+            <div className="relative w-40 mx-auto md:mx-0">
               <div
                 className="absolute -inset-6 rounded-full blur-2xl -z-10"
                 style={{ background: "radial-gradient(circle, rgba(200,90,255,0.35), rgba(248,18,149,0.25), transparent 70%)" }}

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type Props = {
   text: string;
@@ -35,6 +35,25 @@ export default function WatermarkText({ text, className, revealColor, playful = 
     }
     setIsActive(false);
   };
+
+  useEffect(() => {
+    const onPointerMove = (event: PointerEvent) => {
+      const element = ref.current;
+      if (!element) return;
+      const rect = element.getBoundingClientRect();
+      const inside = event.clientX >= rect.left && event.clientX <= rect.right &&
+        event.clientY >= rect.top && event.clientY <= rect.bottom;
+      if (inside) {
+        setIsActive(true);
+        track(event.clientX, event.clientY);
+      } else if (isActive) {
+        reset();
+      }
+    };
+
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    return () => window.removeEventListener("pointermove", onPointerMove);
+  }, [isActive]);
 
   const handleTouchMove = (e: React.TouchEvent<HTMLSpanElement>) => {
     const touch = e.touches[0];

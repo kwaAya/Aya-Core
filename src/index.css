@@ -326,6 +326,8 @@ html.has-core-cursor [contenteditable="true"] {
 
 .watermark-reveal {
   cursor: default;
+  z-index: 0;
+  pointer-events: auto;
 }
 .watermark-reveal::after {
   content: attr(data-text);
