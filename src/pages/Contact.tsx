@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Link2, Loader2 } from "lucide-react";
+import { Mail, Link2, Loader2, ChevronDown } from "lucide-react";
 import RevealText from "../components/RevealText";
 import SectionTag from "../components/SectionTag";
 import OrbitalScene from "../components/LazyOrbitalScene";
@@ -8,6 +8,9 @@ import WatermarkText from "../components/WatermarkText";
 import WatermarkHint from "../components/WatermarkHint";
 
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mppakljw";
+const PROJECT_TYPES = ["Tourism platform", "Healthcare / booking system", "Gaming experience", "Rescue & rebuild", "Custom system", "Not sure yet"];
+const BUDGET_RANGES = ["Under R5,000", "R5,000 – R15,000", "R15,000+", "Not sure yet"];
+const TIMELINES = ["ASAP", "1–2 months", "Flexible / exploring"];
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
@@ -114,8 +117,18 @@ export default function Contact() {
             >
               <Field label="Name" name="name" error={errors.name} />
               <Field label="Email" name="email" type="email" error={errors.email} />
-              <Field label="Project type" name="projectType" placeholder="Tourism, healthcare, gaming, custom…" />
-              <Field label="Message" name="message" textarea error={errors.message} placeholder="Tell me about it" />
+              <Field label="Project type" name="projectType" select options={PROJECT_TYPES} placeholder="What are we building?" />
+              <div className="grid sm:grid-cols-2 gap-6">
+                <Field label="Budget" name="budget" select options={BUDGET_RANGES} placeholder="Ballpark is fine" />
+                <Field label="Timeline" name="timeline" select options={TIMELINES} placeholder="When's this live?" />
+              </div>
+              <Field
+                label="What's breaking?"
+                name="message"
+                textarea
+                error={errors.message}
+                placeholder="The thing that's unfinished, broken, or hasn't been built yet…"
+              />
 
               {sendError && <p className="text-sm text-hotpink">{sendError}</p>}
 
@@ -203,6 +216,8 @@ function Field({
   name,
   type = "text",
   textarea = false,
+  select = false,
+  options,
   error,
   placeholder,
 }: {
@@ -210,9 +225,15 @@ function Field({
   name: string;
   type?: string;
   textarea?: boolean;
+  select?: boolean;
+  options?: string[];
   error?: string;
   placeholder?: string;
 }) {
+  const baseClasses = `w-full rounded-xl border bg-charcoal px-4 py-3 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-hotpink/40 transition-shadow ${
+    error ? "border-hotpink" : "border-blush-100"
+  }`;
+
   return (
     <div>
       <label htmlFor={name} className="block font-mono text-xs uppercase tracking-wide text-gray-700/60 mb-2">
@@ -226,10 +247,29 @@ function Field({
           placeholder={placeholder}
           aria-invalid={!!error}
           aria-describedby={error ? `${name}-error` : undefined}
-          className={`w-full rounded-xl border bg-charcoal px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-hotpink/40 transition-shadow ${
-            error ? "border-hotpink" : "border-blush-100"
-          }`}
+          className={baseClasses}
         />
+      ) : select ? (
+        <div className="relative">
+          <select
+            id={name}
+            name={name}
+            defaultValue=""
+            aria-invalid={!!error}
+            aria-describedby={error ? `${name}-error` : undefined}
+            className={`${baseClasses} appearance-none pr-10 text-gray-300/80`}
+          >
+            <option value="" disabled>
+              {placeholder || "Select…"}
+            </option>
+            {options?.map((opt) => (
+              <option key={opt} value={opt} className="bg-charcoal text-white">
+                {opt}
+              </option>
+            ))}
+          </select>
+          <ChevronDown size={14} className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-gray-500" />
+        </div>
       ) : (
         <input
           id={name}
@@ -238,9 +278,7 @@ function Field({
           placeholder={placeholder}
           aria-invalid={!!error}
           aria-describedby={error ? `${name}-error` : undefined}
-          className={`w-full rounded-xl border bg-charcoal px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-hotpink/40 transition-shadow ${
-            error ? "border-hotpink" : "border-blush-100"
-          }`}
+          className={baseClasses}
         />
       )}
       {error && (
