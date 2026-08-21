@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import RevealText from "../components/RevealText";
 import SectionTag from "../components/SectionTag";
 import { Code2, Palette, TrendingUp, Users } from "lucide-react";
+import WatermarkText from "../components/WatermarkText";
+import WatermarkHint from "../components/WatermarkHint";
 
 const DISCIPLINES = [
   { title: "Full-stack engineering", body: "Backend, frontend, database and integrations — end-to-end delivery.", icon: Code2 },
@@ -43,6 +45,16 @@ const PHOTOS: { src: string; area: string; position?: string }[] = [
 export default function About() {
   return (
     <div className="relative overflow-hidden pt-40 pb-28 px-6 md:px-10">
+      <WatermarkText
+        text="ORBIT"
+        playful
+        className="select-none absolute -top-6 right-[-4%] md:right-0 -z-10 whitespace-nowrap font-display text-[20vw] font-semibold leading-none text-ink/[0.03] md:text-[10rem]"
+      />
+      <WatermarkHint
+        id="about"
+        anchorClassName="right-6 top-28 md:right-16"
+        messages={["there's a word hiding top-right", "psst — ORBIT's tucked in the corner"]}
+      />
       <div className="max-w-5xl mx-auto">
         <SectionTag>about</SectionTag>
         <RevealText
