@@ -12,7 +12,7 @@ const AmbientField = lazy(() => import("./components/AmbientField"));
 const DEFAULT_TITLE = "Aya Core Studios — Creative Technologist";
 const DEFAULT_DESCRIPTION =
   "Creative technologist building tourism directories, booking systems, and clinic platforms for real towns along South Africa's R56.";
-const SITE_URL = "https://ayacorestudios.netlify.app";
+const SITE_URL = "https://ayacorestudios.vercel.app";
 
 const ROUTE_META: Record<string, { title: string; description: string }> = {
   "/": { title: DEFAULT_TITLE, description: DEFAULT_DESCRIPTION },
@@ -72,7 +72,7 @@ function DocumentTitle() {
     setMeta('meta[name="twitter:description"]', meta.description);
     const shareImage = project
       ? `${SITE_URL}/projects/${project.slug}.jpg`
-      : `${SITE_URL}/brand/og-card.svg`;
+      : `${SITE_URL}/brand/og-card.png`;
     setMeta('meta[property="og:image"]', shareImage);
     setMeta('meta[name="twitter:image"]', shareImage);
   }, [pathname]);
